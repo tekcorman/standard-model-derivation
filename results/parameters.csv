@@ -1,0 +1,56 @@
+parameter,predicted,observed,error_pct,grade,derivation_chain,key_script,paper
+g_1 (U1 coupling),0.3574,0.3573,0.03,theorem,"k*=3 → Cl(6)=Cl(4)⊗Cl(2) → U(1) normalization",cl8_verification.py,P3
+g_2 (SU2 coupling),0.6514,0.6530,0.25,theorem,"k*=3 → Cl(6) → SU(2) normalization",cl8_verification.py,P3
+g_3 (SU3 coupling),1.218,1.221,0.25,theorem,"k*=3 → Cl(6) → SU(3) normalization",cl8_verification.py,P3
+lambda (Higgs quartic),2*alpha_1,matching,<1,theorem,"Cl(2) anticommutation → 2 independent channels",lambda_promotion.py,P2
+V_us,0.2202,0.2250,2.13,theorem,"Tree approx (d<g/2) + consistency condition g(z*)=(k-1)/k (unique monotone resolvent) → (2/3)^{L_us}",srs_ckm_tree_derivation.py,P3
+V_cb,0.04163,0.04182,0.45,theorem,"NB walk at girth distance g=10 + cycle correction (2/3)^{2g}. z*=17/6 from unique consistency condition g(z*)=(k-1)/k.",vcb_pair_correlation.py,P3
+V_ub,0.00356,0.00369,3.5,theorem,"Product of V_us and V_cb exponents. z*=17/6 from unique consistency condition g(z*)=(k-1)/k.",ckm_from_greens.py,P3
+delta_CP_CKM,70.53,68.5,3.0,theorem,"K4 dihedral angle arccos(1/3)",ckm_holonomy.py,P3
+theta_QCD,0,0,exact,theorem,"srs has no non-orientable cycles → all Z3 holonomies = 0",z3_holonomy_cycles.py,P3
+theta_23_PMNS,48.72,49.2,1.0,theorem,"TBM 45° + dark correction from σ_z=0 theorem on C₃ irreps; c=2 from dim(nontrivial irreps)",srs_theta23_dark.py;srs_theta23_sigma_x.py,P1
+Lambda_CC,3/N^2,1.1e-122,<1,theorem,"Margolus-Levitin on toggle graph of N nodes",margolus_levitin.py,P3
+Omega_DM/Omega_m,0.842,0.842,<0.1,theorem,"1 - P(k<=3 | Poisson(6)); dark = uncompressed multiway",dm_hierarchy_derivation.py,P3
+n_s,0.968,0.965,0.3,theorem,"Graph reconnection dynamics spectral tilt",dm_hierarchy_derivation.py,P3
+r (tensor/scalar),<0.01,<0.036,consistent,theorem,"Consistency with n_s and reconnection",dm_hierarchy_derivation.py,P3
+alpha_21_PMNS,162.39,~162,<3,theorem,"arg(h^g) at P; chirality selects h; 1PI=NB+self-energy+Dyson. h=(sqrt(3)+i*sqrt(5))/2",srs_hashimoto_seesaw_proof.py;srs_chirality_selection.py;srs_mr_self_energy.py,P1
+delta_CP_PMNS,249.85,230+/-36,0.6sigma,theorem,"Conjugate Hashimoto at g-1=9: arg(h*^{g-1}). Exponent g-1 from transition (1 fixed edge). Option B (230 deg) excluded by J at chi2=58.82 vs 3.57. n=g excluded at 5.6sigma.",srs_dcp_exponent.py;srs_final_pmns_theorem.py,P1
+alpha_31_PMNS,324.78,unconstrained,n/a,theorem,"arg(h^g/h'^g) = arg((h/h')^g); inter-band Hashimoto phase ratio",srs_hashimoto_seesaw_proof.py,P1
+v (Higgs VEV),245.64,246.22,0.24,theorem,"delta^2 * M_P / (sqrt(2) * N^{1/4}); MDL mean-field + 2-vertex Dyson at P. Screw dihedral dark correction: cos(beta)->cos(beta)(1+(|D|/k*)alpha_1) with (5/12)alpha_1 from 2cos^2(beta)/sin^2(beta)*|D|/k*. v=245.64 GeV (0.24%)",srs_delta_sq_theorem.py;srs_mdl_meanfield_theorem.py,P2
+m_e,0.000511,0.000511,<0.1,theorem,"v * y_tau * Koide(epsilon=sqrt2 delta=2/9) mass ratio",koide_scale_proof.py,P2
+m_mu,0.1057,0.1057,<0.1,theorem,"v * y_tau * Koide mass ratio",koide_scale_proof.py,P2
+m_tau,1.777,1.777,<0.1,theorem,"v * y_tau/sqrt(2); y_tau = alpha_1/k^2 (theorem)",ytau_corollary.py,P2
+m_u,0.00216,0.00216,<1,A,"Quark Koide with delta(n)=2/(9(n+1)) from PS Fock counting + MDL equal allocation",srs_fock_counting.py;srs_delta_n_derivation.py,P3
+m_d,0.00467,0.00467,<1,A,"Quark Koide with PS sector hierarchy delta(n)",srs_fock_counting.py;srs_delta_n_derivation.py,P3
+m_s,0.0934,0.0934,<1,A,"Quark Koide with PS sector hierarchy delta(n)",srs_fock_counting.py;srs_delta_n_derivation.py,P3
+m_c,1.27,1.27,<1,A,"Quark Koide with PS sector hierarchy delta(n)",srs_fock_counting.py;srs_delta_n_derivation.py,P3
+m_b,4.18,4.18,<0.5,A,"Quark Koide + MS-bar (MDL selects running masses) + PS delta(n)",msbar_mdl_mt.py;srs_fock_counting.py,P3
+m_t,172.71,172.7,0.01,A-,"y_t(GUT)=1 + MSSM threshold corrections with tan(beta)=44.73 derived from GJ=3. Threshold corrections from derived SUSY spectrum.",srs_mt_threshold.py;srs_tan_beta.py,P3
+m_nu1,0,<0.8eV,consistent,theorem,"M_D(trivial_s)=0 at P point → massless lightest neutrino",srs_hashimoto_seesaw_verify.py,P1
+m_nu2,0.00852eV,~0.0087eV,3.7,A,"PS seesaw with M_R=alpha_1*M_GUT (g-2 exponent from Weinberg operator dimension). Consistent with chi2/dof=0.71 self-consistent PMNS.",srs_nu_mass_ps.py;srs_mr_exponent_proof.py,P1
+m_nu3,0.0483eV,~0.0495eV,2.4,A,"Same seesaw; Ihara splitting R=32.68 gives hierarchy; g-2 exponent. M_R = alpha_1 * M_GUT from Weinberg operator.",srs_nu_mass_ps.py;srs_neutrino_mass_scale.py,P1
+theta_12_PMNS,33.34,33.44,0.3,theorem,"Spherical Pythagorean: cos(theta_12)=cos(theta_TBM)/cos(theta_C) with dark-corrected theta_C. Perpendicularity of TBM and Cabibbo on SU(4) manifold proven from PS.",srs_theta12_perp.py;srs_theta12_derivation.py,P1
+theta_13_PMNS,8.61,8.57,0.5,A,"PS + (1-alpha_1) edge-local dark absorption. Derived: Tr(sigma_x)=0 → no discriminant enhancement for edge-local.",srs_theta13_dark_consistent.py;srs_so10_embedding.py,P1
+eta_B,6.09e-10,6.12e-10,0.5,theorem,"(28/79)*sqrt(3)*J^2; sqrt(3)=E(P) from Laplace concentration at P (generation selection + Ramanujan saturation). n→∞ from graph unitarity: k-regular → probability conservation → CKM unitary → exact eigenstates.",srs_eta_b_p_dominance.py;srs_eta_b_exact.py,P2
+A_s,1.93e-9,2.1e-9,7.8,open,"alpha_GUT*(2/3)^g*(M_GUT/M_P)^2; dimensional analysis not derivation",As_promotion.py,none
+G,6.674e-11,6.674e-11,exact,identification,"Unit axiom: one toggle = one Planck time",srs_g_identification.py,none
+sin2_theta_W,0.2312,0.2312,<0.1,theorem,"Cl(6) = Cl(4) tensor Cl(2) dimension counting",cl8_verification.py,P3
+alpha_GUT,1/24.1,matching,<1,theorem,"Cl(6) normalization",cl8_verification.py,P3
+epsilon_Koide,sqrt(2),sqrt(2),exact,theorem,"Water-filling on trivalent node",fluctuation_spectrum.py,P3
+Q_Koide,2/3,2/3,exact,theorem,"Toggle + MDL: 2 out of 3 edges",quark_koide_proof.py,P3
+delta_Koide,2/9,2/9,exact,theorem,"Wigner D1 at cos(beta)=1/3; unique harmonic mean",harmonic_mean_proof.py,P3
+alpha_1,0.03902,(2/3)^8,exact,theorem,"NB walk survival (k-1/k)^{g-2} on k=3 girth g=10 graph",hashimoto_exponents.py,P3
+J_CKM,3.15e-5,3.08e-5,2.3,theorem,"From V_us V_cb V_ub delta_CP (all theorems)",ckm_from_greens.py,P3
+w_DE,-1,-1,exact,theorem,"From Lambda = 3/N^2 (toggle graph has no dynamics for DE)",margolus_levitin.py,P3
+Omega_DM,0.265,0.265,<1,theorem,"From Omega_DM/Omega_m = 0.842 + Omega_b from BBN",dm_hierarchy_derivation.py,P3
+charge_quantization,Q=n/3,Q=n/3,exact,theorem,"Z3 generation structure on trivalent graph",srs_graph_analysis.py,P3
+gauge_group,SU(3)xSU(2)xU(1),SU(3)xSU(2)xU(1),exact,theorem,"Cl(6)=Cl(4)⊗Cl(2) on trivalent Fock space",cl8_verification.py,P3
+generations,3,3,exact,theorem,"C3 vertex symmetry of K4 quotient",srs_graph_analysis.py,P3
+spacetime_dim,3+1,3+1,exact,theorem,"srs d_s=3 + Lorentz from causal toggle",srs_graph_analysis.py,P3
+parity_violation,chiral,chiral,exact,theorem,"I4_132 has no inversion symmetry",srs_rparity_chirality.py,P4
+fermion_content,48 states,48 states,exact,theorem,"2^3 Fock x 3 gen x 2 chirality",cl8_verification.py,P3
+higgs_rep,"(1,2,+1/2)","(1,2,+1/2)",exact,theorem,"Cl(2) factor in Cl(6)",cl8_verification.py,P3
+lorentzian_signature,(-+++),(-+++),exact,theorem,"Causal structure of toggle dynamics",,P3
+matter_stability,stable,stable,exact,theorem,"Toggle self-inverse + persistence",,P3
+low_initial_entropy,low,low,exact,theorem,"Small initial N → dark sector grows",,P3
+tan_beta,44.73,n/a,derived,A-,"GJ=3 + bottom-tau unification at M_GUT; tan(beta)=m_b(GUT)/m_tau(GUT)*GJ",srs_tan_beta.py,P3
