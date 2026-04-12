@@ -124,20 +124,27 @@ Result: Full CKM matrix. Scripts: `proofs/flavor/srs_ckm_tree_derivation.py`, `p
 ## 8. PMNS Matrix and Neutrinos
 
 **Theorem.** All PMNS parameters derive from h and dark corrections.
-chi^2/dof = 0.71 (p = 0.61) with zero free parameters.
+chi^2/dof = 0.22 (p ~ 0.93) on 4 independent observables (theta_12, theta_23,
+theta_13, delta_CP), zero free parameters. J_PMNS reported separately as a
+cross-check (derived from the four above, not independent).
 
 Chain:
 1. theta\_23 = 45 deg (TBM from S4 of K4) + dark correction from sigma\_z = 0 theorem
    -> 48.72 deg (obs: 49.2, 1.0%).
-2. theta\_12: spherical Pythagorean cos(theta\_12) = cos(theta\_TBM)/cos(theta\_C\_dark)
-   -> 33.34 deg (obs: 33.44, 0.3%).
+2. theta\_12: spherical Pythagorean cos(theta\_12) = cos(theta\_TBM)/cos(theta\_C)
+   -> 33.07 deg (obs: 33.44, 0.5sigma pull, bare V\_us, no dark correction).
+   Killing form B(T\_C, T\_TBM) = 0 in SU(4) sector decomposition
+   15 = 8 + 1 + 3 + 3bar (T\_C in 8 adjoint, T\_TBM in 3+3bar leptoquark).
 3. theta\_13 = arcsin(V\_us (1 - alpha\_1)/|h|) with edge-local dark absorption
    -> 8.61 deg (obs: 8.57, 0.5%).
 4. alpha\_21 = arg(h^g) = 162.39 deg. Chirality selects h over h\*; 1PI = NB.
 5. delta\_CP(PMNS) = arg(h\*^(g-1)) = 249.85 deg. Option B (230 deg) excluded at >7 sigma by J.
 6. alpha\_31 = arg((h/h')^g) = 324.78 deg (prediction, unconstrained by data).
 7. m\_nu1 = 0 (trivial\_s spans both doublets at P).
-8. Neutrino splitting R = 32.19 from Ihara zeta on K4 (obs: 32.7 +/- 0.8, 0.3%).
+8. Neutrino splitting R = 32.19 from Ihara zeta on K4 (obs: 32.58 PDG, 1.18%, 0.6sigma).
+   Grade A- via srs\_r\_from\_ihara\_direct.py (both Ihara phase and NB return
+   counts derived from the same Bloch-Hashimoto matrix T(k), resolving the
+   "mixing two descriptions" criticism of step [I]).
 
 Result: Full PMNS matrix + neutrino masses. Scripts: `proofs/flavor/srs_unified_mixing.py`, `proofs/flavor/srs_final_pmns_theorem.py`, `proofs/flavor/srs_hashimoto_seesaw_proof.py`, `proofs/flavor/srs_dcp_exponent.py`
 
@@ -192,7 +199,7 @@ Result: Cosmological constant, dark matter, baryon asymmetry, spectral tilt. Scr
 | 5 | alpha\_1 | NB walk (2/3)^8 | exact | theorem |
 | 6 | V\_us, V\_cb, V\_ub | Tree cover + spectral gap | 0.45-3.5% | theorem |
 | 7 | delta\_CP(CKM) | K4 dihedral arccos(1/3) | 3% | theorem |
-| 8 | All PMNS angles | h + dark corrections | 0.3-1.0% | theorem |
+| 8 | All PMNS angles | h + dark corrections | chi^2/dof = 0.22 (4 obs) | theorem |
 | 9 | CP phases (PMNS) | arg(h^g), arg(h\*^(g-1)) | within exp. | theorem |
 | 10 | m\_e, m\_mu, m\_tau | Koide + v | < 0.1% | theorem |
 | 11 | m\_t | y\_t(GUT)=1 + MSSM thresholds | 0.01% | A- |

@@ -30,9 +30,9 @@ h is the Hashimoto (non-backtracking) eigenvalue at the P point of the BCC Brill
 | Top mass m_t | 172.71 GeV | 172.69 GeV | 0.01% |
 | Higgs VEV v | 245.64 GeV | 246.22 GeV | 0.24% |
 | Baryon asymmetry η_B | 6.09×10⁻¹⁰ | 6.12×10⁻¹⁰ | 0.5% |
-| PMNS mixing (5 obs) | χ²/dof = 0.71 | p = 0.61 | all <1.3σ |
+| PMNS mixing (4 obs) | χ²/dof = 0.22 | p ≈ 0.93 | all <0.6σ |
 | CKM elements | V_us, V_cb, V_ub | PDG values | 0.08-3.5% |
-| Neutrino splitting R | 32.68 | 32.7±0.8 | 0.3% |
+| Neutrino splitting R | 32.19 | 32.58 (PDG) | 1.18% (0.6σ, A-) |
 | Cosmological constant Λ | 3/N² | observed | <1% |
 | Dark matter Ω_DM/Ω_m | 0.842 | 0.842 | <0.1% |
 
