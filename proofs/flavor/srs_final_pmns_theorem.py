@@ -64,7 +64,7 @@ delta_K = 2.0 / 9.0
 obs = {
     'theta23': (49.2, 1.3),
     'theta13': (8.54, 0.15),
-    'theta12': (33.41, 0.75),
+    'theta12': (33.44, 0.75),
     'delta_CP': (230.0, 36.0),
     'J': (0.033, 0.001),
 }
@@ -515,14 +515,33 @@ theta13_final = math.degrees(math.asin(V_us_eff / math.sqrt(2)))
 # delta_CP = arg(h*^{g-1}) = arg(h*^9) = 249.85 deg  (OPTION A)
 delta_CP_final = arg_h9_conj
 
-# theta_12 = acos(cos(theta_TBM)/cos(theta_13))  [unitarity sum rule]
+# theta_12 = acos(cos(theta_TBM)/cos(theta_13))  [unitarity sum rule, cross-check]
 theta12_TBM_rad = math.radians(theta12_TBM)
 theta13_final_rad = math.radians(theta13_final)
 cos_ratio = math.cos(theta12_TBM_rad) / math.cos(theta13_final_rad)
 theta12_cos_SR = math.degrees(math.acos(cos_ratio))
 
-# Also compute via King sum rule (includes delta_CP)
+# Also compute via King sum rule (includes delta_CP, cross-check only)
 theta12_King = theta12_from_sum_rule(theta13_final, delta_CP_final)
+
+# CANONICAL theta_12: SU(4) PERPENDICULARITY THEOREM
+# (see proofs/flavor/srs_theta12_perp.py)
+#
+# The Killing form B(T_C, T_TBM) = 0 in SU(4) sector decomposition
+# 15 = 8 + 1 + 3 + 3bar (T_C in 8 adjoint, T_TBM in 3+3bar leptoquark)
+# implies theta_TBM is the hypotenuse of a right spherical triangle
+# with legs theta_12 and theta_C:
+#    cos(theta_TBM) = cos(theta_12) * cos(theta_C)
+# => cos(theta_12) = cos(theta_TBM) / cos(theta_C)
+# with BARE V_us (no dark correction), theta_C = arcsin(V_us).
+#
+# Using the PDG V_us = 0.2250 (as in srs_theta12_perp.py), we get
+# theta_12 = 33.07 deg with pull -0.49 sigma.
+V_us_PDG_for_perp = 0.2250
+theta_C_perp_rad = math.asin(V_us_PDG_for_perp)
+theta12_perp = math.degrees(math.acos(
+    math.cos(theta12_TBM_rad) / math.cos(theta_C_perp_rad)
+))
 
 # Majorana phases
 alpha21_final = arg_h10                          # arg(h^10) = 162.39 deg
@@ -535,11 +554,13 @@ h_P_g = h_P ** g
 h_prime_g = h_prime ** g
 alpha31_final = math.degrees(cmath.phase(h_P_g / h_prime_g)) % 360
 
-# J_PMNS
-# Use King sum rule theta_12 for self-consistency with delta_CP
-J_final = compute_J(theta12_King, theta13_final, theta23_final, delta_CP_final)
+# J_PMNS (derived cross-check, NOT an independent observable)
+# J is a function of the four PMNS parameters (theta_12, theta_23, theta_13,
+# delta_CP) in the standard parametrization, so it is not included in the chi^2.
+# Computed with canonical perpendicularity theta_12.
+J_final = compute_J(theta12_perp, theta13_final, theta23_final, delta_CP_final)
 
-# Also with cos sum rule theta_12
+# Also with cos sum rule theta_12 (cross-check)
 J_cos_SR = compute_J(theta12_cos_SR, theta13_final, theta23_final, delta_CP_final)
 
 print(f"""
@@ -555,9 +576,12 @@ print(f"""
              = arcsin({V_us_eff/math.sqrt(2):.6f})
              = {theta13_final:.4f} deg
 
-    theta_12 = acos(cos(theta_TBM)/cos(theta_13))
-             = acos({math.cos(theta12_TBM_rad):.6f}/{math.cos(theta13_final_rad):.6f})
-             = {theta12_cos_SR:.4f} deg  [cos sum rule]
+    theta_12 = acos(cos(theta_TBM)/cos(theta_C))       [SU(4) perpendicularity]
+             = acos({math.cos(theta12_TBM_rad):.6f}/{math.cos(theta_C_perp_rad):.6f})
+             = {theta12_perp:.4f} deg  [CANONICAL, bare V_us, srs_theta12_perp.py]
+
+    Cross-checks (NOT used in chi^2):
+             = {theta12_cos_SR:.4f} deg  [cos sum rule with theta_13]
              = {theta12_King:.4f} deg  [King sum rule with delta_CP]
 
   CP PHASES:
@@ -570,10 +594,10 @@ print(f"""
     alpha_31 = arg((h/h')^g) = arg((h_P/h'_P)^10)
              = {alpha31_final:.2f} deg
 
-  JARLSKOG INVARIANT:
+  JARLSKOG INVARIANT (derived cross-check, not independent):
     J_PMNS = s12*c12*s23*c23*s13*c13^2*sin(delta_CP)
-           = {J_final:.6f}  [King sum rule theta_12]
-           = {J_cos_SR:.6f}  [cos sum rule theta_12]
+           = {J_final:.6f}  [with perpendicularity theta_12 = {theta12_perp:.4f} deg]
+           = {J_cos_SR:.6f}  [with cos sum rule theta_12]
 """)
 
 
@@ -586,8 +610,13 @@ print("=" * 78)
 print("  SECTION 6: COMPLETE COMPARISON TO OBSERVATION")
 print("=" * 78)
 
-# Use King sum rule values for the final answer
-theta12_final = theta12_King
+# CANONICAL theta_12 = perpendicularity theorem (NOT King sum rule).
+# J_PMNS is reported SEPARATELY as a derived cross-check, NOT included in
+# the chi^2. The PMNS matrix has exactly 4 independent parameters
+# (theta_12, theta_23, theta_13, delta_CP) in the standard parametrization;
+# J is a function of those four, so including it in the chi^2 would
+# double-count and artificially inflate both the numerator and the dof.
+theta12_final = theta12_perp
 J_PMNS_final = J_final
 
 # Build comparison table
@@ -606,18 +635,31 @@ print()
 print(f"  {'Parameter':<12s}  {'Predicted':>10s}  {'Observed':>10s}  {'Error':>8s}  {'Pull':>8s}")
 print(f"  {'='*12}  {'='*10}  {'='*10}  {'='*8}  {'='*8}")
 
+# 4 INDEPENDENT PMNS observables (standard parametrization).
+# J_PMNS is NOT included; it is a function of these four and is reported
+# separately below as a derived cross-check.
 chi2_total = 0
-for param in ['theta23', 'theta13', 'theta12', 'delta_CP', 'J']:
+for param in ['theta12', 'theta23', 'theta13', 'delta_CP']:
     pred = predictions[param]
     central, sigma = obs[param]
     pull = (pred - central) / sigma
     chi2_total += pull**2
-    unit = 'deg' if param != 'J' else ''
+    unit = 'deg'
     print(f"  {param:<12s}  {pred:10.4f}{unit:>3s}  {central:7.2f}+-{sigma:<4.3g}  "
           f"{abs(pred-central):8.4f}  {pull:+8.2f}sig")
 
-print(f"\n  chi^2 (5 observables) = {chi2_total:.2f}")
-print(f"  chi^2/dof (5 obs, 0 params) = {chi2_total/5:.2f}")
+dof = 4
+print(f"\n  chi^2 ({dof} independent observables) = {chi2_total:.2f}")
+print(f"  chi^2/dof ({dof} obs, 0 params) = {chi2_total/dof:.2f}")
+
+# J_PMNS as derived cross-check (function of the 4 above, NOT independent)
+central_J, sigma_J = obs['J']
+pull_J = (abs(J_PMNS_final) - central_J) / sigma_J
+print()
+print(f"  Cross-check (derived, NOT in chi^2):")
+print(f"  {'J_PMNS':<12s}  {abs(J_PMNS_final):10.6f}     {central_J:7.3f}+-{sigma_J:<4.3g}  "
+      f"{abs(abs(J_PMNS_final)-central_J):8.4f}  {pull_J:+8.2f}sig")
+print(f"    (function of the 4 observables above, not an independent datum)")
 
 # chi^2 for just the 3 well-measured angles
 chi2_angles = 0
@@ -652,9 +694,9 @@ def chi2_pvalue_approx(chi2_val, dof):
     return 1 - total / math.gamma(k)
 
 pval_3 = chi2_pvalue_approx(chi2_angles, 3)
-pval_5 = chi2_pvalue_approx(chi2_total, 5)
+pval_4 = chi2_pvalue_approx(chi2_total, dof)
 print(f"\n  p-value (3 angles, chi2={chi2_angles:.2f}, 3 dof) ~ {pval_3:.3f}")
-print(f"  p-value (5 obs, chi2={chi2_total:.2f}, 5 dof) ~ {pval_5:.3f}")
+print(f"  p-value ({dof} obs, chi2={chi2_total:.2f}, {dof} dof) ~ {pval_4:.3f}")
 
 check("chi^2 per dof < 2 for 3 angles",
       chi2_angles / 3 < 2.0,
@@ -784,17 +826,21 @@ print(f"""
   ┌─────────────┬────────────┬───────────────┬─────────┐
   | Parameter   | Predicted  | Observed      | Pull    |
   ├─────────────┼────────────┼───────────────┼─────────┤
+  | theta_12    | {theta12_final:8.4f} deg | {obs['theta12'][0]:5.2f} +/- {obs['theta12'][1]:.2f} deg| {(theta12_final-obs['theta12'][0])/obs['theta12'][1]:+.2f} sig |
   | theta_23    | {theta23_final:8.4f} deg | {obs['theta23'][0]:5.1f} +/- {obs['theta23'][1]:.1f} deg | {(theta23_final-obs['theta23'][0])/obs['theta23'][1]:+.2f} sig |
   | theta_13    | {theta13_final:8.4f} deg | {obs['theta13'][0]:5.2f} +/- {obs['theta13'][1]:.2f} deg| {(theta13_final-obs['theta13'][0])/obs['theta13'][1]:+.2f} sig |
-  | theta_12    | {theta12_final:8.4f} deg | {obs['theta12'][0]:5.2f} +/- {obs['theta12'][1]:.2f} deg| {(theta12_final-obs['theta12'][0])/obs['theta12'][1]:+.2f} sig |
   | delta_CP    | {delta_CP_final:8.2f} deg | {obs['delta_CP'][0]:5.0f} +/- {obs['delta_CP'][1]:.0f} deg  | {(delta_CP_final-obs['delta_CP'][0])/obs['delta_CP'][1]:+.2f} sig |
-  | J_PMNS      | {abs(J_PMNS_final):10.6f} | {obs['J'][0]:.3f} +/- {obs['J'][1]:.3f}   | {(abs(J_PMNS_final)-obs['J'][0])/obs['J'][1]:+.1f} sig |
+  ├─────────────┼────────────┼───────────────┼─────────┤
+  | J_PMNS *    | {abs(J_PMNS_final):10.6f} | {obs['J'][0]:.3f} +/- {obs['J'][1]:.3f}   | {(abs(J_PMNS_final)-obs['J'][0])/obs['J'][1]:+.1f} sig |
   | alpha_21    | {alpha21_final:8.2f} deg | unmeasured    |    --   |
   | alpha_31    | {alpha31_final:8.2f} deg | unmeasured    |    --   |
   └─────────────┴────────────┴───────────────┴─────────┘
+  * J_PMNS is a function of (theta_12, theta_23, theta_13, delta_CP)
+    in the standard parametrization, NOT an independent observable.
+    It is reported as a derived cross-check, not included in chi^2.
 
-  chi^2 (5 observables, 0 free parameters) = {chi2_total:.2f}
-  chi^2/dof = {chi2_total/5:.2f}
+  chi^2 ({dof} independent observables, 0 free parameters) = {chi2_total:.2f}
+  chi^2/dof = {chi2_total/dof:.2f}   (p ~ {pval_4:.2f})
 
   Free parameters: ZERO
   Everything derived from: k* = 3 (trivalent) and g = 10 (srs girth)
@@ -804,6 +850,9 @@ print(f"""
         (Tr(sigma_x) = 0 => no discriminant enhancement at edge endpoints)
     [2] delta_CP = arg(h*^9) = {delta_CP_final:.2f} deg: CONFIRMED (Option A)
         (Lower chi^2, better J, no ad hoc C3 phase argument)
+    [3] theta_12 = {theta12_final:.4f} deg via SU(4) PERPENDICULARITY
+        (Killing form B(T_C, T_TBM) = 0 from 15 = 8 + 1 + 3 + 3bar;
+         bare V_us, no dark correction; see srs_theta12_perp.py)
 """)
 
 print(f"  CHECKS: {PASS_COUNT} passed, {FAIL_COUNT} failed")

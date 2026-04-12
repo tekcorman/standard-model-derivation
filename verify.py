@@ -38,7 +38,7 @@ BACKBONE = [
     ("flavor", "proofs/flavor/srs_unified_mixing.py",
      "All PMNS angles from h"),
     ("flavor", "proofs/flavor/srs_final_pmns_theorem.py",
-     "Self-consistent PMNS, chi2/dof = 0.71"),
+     "Self-consistent PMNS, chi2/dof = 0.22 (4 obs)"),
     ("flavor", "proofs/flavor/srs_hashimoto_seesaw_proof.py",
      "CP phases from Hashimoto eigenvalue"),
     ("flavor", "proofs/flavor/srs_ckm_tree_derivation.py",

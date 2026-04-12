@@ -1,6 +1,33 @@
 #!/usr/bin/env python3
 """
-srs_unified_mixing.py — ALL PMNS angles from k*=3 Hashimoto amplitude + CKM
+srs_unified_mixing.py -- ALL PMNS angles from k*=3 Hashimoto amplitude + CKM
+
+WARNING: This script is an EXPLORATORY fishing expedition for theta_12
+formulas. It tries multiple candidate formulas and reports the best-fitting
+one.
+
+The "BEST FORMULA" result
+    theta_12 = arctan(1/|h|) * (1 - V_us^2) = 33.55 deg
+is SELECTION BY RESULT, not a derivation. DO NOT cite this formula as a
+framework prediction.
+
+The canonical theta_12 derivation is the SU(4) PERPENDICULARITY THEOREM,
+implemented in proofs/flavor/srs_theta12_perp.py. That gives
+theta_12 = 33.07 deg from a clean structural argument (Killing form
+B(T_C, T_TBM) = 0 in the SU(4) sector decomposition 15 = 8 + 1 + 3 + 3bar)
+with bare V_us.
+
+This script is retained as a historical record of the formula search
+that preceded the perpendicularity theorem. It is NOT the canonical source
+for theta_12 and should not be cited in publications.
+
+For the self-consistent PMNS scorecard with canonical values and
+chi^2/dof = 0.22 on 4 independent observables, see
+proofs/flavor/srs_final_pmns_theorem.py.
+
+---
+
+ORIGINAL DOCSTRING (preserved for historical context):
 
 CENTRAL CLAIM: The Hashimoto eigenvalue h = (sqrt(k*) + i*sqrt(3k*-4))/2
 at the P point of the BCC BZ encodes all mixing physics:
@@ -9,9 +36,10 @@ at the P point of the BCC BZ encodes all mixing physics:
   V_us = ((k*-1)/k*)^{L_us}      (CKM Cabibbo element, L_us = 2+sqrt(3))
 
 PMNS angles (zero free parameters, all from k*=3):
-  theta_23 = arctan(1) = 45°                         (TBM, C3 symmetry)
-  theta_13 = arcsin(V_us / |h|) = 8.96°              (CKM leakage / Hashimoto norm)
-  theta_12 = arctan(1/|h|) * (1 - V_us^2) = 33.55°   (TBM depleted by CKM)
+  theta_23 = arctan(1) = 45 deg                       (TBM, C3 symmetry)
+  theta_13 = arcsin(V_us / |h|) = 8.96 deg            (CKM leakage / Hashimoto norm)
+  theta_12 = arctan(1/|h|) * (1 - V_us^2) = 33.55 deg (TBM depleted by CKM)
+  (the theta_12 formula above is FISHING EXPEDITION RESULT, see warning)
 
 CP phases from h^g:
   alpha_21 = arg(h^g)        (Majorana phase, g=10 girth)
