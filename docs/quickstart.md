@@ -17,7 +17,7 @@ The splitting phase is arctan(√7). The mass ratio:
 
     R = Δm²₃₁ / Δm²₂₁ = [(2/3)^(-2arctan(√7)/arctan(2-√3)) + 1]² - 1
 
-which evaluates to **R = 32.68**.
+which evaluates to **R = 32.19**.
 
 ## Check it yourself
 
@@ -29,10 +29,10 @@ python3 proofs/flavor/ihara_splitting_proof.py
 
 The script computes R from the Ihara zeta poles and compares to the PDG value.
 
-**Observed: R = 32.7 ± 0.8** (PDG 2024, from Δm²₃₁ = 2.453 × 10⁻³ eV² and 
+**Observed: R = 32.58** (PDG 2024, from Δm²₃₁ = 2.453 × 10⁻³ eV² and 
 Δm²₂₁ = 7.53 × 10⁻⁵ eV²).
 
-**Predicted: R = 32.68** — 0.3% match, zero parameters.
+**Predicted: R = 32.19** — 1.18% match, zero parameters.
 
 ## What's √7?
 

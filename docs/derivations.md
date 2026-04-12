@@ -137,7 +137,7 @@ Chain:
 5. delta\_CP(PMNS) = arg(h\*^(g-1)) = 249.85 deg. Option B (230 deg) excluded at >7 sigma by J.
 6. alpha\_31 = arg((h/h')^g) = 324.78 deg (prediction, unconstrained by data).
 7. m\_nu1 = 0 (trivial\_s spans both doublets at P).
-8. Neutrino splitting R = 32.68 from Ihara zeta on K4 (obs: 32.7 +/- 0.8, 0.3%).
+8. Neutrino splitting R = 32.19 from Ihara zeta on K4 (obs: 32.7 +/- 0.8, 0.3%).
 
 Result: Full PMNS matrix + neutrino masses. Scripts: `proofs/flavor/srs_unified_mixing.py`, `proofs/flavor/srs_final_pmns_theorem.py`, `proofs/flavor/srs_hashimoto_seesaw_proof.py`, `proofs/flavor/srs_dcp_exponent.py`
 
