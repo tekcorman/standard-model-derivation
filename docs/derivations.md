@@ -141,7 +141,7 @@ Chain:
 5. delta\_CP(PMNS) = arg(h\*^(g-1)) = 249.85 deg. Option B (230 deg) excluded at >7 sigma by J.
 6. alpha\_31 = arg((h/h')^g) = 324.78 deg (prediction, unconstrained by data).
 7. m\_nu1 = 0 (trivial\_s spans both doublets at P).
-8. Neutrino splitting R = 32.19 from Ihara zeta on K4 (obs: 32.58 PDG, 1.18%, 0.6sigma).
+8. Neutrino splitting R = 228/7 = 32.571 from Ihara zeta on K4 (obs: 32.58 PDG, 0.015%, 0.6sigma).
    Grade A- via srs\_r\_from\_ihara\_direct.py (both Ihara phase and NB return
    counts derived from the same Bloch-Hashimoto matrix T(k), resolving the
    "mixing two descriptions" criticism of step [I]).
