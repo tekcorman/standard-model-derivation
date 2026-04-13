@@ -43,8 +43,8 @@ TARGET_DELTA_CP = 250.5
 ALPHA_21_EXACT = (10 * arctan(2 - sqrt(3)) + pi / 15) * DEG
 print(f"# Exact formula: 10*arctan(2-sqrt(3)) + pi/15 = {ALPHA_21_EXACT:.6f} deg")
 
-# Neutrino mass ratio from Ihara (grade A-)
-R_IHARA = 32.19
+# Neutrino mass ratio from Ihara splitting theorem (closed form)
+R_IHARA = 228.0 / 7.0  # = 32.5714; see proofs/flavor/srs_r_theorem.py
 
 # BCC primitive vectors
 A_PRIM = np.array([
@@ -312,7 +312,8 @@ def compute_MD_hashimoto(k_frac, bonds, E_F=0.0, eta=0.05):
 def build_MR():
     """
     M_R from Ihara/K4 structure.
-    Neutrino mass ratio R = 32.19 from arctan(√7) (grade A-).
+    Neutrino mass ratio R = 228/7 = 32.5714 from arctan(√7) (Ihara splitting
+    theorem, closed form; see proofs/flavor/srs_r_theorem.py).
     """
     phi_R = ARCCOS_1_3
     eps_R = sqrt(2) / 2  # Ihara pole modulus

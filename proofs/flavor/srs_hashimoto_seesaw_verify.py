@@ -10,7 +10,8 @@ and checks against the three Hashimoto predictions:
   delta_CP = arg(h'^10) = 197.61 deg  (h' = (-sqrt3 + i*sqrt5)/2)
   alpha_31 = arg(h^10/h'^10) = 324.78 deg
 
-Also checks mass ratio: dm31^2/dm21^2 target = 32.19 (Ihara splitting, grade A-).
+Also checks mass ratio: dm31^2/dm21^2 target = 228/7 = 32.5714 (Ihara splitting,
+theorem, closed form; see srs_r_theorem.py and docs/R_theorem.md).
 """
 
 import numpy as np
@@ -37,7 +38,8 @@ h_w2 = (-sqrt(3) + 1j*sqrt(5)) / 2  # Hashimoto at P, omega^2 band (lambda=-sqrt
 TARGET_ALPHA_21 = np.degrees(np.angle(h_w**g)) % 360   # ~162.39
 TARGET_DELTA_CP = np.degrees(np.angle(h_w2**g)) % 360   # ~197.61
 TARGET_ALPHA_31 = np.degrees(np.angle((h_w/h_w2)**g)) % 360  # ~324.78
-TARGET_R = 32.19  # Ihara mass ratio (grade A-, see srs_r_from_ihara_direct.py)
+TARGET_R = 228.0 / 7.0  # Ihara mass ratio = 32.5714 (theorem, closed form;
+                        # see srs_r_theorem.py and docs/R_theorem.md)
 
 print(f"# Hashimoto eigenvalues at P:")
 print(f"#   h_w  = {h_w:.10f}   |h_w|  = {abs(h_w):.10f}")

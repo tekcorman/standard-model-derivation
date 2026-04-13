@@ -141,10 +141,16 @@ Chain:
 5. delta\_CP(PMNS) = arg(h\*^(g-1)) = 249.85 deg. Option B (230 deg) excluded at >7 sigma by J.
 6. alpha\_31 = arg((h/h')^g) = 324.78 deg (prediction, unconstrained by data).
 7. m\_nu1 = 0 (trivial\_s spans both doublets at P).
-8. Neutrino splitting R = 228/7 = 32.571 from Ihara zeta on K4 (obs: 32.58 PDG, 0.015%, 0.6sigma).
-   Grade A- via srs\_r\_from\_ihara\_direct.py (both Ihara phase and NB return
-   counts derived from the same Bloch-Hashimoto matrix T(k), resolving the
-   "mixing two descriptions" criticism of step [I]).
+8. Neutrino splitting R = Dm^2\_31 / Dm^2\_21 = 228/7 = 32.5714... (obs: 32.576 PDG, 0.015%, <0.01 sigma).
+   **Theorem (closed form).** R = 2/sin^2(5 phi) - 4 where phi = arctan(sqrt(7)) is the
+   Ihara phase of the K4 triplet sector. The distance n = 5 is algebraically selected by
+   the cubic identity q^3 = 5q - 2 at q = k\*-1 = 2 (its unique positive integer root),
+   which is equivalent to the Chebyshev propagator value G\_5 = sin(5 phi)/sin(phi) = -1/4
+   = -1/(k\*+1). The Gaussian integer identity (1+i sqrt(7))^5 = 176 - 16 i sqrt(7) gives
+   sin^2(5 phi) = 7/128 exactly, hence R = 256/7 - 4 = 228/7. Physical reading: total
+   propagator intensity 2/sin^2(5 phi) = 256/7 minus isotropic Z3 vertex background k\*+1 = 4.
+   Zero free parameters; no NB-walk counting; no preasymptotic extrapolation; no dark correction
+   (R depends only on the K4 topology). See `docs/R_theorem.md` and `proofs/flavor/srs_r_theorem.py`.
 
 Result: Full PMNS matrix + neutrino masses. Scripts: `proofs/flavor/srs_unified_mixing.py`, `proofs/flavor/srs_final_pmns_theorem.py`, `proofs/flavor/srs_hashimoto_seesaw_proof.py`, `proofs/flavor/srs_dcp_exponent.py`
 

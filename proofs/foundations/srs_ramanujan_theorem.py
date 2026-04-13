@@ -24,8 +24,9 @@ Near Gamma/H, the top/bottom band exceeds the threshold.
 Connection to MDL: The srs is the unique k*=3 graph minimizing description
 length. Ramanujan saturation at P means optimal expansion/mixing at the
 generation symmetry point. The sqrt(7) that appears in the K4 Ihara poles
-equals sqrt(4(k*-1)-1), connecting the neutrino splitting ratio R=32.19
-to the Ramanujan structure.
+equals sqrt(4(k*-1)-1) = sqrt(|D_Gamma|), connecting the neutrino splitting
+ratio R = 228/7 = 32.5714 (Ihara theorem, see srs_r_theorem.py) to the
+Ramanujan structure.
 """
 
 import numpy as np
@@ -598,7 +599,8 @@ def sqrt7_connection():
     print(f"    arctan(sqrt(7)) = {np.degrees(np.arctan(sqrt7)):.6f} deg")
 
     # Connection to neutrino splitting
-    # R = 32.19 comes from arctan(sqrt(7)) in the framework
+    # R = 228/7 = 32.5714 from the Ihara splitting theorem at phi = arctan(sqrt(7))
+    # (see srs_r_theorem.py): R = 2/sin^2(5 phi) - 4 with n=5 from q^3 = 5q - 2.
     arctan_s7 = np.arctan(sqrt7)
     R_neutrino = np.tan(arctan_s7)**2  # = 7 (just sqrt(7)^2)
     print(f"\n  Framework connection:")
@@ -607,7 +609,7 @@ def sqrt7_connection():
     print(f"    The ANGLE arctan(sqrt(7)) = {np.degrees(arctan_s7):.6f} deg")
 
     # The actual neutrino ratio connection
-    # R = Delta m^2_31 / Delta m^2_21 ~ 32.19
+    # R = Delta m^2_31 / Delta m^2_21 = 228/7 = 32.5714 (theorem)
     # From the framework: this involves the ratio of C3 phases
     # arctan(sqrt(7)) / (pi/6) = arctan(sqrt(7)) * 6/pi
     ratio = arctan_s7 * 6 / np.pi

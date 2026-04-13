@@ -21,7 +21,8 @@ METHOD:
   2. Construct M_D via BZ-averaged resolvent in generation basis:
        (M_D)_mn = integral_BZ dk <gen_m|G(k,E_F)|gen_n>
   3. Construct M_R from the delocalized (|000>) sector via Ihara structure
-     on K4, using R = 32.19 from arctan(sqrt(7)) (grade A-)
+     on K4, using R = 228/7 = 32.5714 from the Ihara splitting theorem
+     (closed form; see proofs/flavor/srs_r_theorem.py)
   4. Seesaw: M_nu = -M_D^T M_R^{-1} M_D
   5. Takagi decompose, extract Majorana phases alpha_21, alpha_31
   6. Compare [P_D, P_R] on K4 vs full lattice
@@ -90,7 +91,8 @@ TARGET_DELTA_CP_B = 250.5 # degrees (pi + arccos(1/3))
 # arctan(sqrt(7)) appears in K4 Ihara triplet pole phases
 # R = dm31^2 / dm21^2 ~ 32.58 (PDG)
 ARCTAN_SQRT7 = np.arctan(sqrt(7))
-R_IHARA = 32.19  # target neutrino mass ratio (grade A-)
+R_IHARA = 228.0 / 7.0  # = 32.5714 (Ihara splitting theorem, closed form;
+                       # see proofs/flavor/srs_r_theorem.py and docs/R_theorem.md)
 
 # Experimental mass splittings
 DM21_SQ = 7.53e-5   # eV^2
@@ -410,7 +412,8 @@ def step3_majorana_mass():
     K4 Ihara zeta triplet poles: u = (-1 +/- i*sqrt(7))/4
       |u| = sqrt(2)/2, phase = pi - arctan(sqrt(7)) ~ 110.7 deg
 
-    The Majorana mass hierarchy uses R = dm31^2 / dm21^2 ~ 32.19.
+    The Majorana mass hierarchy uses R = dm31^2 / dm21^2 = 228/7 = 32.5714
+    (Ihara splitting theorem; see proofs/flavor/srs_r_theorem.py).
 
     We construct M_R as a 3x3 matrix on the K4 triplet sector.
     The K4 adjacency on the triplet: eigenvalue -1 (triple degenerate).

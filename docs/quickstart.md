@@ -13,26 +13,32 @@ Ihara zeta poles at:
 
     u = (-1 ± i√7) / 4
 
-The splitting phase is arctan(√7). The mass ratio:
+The Ihara phase of the triplet sector is φ = arctan(√7). The mass ratio:
 
-    R = Δm²₃₁ / Δm²₂₁ = [(2/3)^(-2arctan(√7)/arctan(2-√3)) + 1]² - 1
+    R = Δm²₃₁ / Δm²₂₁ = 2/sin²(5φ) − 4 = 256/7 − 4 = 228/7 = 32.5714...
 
-which evaluates to **R = 228/7 = 32.571**.
+The distance n = 5 is algebraically selected: the cubic identity q³ = 5q − 2 has
+q = 2 = k\*−1 as its unique positive integer root, which is equivalent to the
+Chebyshev propagator value G₅ = sin(5φ)/sin(φ) = −1/4 = −1/(k\*+1). The Gaussian
+integer identity (1 + i√7)⁵ = 176 − 16 i√7 gives sin²(5φ) = 7/128 exactly.
 
 ## Check it yourself
 
 ```bash
 git clone https://github.com/tekcorman/standard-model-derivation.git
 cd standard-model-derivation
-python3 proofs/flavor/ihara_splitting_proof.py
+python3 proofs/flavor/srs_r_theorem.py
+python3 proofs/flavor/srs_r_physical_derivation.py
 ```
 
-The script computes R from the Ihara zeta poles and compares to the PDG value.
+The first script proves R = 228/7 in closed form. The second verifies it numerically
+against the Chebyshev recurrence and the Gaussian integer identity.
 
 **Observed: R = 32.576** (PDG 2024, from Δm²₃₁ = 2.453 × 10⁻³ eV² and 
 Δm²₂₁ = 7.53 × 10⁻⁵ eV²).
 
-**Predicted: R = 228/7 = 32.571** — 0.015% match, zero parameters.
+**Predicted: R = 228/7 = 32.5714...** — 0.015% match, zero parameters, theorem-grade
+closed form. See [`R_theorem.md`](R_theorem.md) for the full derivation.
 
 ## What's √7?
 

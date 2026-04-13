@@ -16,7 +16,8 @@ PATI-SALAM PREDICTION:
 FRAMEWORK INPUTS:
   - m_t(GUT): from MSSM RG running with tan(beta)=44.73, M_SUSY=1732 GeV
   - M_R = (2/3)^g * M_GUT: girth-cycle amplitude at GUT scale
-  - R = Dm2_31/Dm2_21 = 32.19: Ihara splitting (grade A-, see srs_r_from_ihara_direct.py)
+  - R = Dm2_31/Dm2_21 = 228/7 = 32.5714: Ihara splitting theorem (closed form,
+    see srs_r_theorem.py and docs/R_theorem.md). Grade: theorem.
 
 OBSERVED:
   - m_nu3 ~ sqrt(Dm2_31) ~ 0.050 eV (NuFIT 5.3, normal ordering)
@@ -81,8 +82,9 @@ dm2_21_exp = 7.53e-5       # eV^2 (solar)
 dm2_31_exp = 2.453e-3      # eV^2 (atmospheric)
 m_nu3_obs = sqrt(dm2_31_exp)  # ~ 0.0495 eV (if m1=0)
 
-# Ihara splitting ratio (grade A-, see srs_r_from_ihara_direct.py)
-R_ihara = 32.19
+# Ihara splitting ratio (theorem, closed form R = 228/7 from cubic identity
+# q^3 = 5q - 2 at q = k*-1 = 2. See srs_r_theorem.py and docs/R_theorem.md.)
+R_ihara = 228.0 / 7.0
 
 
 def pct(pred, obs):
@@ -519,7 +521,7 @@ def part7_grade(m_nu3_eV):
     print(f"  M_R = (2/3)^g * M_GUT    girth-cycle amplitude    A-")
     print(f"  M_GUT = 2e16 GeV         MSSM gauge unification   A-")
     print(f"  v = 246.22 GeV           MDL mean-field theorem   Theorem")
-    print(f"  R = 32.19                Ihara splitting          A-")
+    print(f"  R = 228/7 = 32.571       Ihara splitting theorem  Theorem")
     print()
     print(f"  Weak links:")
     print(f"    1. M_R = (2/3)^g * M_GUT: the exponent is g=10 (girth).")

@@ -33,8 +33,8 @@ DERIVATION CHAIN:
 
     4. m_nu3 = (y_nu * v / sqrt(2))^2 / M_R
 
-    5. Mass ratios from Ihara splitting (theorem):
-         R = Dm2_31 / Dm2_21 = 32.19
+    5. Mass ratios from Ihara splitting (theorem, closed form):
+         R = Dm2_31 / Dm2_21 = 228/7 = 32.5714 (see srs_r_theorem.py)
          m_nu1 = 0 (from M_D(s) = 0 at P, this session)
          m_nu3 = sqrt(Dm2_31) ~ 0.050 eV
          m_nu2 = m_nu3 / sqrt(R)
@@ -70,8 +70,9 @@ dm2_31_exp = 2.453e-3              # eV^2 (atmospheric)
 ratio_exp = dm2_31_exp / dm2_21_exp  # ~ 32.58
 m_nu3_obs = sqrt(dm2_31_exp)       # ~ 0.0495 eV (if m1=0)
 
-# Ihara splitting ratio (theorem)
-R_ihara = 32.19                    # Dm2_31 / Dm2_21 from Ihara poles
+# Ihara splitting ratio (theorem, closed form R = 228/7 from cubic identity
+# q^3 = 5q - 2 at q = k*-1 = 2. See srs_r_theorem.py and docs/R_theorem.md.)
+R_ihara = 228.0 / 7.0              # Dm2_31 / Dm2_21 = 32.5714...
 
 
 def header(title):
@@ -375,7 +376,7 @@ def part6_three_masses(m_nu3_eV):
 
     # From this session:
     #   m_nu1 = 0 (M_D(s) = 0 at the fixed point P)
-    #   R = Dm2_31 / Dm2_21 = 32.19 (Ihara theorem)
+    #   R = Dm2_31 / Dm2_21 = 228/7 = 32.5714 (Ihara theorem, closed form)
 
     m1 = 0.0
 
@@ -463,7 +464,7 @@ def part8_DL():
     print("    - n_g = 15             (girth cycles per vertex)")
     print(f"    - alpha_1 = {alpha_1_frac}  (~{alpha_1:.6f})")
     print(f"    - (2/3)^g = (2/3)^10  (~{(2.0/3.0)**10:.6e})")
-    print("    - R_ihara = 32.19      (Ihara splitting ratio)")
+    print("    - R_ihara = 228/7 = 32.5714  (Ihara splitting ratio, theorem)")
     print("    - m_nu1 = 0            (from M_D(s) = 0)")
     print()
     print("  FROM OBSERVATION (one input):")

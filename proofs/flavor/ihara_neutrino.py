@@ -1,5 +1,20 @@
 #!/usr/bin/env python3
 """
+DEPRECATED (2026-04-12). See proofs/flavor/srs_r_theorem.py for the canonical
+derivation. This script is the historical Koide-phase / NB-walk exploration
+that gave R ~ 32.19 (1.18% off). The correct theorem-grade derivation is
+algebraic, not walk-counting:
+
+    R = 2/sin^2(5 phi) - 4 = 228/7 = 32.5714...
+
+where phi = arctan(sqrt(7)) is the Ihara phase of the K4 triplet sector and
+the distance n = 5 is selected by the cubic identity q^3 = 5q - 2 at
+q = k*-1 = 2. See docs/R_theorem.md. This script is retained for historical
+reference and should NOT be used as the canonical R derivation.
+
+------------------------------------------------------------------------------
+Original header:
+
 Neutrino mass splitting ratio from the Ihara zeta function of the srs graph.
 
 Core claim: neutrinos are |000> Fock states (delocalized, no edge structure).

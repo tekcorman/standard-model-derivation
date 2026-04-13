@@ -117,7 +117,8 @@ theta23_GUT = 45.0   # deg (TBM)
 # Neutrino Yukawa
 L_us = 2 + sqrt(3)
 y_nu = (2.0 / 3.0) * sqrt(L_us / k)
-R_ihara = 32.19
+R_ihara = 228.0 / 7.0  # = 32.5714... (Ihara splitting theorem, closed form;
+                       # see proofs/flavor/srs_r_theorem.py and docs/R_theorem.md)
 
 
 def pct(pred, obs):

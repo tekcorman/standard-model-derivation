@@ -22,7 +22,7 @@ h is the Hashimoto (non-backtracking) eigenvalue at the P point of the BCC Brill
 
 ## Results
 
-~39 theorem-grade + ~9 A-grade derivations = 48 parameters. Zero free parameters. Zero physical identifications beyond axioms. One open parameter (A_s, needs new mathematics).
+~40 theorem-grade + ~8 A-grade derivations = 48 parameters. Zero free parameters. Zero physical identifications beyond axioms. One open parameter (A_s, needs new mathematics). Most recent promotion: R = 228/7 (neutrino splitting) from A- to theorem via the closed-form Ihara/Chebyshev derivation (see `docs/R_theorem.md`).
 
 | Quantity | Predicted | Observed | Accuracy |
 |----------|-----------|----------|----------|
@@ -32,7 +32,7 @@ h is the Hashimoto (non-backtracking) eigenvalue at the P point of the BCC Brill
 | Baryon asymmetry η_B | 6.09×10⁻¹⁰ | 6.12×10⁻¹⁰ | 0.5% |
 | PMNS mixing (4 obs) | χ²/dof = 0.22 | p ≈ 0.93 | all <0.6σ |
 | CKM elements | V_us, V_cb, V_ub | PDG values | 0.08-3.5% |
-| Neutrino splitting R | 32.19 | 32.58 (PDG) | 1.18% (0.6σ, A-) |
+| Neutrino splitting R | 228/7 = 32.571 | 32.576 (PDG) | 0.015% (<0.01σ, theorem) |
 | Cosmological constant Λ | 3/N² | observed | <1% |
 | Dark matter Ω_DM/Ω_m | 0.842 | 0.842 | <0.1% |
 
