@@ -158,14 +158,14 @@ Result: Full PMNS matrix + neutrino masses. Scripts: `proofs/flavor/srs_unified_
 
 ## 9. Mass Hierarchy and Particle Masses
 
-**Theorem.** The electroweak scale arises from MDL mean-field theory:
-v = delta^2 M\_P / (sqrt(2) N^(1/4)), with dark correction (5/12) alpha\_1.
+**A- (walked back 2026-04-14).** The electroweak scale arises from MDL mean-field theory:
+v = delta^2 M\_P / (sqrt(2) N^(1/4)), with dark correction (5/12) alpha\_1 at the edge-local squared order. The grade is A- (not theorem) because the N^{-1/4} exponent depends on a mean-field-to-Curie-Weiss FSS equivalence step that is plausible but not rigorously proven for local graphs with finite-range interactions. The script `srs_mdl_meanfield_theorem.py` self-assesses at A- for this reason.
 
 Chain:
-1. MDL proves mean-field is uniquely optimal for phi^4 on srs (92x margin over fluctuations).
-2. The Higgs self-energy at P has exactly 2 interaction vertices -> delta^2 = (2/9)^2.
-3. N^(-1/4) is universal for phi^4 mean-field (independent of dimensionality).
-4. v\_bare = delta^2 M\_P / (sqrt(2) N^(1/4)). Dark correction: v = v\_bare (1 - (5/12) alpha\_1) = 245.64 GeV (obs: 246.22, 0.24%).
+1. MDL proves mean-field is uniquely optimal for phi^4 on srs (92x margin over fluctuations). **[theorem]**
+2. The Higgs self-energy at P has exactly 2 interaction vertices -> delta^2 = (2/9)^2. **[theorem]**
+3. N^(-1/4) is the standard Curie-Weiss FSS exponent for n=4 Higgs components; the MF-to-Curie-Weiss FSS equivalence on srs is **asserted, not proven** (the A- gap).
+4. v\_bare = delta^2 M\_P / (sqrt(2) N^(1/4)). Dark correction: v = v\_bare (1 - (5/12) alpha\_1) = 245.64 GeV (obs: 246.22, 0.24%). The (5/12) is the edge-local squared order of the unified dark coupling; at delocalized linear order the same framework object gives tan^2(arg h) = 5/3 for theta_23 and m_nu3 (see parity_theorems.md section on dark correction pattern).
 5. y\_tau = alpha\_1/k^2. Lepton masses from Koide(epsilon=sqrt(2), delta=2/9): m\_e, m\_mu, m\_tau all < 0.1%.
 6. Quark masses from quark Koide with delta(n) = 2/(9(n+1)) from Pati-Salam Fock counting.
 7. m\_t = 172.71 GeV from y\_t(GUT)=1 + MSSM thresholds with derived tan(beta) = 44.73 (obs: 172.69, 0.01%).
@@ -194,6 +194,68 @@ Result: Cosmological constant, dark matter, baryon asymmetry, spectral tilt. Scr
 
 ---
 
+## 11. CMB Parity Violation (P2)
+
+**Four theorems + one A- strong conjecture.** Added in the 2026-04-14
+rigorization push. Full derivation in `docs/parity_theorems.md`; this
+section is a cross-reference summary.
+
+**Theorem 11.1 (srs cubic moment formula).** On the 24 directed edges of
+srs, for any cubic axis z^:
+
+    <(e . z^)^(2n)> = 1 / (3 * 2^(n-1))   for all n >= 1
+
+Proof: 432 chiral cubic symmetry splits the 24 edges into 8 perpendicular
+(e_z = 0) and 16 at 45 degrees (e_z^2 = 1/2). Rank-2 case is the tensor
+identity Sum_e e_a e_b = (N_e/3) delta_ab.
+
+**Theorem 11.2 (hemispherical asymmetry A = 1/15).** The CMB hemispherical
+power asymmetry amplitude is
+
+    A = eps / k = (1/5) / 3 = 1/15 = 6.67%
+
+matching Planck 2018 at 0.08σ. Ingredients: eps = 1/5 from Bayesian
+Beta(1,1) -> Beta(2,1) toggle update, 1/k = 1/3 from Theorem 11.1 at n=1.
+Zero free parameters.
+
+**Theorem 11.3 (B(P) doubly degenerate h).** The Bloch non-backtracking
+walk operator B(k) at the P-point P = (1/4, 1/4, 1/4) of the primitive
+BZ has h = (sqrt(3) + i sqrt(5))/2 as an eigenvalue of multiplicity
+exactly 2, C_3-protected by the stabilizer of P in the 432 point group.
+A(P) has characteristic polynomial (lambda^2 - 3)^2 (sympy verified);
+Ihara-Bass translation gives the multiplicity-2 result for B(P).
+
+**Theorem 11.4 (c_1 = 0 on all slices).** The first Chern number of the
+srs photon Hodge bundle vanishes on every 2D slice of the primitive BZ.
+Proof via the generalized time reversal d(-k) = d(k)* plus self-conjugate
+slice argument (forcing c_1 = -c_1 at k_l in {0, 1/2}) plus zero U(1)
+topological charge at the Gamma defect (sphere integration verified).
+Consequence: the srs photon bundle is topologically trivial in the U(1)
+sense; no bulk axion angle can source cosmic birefringence.
+
+**A- (dark correction axiom): beta = sin(arg h) * alpha_EM.** Forced to
+be dynamical by Theorem 11.4. The framework's dark correction pattern
+(linear corrections for delocalized observables) gives, for amplitude
+observables, a linear coupling to the unit chirality invariant
+chi(h) = Im(h)/|h| = sin(arg h) = sqrt(5/8) at leading order in
+alpha_EM. Hence beta = sqrt(5/8)/137.036 = 0.3306 degrees, matching
+Eskilt 2022 at 0.12σ. Zero free parameters; one framework-level
+assertion (the amplitude-linear dark correction rule, supported by the
+parallel tan^2(arg h) rule for delocalized mass^2 observables such as
+neutrino masses and theta_23).
+
+Scripts: `proofs/cosmology/A_dilution_derivation.py` (Theorems 11.1, 11.2),
+`proofs/cosmology/path_c_beta_verify.py` (beta A-),
+`proofs/cosmology/srs_photon_bloch_primitive.py` (Theorem 11.3 numerical),
+`proofs/cosmology/srs_photon_berry.py` (Theorem 11.4 slice Chern),
+`proofs/cosmology/srs_gamma_defect_charge.py` (Theorem 11.4 Gamma charge).
+
+Per-ell extension of Theorem 11.1 gives sharp predictions for every
+even-ell CMB parity multipole (-7/48 at ell=4, -13/64 at ell=6,
++297/1024 at ell=8, ...) testable by future high-resolution CMB analyses.
+
+---
+
 ## Summary Table
 
 | # | Quantity | Derivation | Accuracy | Grade |
@@ -209,7 +271,7 @@ Result: Cosmological constant, dark matter, baryon asymmetry, spectral tilt. Scr
 | 9 | CP phases (PMNS) | arg(h^g), arg(h\*^(g-1)) | within exp. | theorem |
 | 10 | m\_e, m\_mu, m\_tau | Koide + v | < 0.1% | theorem |
 | 11 | m\_t | y\_t(GUT)=1 + MSSM thresholds | 0.01% | A- |
-| 12 | v (Higgs VEV) | MDL mean-field + dark | 0.24% | theorem |
+| 12 | v (Higgs VEV) | MDL mean-field + dark | 0.24% | A- |
 | 13 | m\_h | From v and lambda | 0.8% | theorem |
 | 14 | eta\_B | Laplace at P | 0.5% | theorem |
 | 15 | Omega\_DM | Poisson(6) residual | < 0.1% | theorem |

@@ -55,6 +55,14 @@ BACKBONE = [
      "Baryon asymmetry eta_B"),
     ("cosmology", "proofs/cosmology/dm_hierarchy_derivation.py",
      "Dark matter fraction and n_s"),
+
+    # P2 parity sector
+    ("parity", "proofs/cosmology/A_dilution_derivation.py",
+     "A = 1/15 hemispherical + cubic moment (Theorems 1, 2)"),
+    ("parity", "proofs/cosmology/path_c_beta_verify.py",
+     "beta = sin(arg h) * alpha_EM (A-)"),
+    ("parity", "proofs/cosmology/srs_photon_bloch_primitive.py",
+     "B(P) doubly-degenerate h (Theorem 3)"),
 ]
 
 # Quick subset: fastest-running proofs for rapid checks

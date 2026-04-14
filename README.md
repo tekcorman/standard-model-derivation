@@ -22,17 +22,21 @@ h is the Hashimoto (non-backtracking) eigenvalue at the P point of the BCC Brill
 
 ## Results
 
-~40 theorem-grade + ~8 A-grade derivations = 48 parameters. Zero free parameters. Zero physical identifications beyond axioms. One open parameter (A_s, needs new mathematics). Most recent promotion: R = 228/7 (neutrino splitting) from A- to theorem via the closed-form Ihara/Chebyshev derivation (see `docs/R_theorem.md`).
+~42 theorem-grade + ~11 A/A−-grade derivations across 53 parameters. Zero free parameters. Zero physical identifications beyond axioms. One open parameter (A_s, needs new mathematics). Most recent additions (2026-04-14): **four new theorems** in the parity-violation sector — the srs cubic moment formula, CMB hemispherical asymmetry A = 1/15, the doubly-degenerate walk eigenvalue h at the P-point, and the vanishing of the photon Hodge bundle's first Chern number on every slice. The last of these forces cosmic birefringence to be dynamical; applying the framework's dark correction axiom gives β = sin(arg h)·α_EM = 0.331° at grade A− (see `docs/parity_theorems.md`).
+
+Note (2026-04-14 audit): three previously theorem-grade claims were walked back to A/A− after internal review: the Higgs VEV v (MF→Curie-Weiss FSS equivalence gap), the neutrino mass m_ν3 (linear-vs-squared dark correction rule asserted), and θ_23 (perturbative mechanism one session away). Numerical values are unchanged; grade ceiling is now honest.
 
 | Quantity | Predicted | Observed | Accuracy |
 |----------|-----------|----------|----------|
 | Higgs mass m_h | 126.2 GeV | 125.25 GeV | 0.8% |
 | Top mass m_t | 172.71 GeV | 172.69 GeV | 0.01% |
-| Higgs VEV v | 245.64 GeV | 246.22 GeV | 0.24% |
+| Higgs VEV v | 245.64 GeV | 246.22 GeV | 0.24% (A−) |
 | Baryon asymmetry η_B | 6.09×10⁻¹⁰ | 6.12×10⁻¹⁰ | 0.5% |
 | PMNS mixing (4 obs) | χ²/dof = 0.22 | p ≈ 0.93 | all <0.6σ |
 | CKM elements | V_us, V_cb, V_ub | PDG values | 0.08-3.5% |
 | Neutrino splitting R | 228/7 = 32.571 | 32.576 (PDG) | 0.015% (<0.01σ, theorem) |
+| **CMB hemispherical A** | **1/15 = 0.0667** | **0.065 ± 0.02** | **0.08σ (theorem)** |
+| **Cosmic birefringence β** | **sin(arg h)·α_EM = 0.3306°** | **0.342° ± 0.094°** | **0.12σ (A−)** |
 | Cosmological constant Λ | 3/N² | observed | <1% |
 | Dark matter Ω_DM/Ω_m | 0.842 | 0.842 | <0.1% |
 
@@ -47,6 +51,9 @@ Full parameter scorecard: [`results/parameters.csv`](results/parameters.csv)
 | m_ν₁ = 0 (massless lightest neutrino) | KATRIN, Project 8 | 2027+ |
 | m_ββ = 2.55 meV (0νββ amplitude) | nEXO | 2030+ |
 | θ₂₃ = 48.72° (non-maximal) | DUNE | 2028 |
+| β = 0.3306° (cosmic birefringence) | LiteBIRD (~0.05° precision) | ~2032 |
+| A = 1/15 (CMB hemispherical) | CMB-S4 high-resolution | 2030+ |
+| \|β\| ≤ α_EM ≈ 0.418° (hard cap) | any birefringence measurement | ongoing |
 | R-parity violated | LHC RPV searches | ongoing |
 | Gluino at 6970 GeV | FCC-hh (100 TeV) | 2040+ |
 | No WIMP dark matter | LZ, XENONnT | ongoing |
@@ -69,6 +76,10 @@ docs/
   derivations.md                   # Complete derivation chains (~500 lines)
   honest_assessment.md             # What's proven, what's not, what would falsify
   predictions.md                   # Testable predictions with experiments
+  R_theorem.md                     # R = 228/7 = Δm²₃₁/Δm²₂₁ closed form
+  parity_theorems.md               # Four new P2 parity theorems + β A-
+  theorem_BP_doubly_degenerate_h.md  # Theorem 3 detailed proof
+  theorem_c1_zero_on_slices.md     # Theorem 4 detailed proof
 ```
 
 ## Requirements
@@ -103,9 +114,9 @@ See [`docs/derivations.md`](docs/derivations.md) for complete chains. Highlights
 
 ## Honest assessment
 
-This framework derives 48 of 50 quantities (45 SM + 5 cosmological) from two axioms. The derivations range from theorem-grade (39 items: complete proof from axioms) to A-grade (9 items: complete chains with computational precision as the only gap). One parameter (A_s) is genuinely open.
+This framework derives 53 quantities (45 SM + 5 cosmological + 3 P2 parity theorems) from two axioms. After the 2026-04-14 audit the grade distribution is: ~42 theorem-grade (complete proof from axioms), ~11 A/A−-grade (complete chains with one identifiable assertion each), and one genuinely open parameter (A_s). The P2 parity-violation sector contributes four new theorems and one A− strong conjecture controlling four CMB parity observables from zero adjustable parameters.
 
-Every script is a computational verification, not a fit. No parameters are adjusted. See [`docs/honest_assessment.md`](docs/honest_assessment.md) for detailed caveats and [`docs/predictions.md`](docs/predictions.md) for falsifiable predictions.
+Every script is a computational verification, not a fit. No parameters are adjusted. See [`docs/honest_assessment.md`](docs/honest_assessment.md) for detailed caveats, [`docs/parity_theorems.md`](docs/parity_theorems.md) for the P2 parity-violation theorem stack, and [`docs/predictions.md`](docs/predictions.md) for falsifiable predictions.
 
 ## License
 

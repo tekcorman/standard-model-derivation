@@ -14,6 +14,10 @@ current experimental status.
 | theta\_23 non-maximal | 48.72 deg | 49.2 +/- 1.0 deg | DUNE | 2028 |
 | m\_nu1 = 0 | 0 eV | < 0.8 eV (KATRIN) | KATRIN, Project 8 | 2027-2030 |
 | Normal ordering | NH | ~3 sigma preference | JUNO, DUNE | 2027-2030 |
+| **Cosmic birefringence beta** | **0.3306 deg** | 0.342 +/- 0.094 deg (0.12 sigma match) | LiteBIRD (+/- 0.05 deg) | 2032 |
+| **CMB hemispherical A** | **1/15 = 0.0667** | 0.065 +/- 0.02 (0.08 sigma match) | CMB-S4 high-resolution | 2030+ |
+| **beta hard cap \|beta\| <= alpha\_EM** | **<= 0.418 deg** | observed at 79% of bound | any future measurement | ongoing |
+| **Per-ell CMB parity amplitudes** | -7/48 at ell=4, etc. | consistent at current precision | Planck, LiteBIRD reanalysis | ongoing |
 | R-parity violated | RPV signatures | No RPV signal yet | LHC Run 3 | ongoing |
 | No WIMP dark matter | null | No signal | LZ, XENONnT, PandaX | ongoing |
 
@@ -94,6 +98,9 @@ Listed in order from most to least decisive:
 | theta\_23 = 45.00 +/- 0.3 deg | Dark correction mechanism | Gauge, generations |
 | delta\_CP far from 250 deg | Hashimoto phase mechanism | Gauge, CKM |
 | m\_nu1 > 0 established | Seesaw structure at P point | Most else |
+| beta > alpha\_EM ~ 0.418 deg | P2 Theorem 4 (c\_1 = 0) + dark correction | Gauge, flavor |
+| beta != 0.33 +/- 0.05 deg (LiteBIRD) | P2 A- conjecture, dark correction amplitude rule | Theorem 4, gauge, flavor |
+| A != 1/15 at high precision | P2 Theorem 2 (cubic moment at n=1) | Flavor sector |
 | WIMP dark matter found | DM = uncompressed branches | All particle physics |
 | 4th generation found | C3 generation mechanism | Would need revision |
 | No SUSY below 10 TeV | MSSM mass hierarchy pathway | Gauge, flavor (different mass mechanism needed) |

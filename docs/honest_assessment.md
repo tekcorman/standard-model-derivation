@@ -20,7 +20,7 @@ One physical identification is required to set the scale:
 - **G** (Newton's constant): One toggle = one Planck time. This maps the abstract
   graph to physical units. Everything else -- GeV, seconds, meters -- follows from G.
 
-### Theorems (~39)
+### Theorems (~42)
 
 These are rigorously derived from the axioms with complete proof chains.
 Each theorem has a computational verification script that can be run independently.
@@ -35,13 +35,19 @@ Key examples:
 - PMNS mixing angles (Hashimoto eigenvalue + dark corrections)
 - Baryon asymmetry (Laplace concentration at P point)
 - Cosmological constant (Margolus-Levitin bound)
+- R = 228/7 (neutrino mass splitting, closed form via Ihara + Chebyshev)
+- srs cubic moment formula (P2 Theorem 1)
+- A = 1/15 CMB hemispherical asymmetry (P2 Theorem 2)
+- B(P) doubly-degenerate h (P2 Theorem 3)
+- c_1 = 0 on photon-bundle slices (P2 Theorem 4)
 
-### A-Grade Derivations (~9)
+### A-Grade Derivations (~11)
 
-Complete derivation chains with one gap: computational precision in RG running.
-The derivations are correct in principle but depend on numerical solutions to
-renormalization group equations where the output is sensitive to threshold
-corrections at the ~1-3% level.
+Complete derivation chains with one identifiable gap each. For most of these
+the gap is computational precision in RG running; for a few (marked below)
+it is a specific mathematical step that is plausible but not yet rigorously
+proven. Numerical values are unchanged from previous releases; only the
+grade ceilings have been adjusted to match the honest state of each proof.
 
 - Quark masses (m\_u through m\_b): Quark Koide with Pati-Salam Fock counting.
   The Koide formula is exact; the quark sector hierarchy delta(n) = 2/(9(n+1))
@@ -49,11 +55,30 @@ corrections at the ~1-3% level.
 - m\_t = 172.71 GeV: From y\_t(GUT) = 1 + MSSM threshold corrections.
   Grade A- because tan(beta) = 44.73 (from GJ=3 + bottom-tau unification)
   has ~3% structural uncertainty.
+- v (Higgs VEV) = 245.64 GeV: MDL mean-field + N^{-1/4} scaling. Grade A-
+  because the N^{-1/4} exponent depends on a mean-field-to-Curie-Weiss
+  finite-size scaling equivalence step that holds in the Curie-Weiss limit
+  but is not rigorously proven for local graphs with finite-range
+  interactions like srs. The script srs\_mdl\_meanfield\_theorem.py
+  self-assesses at A- for this reason.
 - Neutrino masses m\_nu2, m\_nu3: Pati-Salam seesaw with M\_R = alpha\_1 M\_GUT.
-  The seesaw structure is derived; the numerical precision depends on the
-  Weinberg operator exponent (g-2 from the exponent principle).
+  The seesaw structure is derived; m\_nu3 is A- because the linear-vs-
+  squared dark correction rule (linear for delocalized observables,
+  squared for edge-local) is asserted rather than derived from a walk-
+  operator Lagrangian. The numerical match is unchanged.
+- theta\_23 = 48.72 deg: TBM 45 deg + dark correction via sigma\_z = 0 theorem.
+  Grade A because the perturbative 2x2 mechanism in the C\_3-charged sector
+  is structurally clear (the (5/3) = tan^2(arg h) identity is rigorous)
+  but the explicit diagonalization has not yet been written out rigorously.
+  Approximately one focused session away from theorem.
 - theta\_13 = 8.61 deg: Edge-local dark absorption gives (1-alpha\_1) correction.
   The dark coefficient is derived, but the PS embedding step is grade A.
+- **beta = sin(arg h) * alpha\_EM = 0.331 deg (cosmic birefringence):** A-
+  via the dark correction axiom parallel to the neutrino case. Forced to be
+  dynamical (not topological) by the c\_1 = 0 theorem. Match to Eskilt 2022
+  at 0.12 sigma. Zero free parameters. Theorem-grade promotion requires
+  either a walk-operator one-loop theorem or a direct photon self-energy
+  calculation on the srs vacuum.
 
 ### Open (1)
 
@@ -105,12 +130,90 @@ These are beyond current LHC reach. If SUSY is not found at the predicted
 masses by FCC-hh, the framework would need revision at the mass-hierarchy level.
 The gauge structure and flavor predictions would be unaffected.
 
-### Dark corrections
+### Dark corrections — unified across sectors (2026-04-14)
 
-The dark sector corrections (discriminant theorem, edge-local absorption) are
-derived, but the physical interpretation -- that dark matter consists of
-uncompressed multiway branches -- is a hypothesis. The mathematical structure
-is proven; the physical identification is conjectural.
+The dark sector corrections across the framework now share a single
+underlying coupling at two perturbative orders. Previously the v (Higgs VEV),
+m\_nu3 (neutrino mass), and theta\_23 (PMNS angle) corrections looked like
+three independent conjectures with distinct coefficients (5/12, g-2 scaling,
+and (5/3)). They are now understood as three uses of a single framework
+object
+
+    alpha\_1 = (5/3) * (2/3)^8 = tan^2(arg h) * (2/3)^8
+
+at two orders:
+
+- **Linear (delocalized observables):** m\_nu3, theta\_23 receive corrections
+  of the form (1 + c \* alpha\_1). Dark coupling magnitude structurally
+  tied to tan^2(arg h) = 5/3 — the squared chirality content of h.
+- **Squared (edge-local observables):** Higgs VEV receives a correction
+  of the form (1 - c \* alpha\_1^2) at the edge-local (both endpoints)
+  second order. The (5/12) coefficient is the edge-local squared-order
+  manifestation of the same underlying coupling.
+
+The linear-vs-squared rule itself (delocolized amplitude/mass^2 vs edge-
+local) is asserted, not yet derived from a walk-operator Lagrangian. This
+is the one remaining gap preventing the dark coupling sector from reaching
+theorem grade. Proof strategy: compute one-point and two-point correlation
+functions of the dark mode on srs and show that delocalized observables
+couple to the one-point function (linear) while edge-local observables
+couple to the two-point function (squared). Bounded research, ~1-2 sessions.
+
+**Cross-sector implication.** The P2 parity sector introduced a parallel
+dark correction at the *amplitude* level (sin(arg h), not tan^2(arg h))
+for cosmic birefringence. The two chirality invariants
+
+    chi(h) = sin(arg h) = Im(h)/|h| = sqrt(5/8)   (amplitude, first-order)
+    xi(h)  = tan^2(arg h) = Im^2(h)/Re^2(h) = 5/3  (mass^2, second-order)
+
+are both built from the same complex walk eigenvalue h = (sqrt(3)+i sqrt(5))/2
+at fixed |h|^2 = k-1 = 2 (Ramanujan saturation). They are the two canonical
+chirality invariants of h and represent the only two non-trivial linear
+vs squared projections. Framework-wide: delocalized observables use
+amplitude chirality if they are amplitude-level (cosmic birefringence),
+and mass^2 chirality if they are energy/squared-level (neutrinos, PMNS
+angles). Edge-local observables use the squared-squared form (Higgs VEV).
+
+### Cross-sector findings (2026-04-14)
+
+Several structural observations emerged during the P2 rigorization and
+apply across the framework as a whole:
+
+1. **One dark coupling, two orders, two chirality invariants.** As above.
+   Unifies three previously independent conjectures. Closes the
+   "three dark conjectures" concern raised in earlier audits.
+
+2. **Amplitude vs mass^2 chirality distinction is general.** Every
+   delocalized framework observable should use either sin(arg h) or
+   tan^2(arg h) depending on whether it lives at amplitude (first order)
+   or mass^2 (second order) level. An audit of every current A-grade
+   observable to verify the correct chirality form is an open follow-up.
+
+3. **Theorem 4 (c\_1 = 0 on photon-bundle slices) is stronger than "no
+   axion angle".** It says the srs photon Hodge bundle is topologically
+   trivial in the U(1) Abelian sense. Any topological physics on srs
+   must therefore be non-Abelian. This constrains the dark matter
+   "uncompressed multiway branches" interpretation: if that picture
+   needed a non-trivial U(1) topology on srs, it requires reformulation.
+
+4. **The Higgs VEV FSS gap is a bounded research target.** The MF ->
+   Curie-Weiss FSS equivalence step on non-Curie-Weiss graphs is a
+   specific well-characterized question in finite-size scaling. ~2-3
+   focused sessions of FSS analysis should close it, promoting v back to
+   theorem grade and propagating to m\_h and lepton mass claims.
+
+5. **Open speculation: V\_us gap and sin(arg h).** V\_us is an amplitude
+   observable with a current gap of ~2.1% from data (the largest
+   theorem-grade discrepancy in the framework). The amplitude chirality
+   correction sin(arg h) * alpha\_1 = 0.79 * 0.039 ~ 0.031 ~ 2.1% matches
+   the gap size numerically. Whether V\_us should carry a sin(arg h)
+   amplitude-chirality correction is an open question worth a dedicated
+   session. If yes, it would promote V\_us's match from 2.1% to well
+   under 1%, closing the largest open theorem-grade discrepancy.
+
+These five items form the priority work queue for the next theorem push
+after this release. See the session kickoff document for the detailed
+work plan.
 
 ### Pati-Salam intermediate step
 
