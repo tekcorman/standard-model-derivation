@@ -43,6 +43,8 @@ BACKBONE = [
      "CP phases from Hashimoto eigenvalue"),
     ("flavor", "proofs/flavor/srs_ckm_tree_derivation.py",
      "CKM from tree approximation at z*=17/6"),
+    ("flavor", "proofs/flavor/vus_feshbach_derivation.py",
+     "V_us Feshbach dark correction (unified with m_nu)"),
 
     # Masses
     ("masses", "proofs/masses/koide_scale_proof.py",

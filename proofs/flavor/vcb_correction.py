@@ -221,53 +221,76 @@ print("SECTION 4: Comparison with V_us correction")
 print("-" * 60)
 
 sqrt3 = math.sqrt(3)
+sqrt5 = math.sqrt(5)
 L_us = 2 + sqrt3  # spectral gap length
 
 V_us_bare = base_f ** L_us
-alpha_1_over_k = 0.02168  # from previous analysis
-V_us_corrected = V_us_bare * (1 + alpha_1_over_k)
+
+# V_us correction: Feshbach self-energy Sigma(h) = alpha_1_bare/h on the
+# water-filled ruliad Q-space (uniform density on the Ramanujan circle,
+# derived from MDL optimality). See dark_correction_theorem_2026-04-14.md §4a.
+#
+# |Im[Sigma(h)]| = alpha_1_bare * Im(h)/|h|^2 = alpha_1_bare * sqrt(5)/4
+# where h = (sqrt(3) + i*sqrt(5))/2 at the P-point (P2 Theorem 3 gives
+# double degeneracy) and |h|^2 = k-1 = 2 (Ramanujan saturation).
+#
+# This correction is the one-shot, walk-length-independent dark amplitude
+# correction that applies uniformly to V_us, m_nu2, m_nu3 (all amplitude
+# observables in the dark sector).
+#
+# SUPERSEDES the earlier heuristic value 0.02168 which was tuned to
+# reproduce V_us ~ 0.2250 without a structural derivation. The new
+# value 0.02181 is derived from first principles and matches V_us to
+# 0.0016% (vs SMD reference 0.2250).
+alpha_1_bare = float(base**8)  # (2/3)^8 = 0.039018
+Feshbach_correction = (sqrt5 / 4) * alpha_1_bare  # = 0.021812
+V_us_corrected = V_us_bare * (1 + Feshbach_correction)
 
 Vcb_bare = base_f ** 8
 Vcb_correction_factor = base_f ** 8  # = (2/3)^8
 
 print(f"  V_us bare      = (2/3)^(2+sqrt3) = {V_us_bare:.6f}")
-print(f"  V_us correction factor: alpha_1/k = {alpha_1_over_k:.5f}")
-print(f"  V_us corrected = {V_us_corrected:.6f}")
+print(f"  V_us Feshbach correction: sqrt(5)/4 * alpha_1_bare = {Feshbach_correction:.6f}")
+print(f"  V_us corrected = {V_us_corrected:.6f}  (target 0.2250, err "
+      f"{(V_us_corrected - 0.2250)/0.2250*100:+.4f}%)")
 print()
 print(f"  V_cb bare      = (2/3)^8 = {Vcb_bare:.6f}")
 print(f"  V_cb correction factor: (2/3)^8 = {Vcb_correction_factor:.6f}")
 print(f"  V_cb corrected = {Vcb_bare * (1 + Vcb_correction_factor):.6f}")
 print()
 
-ratio = Vcb_correction_factor / alpha_1_over_k
-print(f"  Ratio of corrections: (2/3)^8 / (alpha_1/k) = {ratio:.3f}")
-print()
-
-# Check if alpha_1/k = (n_g / k^3) * (2/3)^8
-# n_g = 5 (from previous work), k = 3
-n_g = 5
-alpha_1_k_check = (n_g / 27) * float(base**8)
-print(f"  alpha_1/k from formula: (n_g/k^3)(2/3)^8 = ({n_g}/27)(2/3)^8")
-print(f"                        = {n_g/27:.6f} * {float(base**8):.6f} = {alpha_1_k_check:.6f}")
-print(f"  Previously used value:  {alpha_1_over_k:.6f}")
+ratio = Vcb_correction_factor / Feshbach_correction
+print(f"  Ratio of corrections: (2/3)^8 / (sqrt(5)/4 * (2/3)^8) = {ratio:.3f}")
+print(f"                      = 4/sqrt(5) = {4/sqrt5:.3f}")
 print()
 
 # The key structural difference:
-print("  STRUCTURAL DIFFERENCE:")
-print(f"    V_us correction: (n_g/k^3) * (2/3)^8 = ({n_g}/27) * (2/3)^8")
-print(f"    V_cb correction: 1 * (2/3)^8")
+print("  STRUCTURAL DIFFERENCE (Feshbach framework):")
+print("    V_us correction: sqrt(5)/4 * alpha_1_bare = Im(h)/|h|^2 * alpha_1_bare")
+print("                     (Feshbach amplitude class, one-shot self-energy)")
+print("    V_cb correction: 1 * alpha_1_bare = (2/3)^8")
+print("                     (edge-local commensurate girth-cycle detour)")
 print()
-print(f"    Ratio: k^3/n_g = 27/{n_g} = {27/n_g:.1f}")
+print(f"    Ratio: 4/sqrt(5) = {4/sqrt5:.3f}")
 print()
-print("  Physical interpretation:")
-print("    V_us walks along a spectral-gap path (irrational length 2+sqrt3).")
-print("    The detour amplitude is suppressed by n_g/k^3 = 5/27 because")
-print("    only a fraction of girth-cycle detours have compatible holonomy")
-print("    and phase alignment with the non-commensurate path.")
+print("  Physical interpretation (updated):")
+print("    V_us walks at irrational L_us = 2+sqrt(3). In the Feshbach picture,")
+print("    the self-energy Sigma(h) = alpha_1_bare/h has |Im[Sigma]| =")
+print("    alpha_1_bare * sqrt(5)/4, applied as a one-shot chirality")
+print("    correction. The sqrt(5)/4 = Im(h)/|h|^2 factor comes from the")
+print("    walker's parity-odd content normalized by Ramanujan saturation.")
 print()
-print("    V_cb walks along a pair-correlation path (integer length 8).")
-print("    The path IS commensurate with the girth cycle, so the detour")
-print("    amplitude has coefficient 1 (no suppression).")
+print("    V_cb walks at integer L = g-2 = 8, commensurate with the girth")
+print("    cycle. At commensurate length, a virtual girth-cycle detour at")
+print("    an intermediate vertex contributes the full (2/3)^8 amplitude")
+print("    with coefficient 1 (no phase suppression). This is the integer-")
+print("    length SPECIAL CASE of the same mechanism that gives V_us its")
+print("    sqrt(5)/4 coefficient at non-commensurate L_us.")
+print()
+print("    Both V_us and V_cb corrections are expressions of the walker's")
+print("    chirality Im(h) acting through dark-sector loop insertions; only")
+print("    the phase alignment (irrational vs integer walk length) changes")
+print("    the numerical coefficient.")
 
 # ===================================================================
 # SECTION 5: Full CKM matrix update
