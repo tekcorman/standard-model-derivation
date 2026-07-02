@@ -1,0 +1,127 @@
+# MkDocs Material configuration for the Standard Model Explainer site.
+#
+# Build locally:
+#   pip install mkdocs-material
+#   mkdocs serve              # live preview at http://127.0.0.1:8000
+#   mkdocs build --strict     # produce static site in ./site_build/
+#
+# Deploy: automatic via .github/workflows/deploy-explainer.yml on push to main.
+# Enable once in GitHub: Settings → Pages → Source: GitHub Actions.
+
+site_name: Standard Model from First Principles
+site_description: A framework that derives Standard Model parameters from three irreducible commitments on the srs crystal net.
+site_author: Adam Hillier
+site_url: https://tekcorman.github.io/standard-model-derivation/
+repo_url: https://github.com/tekcorman/standard-model-derivation
+repo_name: tekcorman/standard-model-derivation
+edit_uri: edit/main/explainer/
+
+docs_dir: explainer
+site_dir: site_build
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - search.suggest
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  # Math (LaTeX) via KaTeX-style fences and arithmatex
+  - pymdownx.arithmatex:
+      generic: true
+  # Diagrams (Mermaid)
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  # Material icon + emoji shortcodes — :material-foo:, :octicons-bar:, etc.
+  # Without this, those shortcodes render as raw text.
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  # Quality-of-life
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.caret
+  - pymdownx.mark
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+      permalink_title: Anchor link
+
+extra_javascript:
+  # ORDER MATTERS: config must load before MathJax itself, otherwise
+  # MathJax starts up without knowing about the arithmatex class and
+  # nothing renders.
+  - assets/js/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/tekcorman/standard-model-derivation
+  generator: false  # hide "Made with Material for MkDocs" footer
+
+# Exclude developer-facing readmes that live alongside content but aren't pages.
+not_in_nav: |
+  /assets/README.md
+
+nav:
+  - Home: index.md
+  - The Story:
+    - story/index.md
+    - 1. What can exist?: story/01-what-can-exist.md
+    - 2. Three irreducible commitments: story/02-three-commitments.md
+    - 3. The cover that holds chirality: story/03-the-cover-that-holds-chirality.md
+    - 4. Recurrence + the MDL waterline: story/04-recurrence-and-the-mdl-waterline.md
+    - 5. Complex Hilbert space is forced: story/05-complex-hilbert-is-forced.md
+    - 6. The two pillars: story/06-the-two-pillars.md
+    - Interlude — What the particles are: story/06b-what-the-particles-are.md
+    - 7. Implications: story/07-implications-and-honest-scope.md
+    - 8. The 12-observable cross-validation: story/08-the-12-observable-overdetermination.md
+  - Results & Tests:
+    - The 12-observable over-determination: over-determination.md
+    - Falsification criteria: falsification.md
+    - Audit infrastructure: audit-infrastructure.md
+  - Reference: reference.md

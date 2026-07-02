@@ -1,0 +1,28 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  backbone:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # bare = minimal deps; full = with matplotlib (plots optional by design)
+        deps: [bare, full]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies (${{ matrix.deps }})
+        run: |
+          pip install numpy scipy sympy spglib spgrep
+          if [ "${{ matrix.deps }}" = "full" ]; then pip install matplotlib; fi
+      - name: Run backbone proofs
+        run: python3 verify.py
+      - name: Check value locks (no silent value drift)
+        run: python3 scripts/value_lock.py

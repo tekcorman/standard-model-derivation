@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>srs lattice viewer</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #0a0a14; overflow: hidden; height: 100%; }
+  #stage { width: 100vw; height: 100vh; display: block; }
+  .legend {
+    position: fixed; top: 12px; left: 12px;
+    background: rgba(20, 20, 30, 0.85); color: #ddd;
+    padding: 10px 14px; border-radius: 6px;
+    font-family: 'Inter', system-ui, sans-serif; font-size: 13px;
+    line-height: 1.5; max-width: 280px; pointer-events: none;
+  }
+  .legend strong { color: #fff; }
+  .controls {
+    position: fixed; bottom: 12px; left: 12px;
+    background: rgba(20, 20, 30, 0.85); color: #ddd;
+    padding: 8px 12px; border-radius: 6px;
+    font-family: 'Inter', system-ui, sans-serif; font-size: 12px;
+    line-height: 1.5;
+  }
+  .controls button {
+    background: #2d2d40; color: #fff; border: 1px solid #555;
+    padding: 4px 10px; margin: 2px; border-radius: 3px;
+    cursor: pointer; font-size: 12px;
+  }
+  .controls button:hover { background: #404060; }
+  .controls button.active { background: #6a4cb8; }
+  .hint { color: #888; font-size: 11px; margin-top: 4px; }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div class="legend">
+  <strong>srs / (10,3)-a Laves net</strong><br>
+  Space group I4₁32; k* = 3; girth g = 10. <br>
+  The MDL-optimal substrate; <strong>R-9-forced unique</strong> via Sunada 2012.<br>
+  <span id="mode-label">Mode: srs (single chirality)</span>
+</div>
+<div class="controls">
+  <button id="btn-srs" class="active">srs (one-handed)</button>
+  <button id="btn-srsz">srs-z (bipartite cover)</button>
+  <button id="btn-spin">Auto-rotate ⟳</button>
+  <div class="hint">drag to rotate · scroll to zoom · right-click to pan</div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// ── srs (10,3)-a coordinates in the I4₁32 conventional cubic cell ─────────
+// The 8 nodes at Wyckoff position 8a of space group I4₁32 (#214): the
+// 4 base points + their body-centred copies (+½,+½,+½). Verified 3-regular:
+// every node has exactly 3 nearest neighbours at distance √2/4 ≈ 0.35355.
+const SRS_FRAC = [
+  [0.125, 0.125, 0.125],
+  [0.625, 0.625, 0.625],
+  [0.875, 0.375, 0.625],
+  [0.375, 0.875, 0.125],
+  [0.375, 0.625, 0.875],
+  [0.875, 0.125, 0.375],
+  [0.625, 0.875, 0.375],
+  [0.125, 0.375, 0.875],
+];
+
+// Nearest-neighbour distance for the (10,3)-a net in this cubic setting.
+const SRS_NN = Math.SQRT2 / 4;       // ≈ 0.353553
+const SRS_NN_TOL = 0.02;
+
+// Build a multi-cell chunk of srs (n×n×n cubic cells) and connect every pair
+// of nodes that sit at the nearest-neighbour distance. This reproduces the
+// exact (10,3)-a connectivity; interior nodes come out 3-coordinated, and
+// nodes on the cut surface of the finite chunk have fewer (their partners lie
+// outside the rendered block) — as expected for any finite crystal fragment.
+function buildSrs(n = 2) {
+  const positions = [];
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      for (let k = 0; k < n; k++) {
+        for (const [fx, fy, fz] of SRS_FRAC) {
+          positions.push([i + fx, j + fy, k + fz]);
+        }
+      }
+    }
+  }
+  const bonds = [];
+  for (let a = 0; a < positions.length; a++) {
+    for (let b = a + 1; b < positions.length; b++) {
+      const dx = positions[a][0] - positions[b][0];
+      const dy = positions[a][1] - positions[b][1];
+      const dz = positions[a][2] - positions[b][2];
+      const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      if (Math.abs(d - SRS_NN) < SRS_NN_TOL) bonds.push([a, b]);
+    }
+  }
+  return { positions, bonds };
+}
+
+// srs-z = bipartite double cover. We model it by duplicating each srs atom
+// into two color classes (A: "left-chirality" sublattice; B: "right-chirality"
+// sublattice). Every bond becomes an inter-color edge (the chirality grading
+// IS the L↔R coupling site a mass operator needs).
+function buildSrsZ(n = 2) {
+  const srs = buildSrs(n);
+  const positions = [];
+  const colors = []; // 0 = A sublattice (left-chirality), 1 = B sublattice
+  const bonds = [];
+  const offset = 0.08; // small spatial split to make the two sublattices visible
+
+  // For each srs atom, create two copies in the doubled cover.
+  // Place them slightly displaced so both are visible.
+  for (const [x, y, z] of srs.positions) {
+    positions.push([x + offset, y + offset, z + offset]); colors.push(0); // A copy
+    positions.push([x - offset, y - offset, z - offset]); colors.push(1); // B copy
+  }
+
+  // In the bipartite double cover, an edge (u,v) of srs lifts to two edges:
+  // (u_A, v_B) and (u_B, v_A). These are the L↔R coupling sites.
+  for (const [u, v] of srs.bonds) {
+    bonds.push([2 * u + 0, 2 * v + 1]); // A → B
+    bonds.push([2 * u + 1, 2 * v + 0]); // B → A
+  }
+
+  return { positions, colors, bonds };
+}
+
+// ── Three.js setup ───────────────────────────────────────────────────────
+const canvas = document.getElementById('stage');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0a14);
+scene.fog = new THREE.Fog(0x0a0a14, 5, 12);
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(3.5, 3.0, 5.0);
+
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.target.set(1.0, 1.0, 1.0);
+controls.autoRotate = false;
+controls.autoRotateSpeed = 0.8;
+
+// Lights
+scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+const keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
+keyLight.position.set(5, 5, 5);
+scene.add(keyLight);
+const fillLight = new THREE.DirectionalLight(0x88aaff, 0.3);
+fillLight.position.set(-3, 2, -3);
+scene.add(fillLight);
+
+// ── Render functions ────────────────────────────────────────────────────
+let currentGroup = null;
+
+function clearScene() {
+  if (currentGroup) {
+    scene.remove(currentGroup);
+    currentGroup.traverse(o => {
+      if (o.geometry) o.geometry.dispose();
+      if (o.material) {
+        if (Array.isArray(o.material)) o.material.forEach(m => m.dispose());
+        else o.material.dispose();
+      }
+    });
+    currentGroup = null;
+  }
+}
+
+function renderSrs() {
+  clearScene();
+  const group = new THREE.Group();
+  const { positions, bonds } = buildSrs(2);
+
+  // Atoms — single color (chiral, one-handed)
+  const atomGeo = new THREE.SphereGeometry(0.08, 18, 14);
+  const atomMat = new THREE.MeshStandardMaterial({
+    color: 0x9b8cff, roughness: 0.35, metalness: 0.5,
+  });
+  for (const [x, y, z] of positions) {
+    const sphere = new THREE.Mesh(atomGeo, atomMat);
+    sphere.position.set(x, y, z);
+    group.add(sphere);
+  }
+
+  // Bonds — thin cylinders
+  const bondMat = new THREE.LineBasicMaterial({ color: 0x6a55cc, linewidth: 1.2 });
+  for (const [iFrom, iTo] of bonds) {
+    const pFrom = positions[iFrom];
+    const pTo = positions[iTo];
+    const geo = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(...pFrom),
+      new THREE.Vector3(...pTo),
+    ]);
+    const line = new THREE.Line(geo, bondMat);
+    group.add(line);
+  }
+
+  scene.add(group);
+  currentGroup = group;
+  document.getElementById('mode-label').textContent = 'Mode: srs (single chirality)';
+}
+
+function renderSrsZ() {
+  clearScene();
+  const group = new THREE.Group();
+  const { positions, colors, bonds } = buildSrsZ(2);
+
+  // Two color classes: A = warm orange (L-chirality), B = cool teal (R-chirality)
+  const atomGeo = new THREE.SphereGeometry(0.07, 18, 14);
+  const matA = new THREE.MeshStandardMaterial({
+    color: 0xff9b56, roughness: 0.35, metalness: 0.5,
+  });
+  const matB = new THREE.MeshStandardMaterial({
+    color: 0x56e0c8, roughness: 0.35, metalness: 0.5,
+  });
+  for (let i = 0; i < positions.length; i++) {
+    const [x, y, z] = positions[i];
+    const sphere = new THREE.Mesh(atomGeo, colors[i] === 0 ? matA : matB);
+    sphere.position.set(x, y, z);
+    group.add(sphere);
+  }
+
+  // Bonds — inter-sublattice (L↔R coupling sites)
+  const bondMat = new THREE.LineBasicMaterial({ color: 0xc8c8c8, transparent: true, opacity: 0.55 });
+  for (const [iFrom, iTo] of bonds) {
+    const pFrom = positions[iFrom];
+    const pTo = positions[iTo];
+    const geo = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(...pFrom),
+      new THREE.Vector3(...pTo),
+    ]);
+    const line = new THREE.Line(geo, bondMat);
+    group.add(line);
+  }
+
+  scene.add(group);
+  currentGroup = group;
+  document.getElementById('mode-label').textContent = 'Mode: srs-z (bipartite double cover — chirality grading visible as two colors)';
+}
+
+// ── Mode buttons ────────────────────────────────────────────────────────
+const btnSrs = document.getElementById('btn-srs');
+const btnSrsz = document.getElementById('btn-srsz');
+const btnSpin = document.getElementById('btn-spin');
+
+btnSrs.addEventListener('click', () => {
+  renderSrs();
+  btnSrs.classList.add('active');
+  btnSrsz.classList.remove('active');
+});
+btnSrsz.addEventListener('click', () => {
+  renderSrsZ();
+  btnSrsz.classList.add('active');
+  btnSrs.classList.remove('active');
+});
+btnSpin.addEventListener('click', () => {
+  controls.autoRotate = !controls.autoRotate;
+  btnSpin.classList.toggle('active');
+});
+
+// ── Animation loop + resize ─────────────────────────────────────────────
+function animate() {
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Initial render
+renderSrs();
+animate();
+</script>
+</body>
+</html>
