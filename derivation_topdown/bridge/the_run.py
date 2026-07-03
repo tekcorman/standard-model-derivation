@@ -136,11 +136,17 @@ def read_gauge_running():
     # LAYER 1 — COMPUTED (no longer typed): the β coefficients are Dynkin/Casimir sums over the FORCED field
     #   content — gens (= read_flavor) generations of the SM multiplets (Cl(6)=Pati-Salam; hypercharge Y=Q−T₃ with
     #   the species charge Q=±n/k* from the Hamming weight) + 2 Higgs doublets (the srs⊗srs-z bipartite mirror).
-    # ⚠ LAYER 2 — STILL INJECTED: the one-loop β FORMULA itself (the −11/3, ⅔, ⅓ Dynkin structure) is standard
-    #   QFT; its native form is ζ_{D₄}(0) (the spectral zeta of D₄=B⊗∂_N), RESEARCH-LEVEL (lattice = dead end).
-    #   The multiplet/hypercharge ASSEMBLY below is now NATIVE — every (color, T₃, Y) reads off N̂'s Hamming
-    #   weight n (Q=(−1)ⁿn/k*, T₃=(−1)ⁿ/2, Y=Q−T₃), reproducing Tf={6,6,6} and b=MSSM. Only the +4-shadow and the
-    #   β-formula itself remain Layer-2 (ζ_{D₄}(0)). The fermion content is no longer hand-listed.
+    # ⚠ LAYER 2 — UPGRADED 2026-07-02 (Ω-S2 station 2, OMEGA_S2_Q2_internal_a4_gauge_row probe, ALL PASS):
+    #   the one-loop β FORMULA (the −11/3, ⅔, ⅓ structure) is NO LONGER an independent QFT import — it is
+    #   DERIVED from the heat kernel's two universal Seeley–DeWitt coefficients a₄ ⊃ (1/12)trΩ² + (1/2)trE²
+    #   with E = −2F·S (per helicity pair b = −(−1)^{2s}[(2s_z)²−1/3]; exact-spectrum validated; ghost
+    #   bookkeeping agrees; Seeley–DeWitt = the declared Type-3 import, same status as Ihara–Bass). The graded
+    #   theorem gives b_4d = −3C₂+T_f+T_H with the +4-shadow ≡ the opposite-statistics partner rows; D₃ IS the
+    #   supercharge pairing all massive/cone content (KO parity↔statistics identification named). REMAINING
+    #   OPEN (todo §5): the FLATS are D₃-unpaired ⇒ the gaugino/higgsino shadow ((2/3)C₂+(2/3)T_H) needs the
+    #   un-built TIME-LEG (γ_t∂_N) fluctuation complex. The multiplet/hypercharge ASSEMBLY below is NATIVE —
+    #   every (color, T₃, Y) reads off N̂'s Hamming weight n (Q=(−1)ⁿn/k*, T₃=(−1)ⁿ/2, Y=Q−T₃), reproducing
+    #   Tf={6,6,6} and b=MSSM. The fermion content is no longer hand-listed.
     gens = read_flavor()[3]                                   # = 3 (READ off the C₃ isotypes)
     # NATIVE: the SM multiplets FALL OUT of the Cl(6)-Fock Hamming weight n (read_species) — no hand-typed
     #   hypercharges. color = Fock multiplicity (1 lepton / 3 quark); charge Q = (−1)ⁿ·n/k* (Hamming weight ×

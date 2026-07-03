@@ -49,6 +49,11 @@ SECTORS = [
         # "match" only by hardcoding delta_alpha_running=9.092 (a Clause-9 smuggle). Moved
         # to proofs/cosmology/R_infinity.py pending a derived Δα. Clean in-scope EM test = α_EM(M_Z).
     ]),
+    ("Standard Model — Decay widths (F4, first dynamics)", [
+        ("Γ_W/Γ_Z", "Gamma_W_over_Gamma_Z", 0.83560, 0.01685, "(dimensionless)", "FIRST WIDTH OBSERVABLE (F4 S3 2026-07-02). Frozen tree×QCD assembly × the registered EW-layer differential (LOOP program R-V, user gate 2026-07-02): −0.06σ → +0.14σ (Clause 8c PASS). Grade MATHEMATICALLY COMPLETE / bridge-conditional (Clause 9b: 1/(48π) + EW layer Type-3; native Clifford phase space open, todo §7). Dark FORBIDDEN by S2b lemma. G_F unused."),
+        ("Γ_Z/M_Z", "Gamma_Z_over_M_Z", 0.0273634, 0.0000252, "(dimensionless)", "Z width fraction (F4 S3) × (1+δ_Z), the LOOP-program derived EW layer (chain C2 2188fbe → V1 a5287f4 → V2 d37a679, blind landing pull −0.54; user gate 2026-07-02): +4.8σ OPEN → −0.55σ = the SM's own residual (Clause 8c PASS at bridge-conditional grade — Clause 9b tag explicit, K-rationality of the layer broken/acknowledged; NOT theorem-grade until the native loop derivation lands, todo §7). In-file gates assert the PRE-layer deficit's presence (10b tripwire), the V2-banked layer value, and the post-layer sub-σ. M_Z pole oblique (+6σ-class) NOT touched — rates only (R3 clause)."),
+        ("δ_EW^width", "ew_width_layer", None, None, "(dimensionless)", "The registered α-form EW width layer (Z: −0.4864% = −1.81 loop units; W: −0.0787%) — the LOOP program's R-V output; single-source leaf consumed by both width rows. STRUCTURAL-DERIVATION-CONDITIONAL / SM-REPRODUCTION-CONDITIONAL (Clause 9b bridge tag; [external] certified PDG-2024 worked example quoted verbatim in-file; archived docs/references/pdg2024_rev_standard_model.pdf). No independent observable (obs=None, like δ_r)."),
+    ]),
     ("Standard Model — Higgs sector", [
         ("v_higgs",  "v_higgs",      246.22,          0.12,    "GeV",  "Higgs VEV"),
         ("m_H",      "m_H",          125.20,          0.11,    "GeV",  "Higgs mass"),

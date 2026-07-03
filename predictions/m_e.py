@@ -34,6 +34,19 @@ internal working notes,
 docs/incomplete_equations_todo.md §1). An OPEN miss — NOT a floor, NOT
 "fine"; the spectral/operator route to it is exhausted, the miss stands.
 
+UPDATE 2026-07-02 (Ω session 2 station 3,
+proofs/foundations/OMEGA_S2_Q3_isotype_allocation_2026-07-02.py, ALL PASS):
+the per-C₃-isotype ALLOCATION reading of that diagram (κ_j = 2α₁³/μ_rep)
+is REFUTED as the resolution — by the conjugation theorem (μ_ω = μ_ω̄ in
+every sector of the real object) it is chirality-blind, while the
+measurement-PINNED component of this miss is the m_τ-free combination
+m_e/m_μ: +9.83 ± 0.022 ppm (452σ_exp); the two m_τ-ratio rows are soft
+(m_τ ±0.12 MeV = ±67.5 ppm ≥ the whole α₁³ budget). The miss STAYS OPEN;
+its hard core = ONE chiral number, the ∂_N next-order run-phase completion
+ε = δ_eff − 2/9 = −1.7515e-7 ± 3.9e-10 rad (0.22%-pinned falsification
+target). The α₁³-magnitude observation survives as suggestive for the
+SOFT (common) shift only. See todo §1 (2026-07-02 entries).
+
 Clause 8 (σ_PDG only): FAIL — see PREDICTED VALUE for the honest
 decomposition. Grade: ratio exact-rational given the Koide structure
 (leading content forced by the C₃-screw run; subleading −70 ppm OPEN);

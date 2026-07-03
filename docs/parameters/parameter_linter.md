@@ -221,6 +221,19 @@ if __name__ == "__main__":
     print("OK: outputs agree.")
 ```
 
+### File 3 — registration (added 2026-07-02; the linter predates the value lock)
+
+Producing the two output files is not the end of the pipeline. In the SAME commit:
+
+1. **Register the slug in `run_predictions.py` SECTORS** (manifest observed value + σ +
+   honest grade note). The runner's introspection expects module-level
+   `{slug}_pred` / `{slug}_obs` / `{slug}_sigma`.
+2. **Run `python3 scripts/value_lock.py`** — the NEW-slug FAIL is the designed reviewable
+   event — then **`--freeze` deliberately** in the same change. A new prediction that never
+   fails the lock was never reviewed.
+3. Run `predictions/_validate_dag.py` (already required above) and confirm the lock passes
+   post-freeze.
+
 ### File 2: `predictions/{param_name}_derivation.md`
 
 A self-contained, journal-submission-ready mathematical derivation. Structure:
@@ -336,6 +349,37 @@ A self-contained, journal-submission-ready mathematical derivation. Structure:
    **Implicit-π-import detection:** if the cited SM mechanism's textbook value involves π or e factors at higher orders (typical of multi-loop QFT), the citation cannot serve as theorem-grade closure. The bridge-attribution-as-closure pattern is a Clause 9 violation.
 
    **Canonical exemplar (2026-05-15 EOD+1):** SM 2-loop EW bridge attribution for M_Z/m_W residuals (commit f878f82 retracted 4ce4d5c). Sirlin Δr ≈ 0.038 closed the M_Z residual to sub-σ_PDG numerically, but Δr = (continuum 2-loop QFT) and is not K-rational. The substrate analog (Family E custodial-breaking, blocked on R-14) is the legitimate closure path. Rows P64/P71/P68/P69 reverted to STRUCTURAL-DERIVATION-CONDITIONAL per Clause 9 (9b/9c).
+
+10. **Rate-observable clauses (widths / lifetimes / branching fractions; added 2026-07-02, F4 S3):**
+
+   **(10a) No dark on width fractions or width ratios — forbidden by theorem, not by convention.**
+   CAS lemma `proofs/foundations/F4_S2b_width_ratio_dark_lemma_2026-07-02.py`: a REAL
+   multiplicative dressing (the gauge sector's matching-point dark reads the exactly-real Perron
+   channel) leaves Γ/M invariant identically and cancels exactly in common width ratios; a
+   complex-pole shell dressing is stability-excluded (predicts Γ/m ≈ 4.4% for every shell
+   fermion; over-applies ×1.6e16 vs the muon; contradicts Γ_e = 0). A width row that applies a
+   dark correction is a Clause 10a violation. Any genuine width-side term must come from the
+   ω-resolved Σ_X(ω) (`incomplete_equations_todo.md` §7) — new physics, not a dressing knob.
+
+   **(10b) Frozen pre-registered assembly.** A multi-term SM-structure assembly (tree × QCD ×
+   corrections) must be FROZEN — with omitted terms stated-not-applied and sizes estimated —
+   BEFORE any comparison to observation. Adding, removing, or re-weighting a term after seeing
+   the deviation is the assembly-tuning form of fitting and blocks the row. The in-file
+   validation must assert the pre-registered band, and where an OPEN residual is claimed as
+   located, also assert the residual's PRESENCE (so a silent vanish fails loudly and forces a
+   re-audit instead of a quiet "improvement").
+
+   **(10c) Phase space is Type-3 until derived natively.** The golden-rule per-channel factor
+   (1/(48π), 1/(12π), 192π³, …) is a continuum loop import — Clause 9 applies; width rows cap at
+   bridge-conditional (9b). The band-geometric derivation route is CLOSED by computation
+   (`proofs/foundations/F4_cone_spectral_function_2026-07-02.py`: substrate cones are chirally
+   warped spin-1 multifolds, pair channel q²-dark — do not re-walk); the open native route is
+   the Clifford γ-trace layer.
+
+   **(10d) Lifetime circularity check.** G_F is calibrated FROM τ_μ (MuLan;
+   `predictions/G_F.py`). Any lifetime row whose assembly consumes G_F (directly or via v) is
+   circular against its own observable and blocked. Width rows must state the G_F-unused audit
+   explicitly.
 
 **If ANY step in the derivation fails this gate:** STOP. Do not produce output files. Instead, report:
 1. Which step fails

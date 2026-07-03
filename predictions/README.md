@@ -7,7 +7,7 @@ This folder is the authoritative current output of the framework's rigor pass. E
 | `<parameter>.py` | Computational prediction script. Produces a numerical value via the framework's machinery, no fitted constants. Importable; cached via `lru_cache`. |
 | `<parameter>_derivation.md` | Human-readable derivation: axioms invoked, step-by-step argument, grade annotations, dependency chain, deviation from PDG. |
 
-A parameter with both files has a derivation that has been written up at journal-grade rigor. A parameter with only the `.py` file is computed but the prose write-up is still pending (or has been retracted — see `retracted/`). A parameter with neither has no `predictions/` entry yet; see `docs/parameters/target_parameters.md` for the canonical status table covering all 123 tracked targets.
+A parameter with both files has a derivation that has been written up at journal-grade rigor. A parameter with only the `.py` file is computed but the prose write-up is still pending (or has been retracted — see `retracted/`). A parameter with neither has no `predictions/` entry yet; see `docs/parameters/target_parameters.md` for the canonical status table covering all 125 tracked targets.
 
 > **Authority note (2026-07-01).** The `.py` files (locked in `_value_locks.json` and CI-checked) are
 > authoritative for numerical values; a `*_derivation.md` may lag them. In particular, write-ups
@@ -47,7 +47,7 @@ Roughly, in decreasing rigor:
 | **🟡 IN PROGRESS** | Prediction file exists but a known structural gap blocks promotion (e.g., V_ub awaiting V_cb concatenation closure). |
 | **BLOCKED** | Prediction script exists, value is computed, but a foundational gap prevents claiming any current grade. |
 
-The canonical per-parameter status table — including ✅/🟡/❌/⚙️/🔬 status flags across all 123 tracked targets — is `docs/parameters/target_parameters.md`. Grades in individual derivations may lag or lead it during a rigor-pass session.
+The canonical per-parameter status table — including ✅/🟡/❌/⚙️/🔬 status flags across all 125 tracked targets — is `docs/parameters/target_parameters.md`. Grades in individual derivations may lag or lead it during a rigor-pass session.
 
 ## Verifying
 
@@ -65,7 +65,7 @@ python3 predictions/V_us.py                    # run a single prediction script
 
 ## Cross-references
 
-- `docs/parameters/target_parameters.md` — canonical status list of all 123 tracked targets.
+- `docs/parameters/target_parameters.md` — canonical status list of all 125 tracked targets.
 - `docs/framework/framework_axioms.md` — A1–A5 canonical statements.
 - `docs/parameters/parameter_linter.md` — four-gate rigor discipline.
 - `docs/honest_assessment.md` — what is and isn't proven, what would falsify the framework.

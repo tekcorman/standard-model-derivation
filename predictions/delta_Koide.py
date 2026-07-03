@@ -55,6 +55,16 @@ is NOT modified. Both coexist as historical record + post-A3 re-derivation.
 # (lever-amplified ~120× into the −70 ppm m_e mass miss), un-derived /
 # conjecture-grade MDL. Per the TOP-DOWN LAW the phase consistency does NOT make
 # the lepton mass fine — the mass miss stays OPEN.
+#
+# UPDATE 2026-07-02 (Ω-S2 station 3, OMEGA_S2_Q3_isotype_allocation probe):
+# the δ_obs/0.53σ extraction above is m_τ-SOFT-weighted (σ_δ ≈ 9e-7 is m_τ-
+# dominated). The measurement-PINNED projection is the m_τ-free direction
+# m_e/m_μ (+9.83 ± 0.022 ppm): under the phase-only completion it demands
+# ε = δ_eff − 2/9 = −1.7515e-7 ± 3.9e-10 rad — a 0.22%-pinned target (and a
+# ~450σ_hard discrepancy in that reading: the sharp form of "0.53σ does NOT
+# make the mass fine"). The per-isotype 2α₁³/μ_rep ALLOCATION reading is
+# REFUTED (conjugation theorem: chirality-blind); the subleading correction
+# is the ∂_N next-order CHIRAL phase. See todo §1 (2026-07-02).
 
 # --- DERIVED FORMULA -----------------------------------------
 # delta = Q_Koide * (1 - Q_Koide)

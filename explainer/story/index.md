@@ -78,7 +78,7 @@ We open with a question, name the commitments, watch the substrate emerge, see t
 
     ---
 
-    Same substrate object, read twelve different ways, matches measurement on all twelve — with zero fitted constants.
+    Same substrate object, read twelve different ways, with zero fitted constants — eleven of the twelve match measurement within 1σ; the twelfth feeds the honestly-open M_Z oblique.
 
     [:octicons-arrow-right-24: Read chapter 8](08-the-12-observable-overdetermination.md)
 
