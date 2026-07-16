@@ -16,6 +16,17 @@ structural picture: srs-z is srs's bipartite double cover; its only genuine
 extra structural cost over srs is the doubled-motif cost — a few bits — which is
 NOT a hard gate (MDL keeps it above the waterline). R-9 stays DOMINANT-CONDITIONAL.
 Kept for provenance.
+
+ADDITIONAL CORRECTION 2026-07-11 (extending the above, do not stack a new banner):
+this script's `directed_edge_orbit_count('srs-z')` hardcode (= 2, "1/2-arc-transitive"
+below) is ALSO falsified: `proofs/foundations/arc_transitivity_ground_truth.py`
+computes srs-z's arc-orbit count directly from the space-group action and finds
+exactly ONE arc orbit (edge-reversible, local action C_3), not 2. The arc-orbit
+count used here was asserted, not computed, and rested circularly on citing Sunada
+(see that script's docstring). R-9's live closure does not use this file's numbers
+at all — see the R-9 SUPERSESSION, `docs/audits/registers/structural_residue_register.md`
+lines 160-163, and internal research notes sections 1-2 for
+the operative (empirical fingerprint + MDL-waterline) selection story.
 =============================================================================
 
 srs vs srs-z structural-DL audit (R-9 closure-path probe).

@@ -4,7 +4,7 @@
 # sector that ends in a STRUCTURAL characterization, not a manufactured closure.
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md, F8 open leg.
+# Scope: internal research notes, F8 open leg.
 # Predecessors (committed 2026-06-02):
 #   F8_gA_melosh_dirac_average  -> derived relativistic reduction, g_A ~ 1.44.
 #   F8_gA_3body_wavefunction     -> 3-body does NOT harden it; bound states on the

@@ -16,7 +16,7 @@ G_NB is itself a *read* of the framework's one master object **D = B(srs⊗srs-z
 
 **The framework in one sentence.** Three meta-commitments — self-containment of the universe, finite observer, active reading of binary distinctions — plus standard published mathematics, single out the **srs** crystal net (the dominant member of a small MDL-waterline survivor set; the data-free uniqueness discriminator is a logged open equation, [`docs/incomplete_equations_todo.md`](docs/incomplete_equations_todo.md) §6) whose spectral content is the Standard Model. One empirical labeling rule (A5-mass: which substrate eigenvalues are which observed masses) attaches contact with experiment, and one measured scale (G_F) calibrates the single dimensional unit (N_hub). There are no further inputs.
 
-## Status (2026-07-03)
+## Status (2026-07-16)
 
 Across **125 tracked targets** (the 123-target 2026-06-22 baseline + the two EW width ratios registered 2026-07-02), counted in **honest σ_PDG** (parameter-linter Clause-8, σ_PDG only — no σ_theory widening; the 2026-06-22 baseline split is in [`docs/parameters/honest_sigma_count_2026-06-22.md`](docs/parameters/honest_sigma_count_2026-06-22.md); counts below carry the 2026-06-25 dark-correction shipment and the 2026-07-02 EW-width-layer registration forward):
 
@@ -25,11 +25,87 @@ Across **125 tracked targets** (the 123-target 2026-06-22 baseline + the two EW 
 - **9 OPEN-GAP** (>1σ_PDG, no established closure): α_EM (+1.01σ), M_Z (+7.76σ), m_W (+2.39σ), V_ts/V_tb (riding the ~3.3σ V_cb exclusive/inclusive data self-tension), m_ν2 (+1.87σ), m_ν3 (+2.18σ), Ω_DM/Ω_b (conditional on the adopted z_eff). These are **understood, not random** — M_Z was traced to its honest floor by the BZ-integrated vacuum polarization (2026-06-30: a forced ~4%-relative substrate-vs-SM oblique difference; open, not closed); m_W inherits it (the custodial ρ-test itself passes at +0.76σ). We do **not** claim closures we don't have.
 - **2 open ppm-scale misses** (m_e −70.3 ppm, m_μ −60.5 ppm relative): the un-derived subleading correction to the charged-lepton mass read — a logged open equation ([`docs/incomplete_equations_todo.md`](docs/incomplete_equations_todo.md) §1). The 2026-07-02 loop program sharpened it to its tightest form yet: the hard (m_τ-free) core is ONE number, the chiral completion ε = δ_eff − 2/9 of the generation phase (demand −1.7515×10⁻⁷ ± 3.9×10⁻¹⁰ rad); the interacting ensemble that must supply it is now a derived theorem, and a pre-registered kill chain (E2b, E2c) excluded both the bare-channel functional and every state-block projection of that ensemble — the open equation is the read↔ensemble winding weld. The measurements are sub-ppb, so σ_PDG is unreachable either way — but the miss is a miss, and it stays open.
 - **8 framework-vs-ΛCDM coasting** (H_0, t_0, Λ, Ω_m/Ω_Λ …) — tested against the framework-side observation set; the Hubble-tension split is a *prediction*, not a miss.
-- The remainder ❌ genuinely open (the L6 cosmology cluster n_s, σ_8, r_s, θ_*) or out-of-scope (Δα hadronic, Clause-9).
+- The remainder ❌ genuinely open (the L6 cosmology cluster n_s, σ_8, r_s, θ_* — where the θ_* ~9× falsification exposure was **discharged 2026-07-08**: the native two-fluid eras give θ_* at 0.95–1.36× Planck, the ~9× was a coasting artifact; precision stays open) or out-of-scope (Δα hadronic, Clause-9).
+
+**Since 2026-07-03 — two frontiers moved from open question to adjudicated result (structure, not new numerical closures; the scoreboard above is unchanged).** (1) The **M_Z / m_W pole-oblique** miss — the ~4%-relative substrate-vs-SM difference logged open above — is now a **theorem-grade fence**, not a pending computation: an exhaustive no-candidate adjudication (four independent insertion-chain classes, none admissible; numerical value-resemblance rejected as poison) shows the one construction carries no admissible insertion to close it. The miss stays counted open — but it is now *forced-and-fenced*, and this **satisfies the clock paper's M_Z verdict gate** (the paper ships on the fence). (2) **Which generation is which** — the identification of the internal isotypes with e / μ / τ — is now proven **theorem-bounded external**: both routes to fixing it from *inside* the substrate are closed. The kinematic route — the winding C₃ is properly outer on the type-II₁ observer algebra, giving a rigid canonical M₃(ℂ) home whose σ-frame the interaction vertex cannot see ([`docs/theorems/genident_D2_orthogonal_verdict_2026-07-15.md`](docs/theorems/genident_D2_orthogonal_verdict_2026-07-15.md)) — and the dynamical route — the run-endpoint enters the substrate vertex purely as a per-mode phase, so every bipartite information measure is invariant to it ([`docs/theorems/genident_beta_endpoint_vertex_2026-07-15.md`](docs/theorems/genident_beta_endpoint_vertex_2026-07-15.md)). The labeling is therefore **one external binary datum, not a free knob** — the run-endpoint is the framework's single free Cauchy axis. (3) The **−70.3 / −60.5 ppm** charged-lepton magnitude misses are **unchanged and stay open**: the labeling closure cleanly separates *which generation* from *what mass*, but the subleading per-generation magnitude equation is still un-derived. No relabeling.
+
+## The three-layer object and the verification grafts (2026-07-07 → 09)
+
+Physics here is the triple **(D, ω, {A(O)})** — the operator, the state, and the net of local algebras:
+the GNS anatomy of one object. The 2026-07-07→09 arc built the two missing layers (the state ω: thermal
+time = the tick, κ = h/t_P; the net {A(O)}: an exact combinatorial light cone) and then **bolted the
+framework onto the mature mathematics it had been independently reinventing**, as machine-checked
+verification contracts — each adapter imports the engine, asserts a foreign theory's defining axioms on
+this object, and adds zero physics. `python3 verify.py` now runs **71 checks** (65 backbone proofs + 6
+contract suites under `derivation_topdown/adapters/` — the ledger is [`derivation_topdown/adapters/README.md`](derivation_topdown/adapters/README.md)):
+
+- **Haag–Kastler / AQFT** (G4): isotony, exact causal locality ({α_a(t), a_c†} ≡ 0 below the horizon),
+  twisted (Klein) locality, Z³ covariance, cell-level twisted Haag duality (all 62 regions), DHR sectors ≡
+  the species {ν:1, d:3, u:3, e:1} with the 2T double cover.
+- **Furey–Stoica division-algebra labeling** (G2): the engine's forced J6 frame IS a Witt basis; the
+  ladder ideal equals the species projectors; **Q = N̂/3 — the first charge operator *derived* in this
+  repo** (spectrum {0, ⅓, ⅔, 1}); the particle dictionary {ν, d̄, u, e⁺} holds basis-vector by
+  basis-vector. Computed, not assumed: the generation ℤ₃ is **independent** of the gauge A4 — a fourth
+  three-generation mechanism, distinct from octonionic triality.
+- **Connes–Rovelli thermal time** (G5a): the modular flow of the run state IS the physical tick flow —
+  ρ_run = e^(−β_eff·N̂)/Z holds at 1.9×10⁻²², β_eff = 2·log(u_c/α₁); the KMS contract is
+  falsification-probed (a non-Gibbs perturbation fails it by ~13 orders of magnitude).
+- **Kotani–Sunada standard realization** (G1): the geometry is input-free (harmonic, bond-isotropic, bcc
+  Albanese); **b₁(K4) = 3 is the Z³** (space's dimensionality = the first Betti number); **the Brillouin
+  zone is the Jacobian torus of K4**; and the **isotropization weld** — the Kotani–Sunada frame is exactly
+  the frame in which the emergent light cone is isotropic (only the derived transform works).
+- **Graph zeta / Bass** (G6a,b): the Bass identity holds on the framework's non-backtracking operator;
+  the k-integrated zeta sees exactly the cover's girth-10 cycles (m₁₀ = 120, integer-exact); and the
+  matter-weighted determinant obeys **−log det(I − uW) = Σ u^L/L·Tr W^L at 10⁻¹⁷** — the "one generating
+  function" thesis, machine-checked.
+- **The KO sign table** (G3a + R2b): executed for the first time. The spacetime factor is KO-dim 4; the
+  internal Cl(6) Fock's particle-hole pair forces (−1, −1, −1) — which the peer-reviewed convention
+  literature identifies as **KO-dimension 6 in the "exotic" presentation** of the documented J↔Jγ
+  freedom for even triples (Dąbrowski–Dossena, IJGMMP 8 (2011) 1833; Ćaćić, LMP 2013 — both list n=6's
+  second presentation as exactly (−,−,−); the canonical partner J·γ carries Connes' (+,+,−) row,
+  verified in-code). **Total: 4 + 6 = 10 ≡ 2 (mod 8) — the framework's KO anatomy matches the NCG
+  Standard Model's** (resolved literature-first under a pre-registered adjudication rule; an earlier
+  KO-6 claim from an implementation bug was caught by its adversarial check and retracted before this
+  honest resolution).
+
+**Three theorems came out of the build** (each found by a contract refusing to pass, then adversarially
+verified): (1) the isotropization weld above; (2) **cover gauge-triviality** — a cell-periodic signed U(1)
+field is pure gauge on the maximal abelian cover (every cover-closed walk is null-homologous ⟹ zero net
+signed visit on every edge), so the zeta's zero-momentum gauge response vanishes at all orders; (3)
+**holonomy triviality** — every cover-closed cycle's Cl(6) matter holonomy is exactly +I (verified
+exhaustively, 192/192 classes at L = 10, 12, 14). One root, two corollaries: **the maximal abelian cover
+trivializes all cell-level holonomy — gauge and matter — so gauge/confinement dynamics on this object is
+intrinsically a finite-momentum / non-vacuum / tick-sector phenomenon.**
+
+**Also established:** the forced srs↔srs-z scalar (the framework's Higgs-analog — the inter-sheet
+connection, whose 2-dimensional order-parameter space is derived) is a **real propagating field**: its
+potential, computed for the first time, is a Mexican hat whose minimum reproduces the m08 gap equation at
+10⁻⁷ with a massive radial mode; its stiffness is positive, isotropic to 0.001%, and runs as
+Z ~ c·log(Λ/m) — the textbook one-loop Yukawa-scalar profile, qualitatively distinct from an un-forced
+"decoration" vertex. (The electroweak *scale* remains open; the coupling g is the layer's declared
+irreducible input.)
+
+**Withdrawn quantifications** (the adversarial pipeline retiring its own numbers): the gravitational-2π
+residual's "+7% (1.068×2π)" is **withdrawn as instrument-limited** — the near-horizon first-bond read
+carries a ~2× distance-convention ambiguity and a fit dominated by its smallest lattice; Newton's G 2π
+residual is OPEN and currently **unquantified** (the controlled re-measurement D1b is specified). A KO-6
+"finding" was caught as an operator-ordering bug by its adversarial check *before* booking, and reversed.
+**Sharpened walls:** the −70 ppm's forced winding channel is an exact algebraic series (coefficients
+−{1, 2, 1, 2, 17}/√3 in powers of α₁²) that is **real-valued at every order** — ε is a phase, so the
+missing transport must be a *phase-bearing* channel (a whole candidate class eliminated). And the ML-4
+station **discharged the θ_* ~9× falsification exposure** (the native two-fluid eras give θ_* at
+0.95–1.36× Planck; the ~9× was a coasting artifact) — the framework survived its hardest cosmology test,
+with θ_* precision still open.
+
+**Named open builds** (each with its apparatus specified in
+[`docs/incomplete_equations_todo.md`](docs/incomplete_equations_todo.md)): D1b (the controlled
+Bisognano–Wichmann read), D2b (Z_scalar vs Z_gauge continuum scaling), D3b (finite-k / tick-sector
+confinement), G3b (log-det ≡ the Gilkey a₄ spectral action), R2b (the KO J↔Jγ convention,
+literature-first), G6b′ (the finite-k Wilson bridge).
 
 **The open gaps are channel-structured** — a *derived* organization, not a list of failures. The **saturation** (m_t) and **Perron** (m_b) channels closed when their forced first-girth-return dark corrections shipped (2026-06-25). The **EW rate side** closed 2026-07-02: the derived radiative width layer took Γ_Z/M_Z from +4.76σ to −0.55σ in a pre-registered blind computation. What remains: the **pole-side oblique** (M_Z, and m_W by inheritance) bottoms out at a forced substrate-vs-SM difference of ~4% relative on the oblique itself — the framework's honestly-logged open equation, not a fittable residual (the width layer is rates-only and does not touch it); the **neutrino absolute scale** (m_ν2, m_ν3) is formula-incomplete because the one free scale is **spent on v** (a global unit, not a per-parameter dial); Ω_DM/Ω_b await the z_eff derivation. Full diagnosis in the honest-σ document above.
 
-The `predictions/` directory is the source of truth: each parameter has a `.py` (the prediction) and a `_derivation.md` (the journal-grade write-up); `_validate_dag.py` enforces self-containment (114 files, 0 forbidden imports); every live value is pinned in the value-lock harness (104 values). Run `python3 verify.py` (65 backbone proofs, ~60 seconds); if any fail, the framework is wrong, full stop.
+The `predictions/` directory is the source of truth: each parameter has a `.py` (the prediction) and a `_derivation.md` (the journal-grade write-up); `_validate_dag.py` enforces self-containment (114 files, 0 forbidden imports); every live value is pinned in the value-lock harness (107 values). Run `python3 verify.py` (71 checks: 65 backbone proofs + 6 verification-contract suites, ~60 seconds); if any fail, the framework is wrong, full stop.
 
 Highlights: the Lorentz arc closed (2026-04-27); the five-stage gauge-coupling chain closed including sector-specific c_color = 1/4 (2026-05-04 → 2026-05-26); the 12-observable §8 over-determination landed (2026-05-16/23); the multi-axial dark-sector waterfilling theorem promoted to theorem-grade-structural (2026-05-24); the M_persistence 12-mass fermion operator shipped (2026-05-26). Since then: the whole framework was consolidated as reads of **one object D = B(srs⊗srs-z) ⊗ ∂_N** (2026-06-23, [`derivation_topdown/bridge/the_run.py`](derivation_topdown/bridge/the_run.py)); the generation phase δ = 2/9 was **derived** as the forced directed phase of the ∂_N run (2026-06-21); the unified dark self-energy Σ = α₁/h closed m_b (+0.22σ) and m_t (−0.95σ) with zero adoption (2026-06-25/28); the M_Z oblique was traced to its honest floor by a BZ-integrated vacuum polarization and stays logged open (2026-06-30); the substrate-selection claim was sharpened to its honest form — **srs is the dominant member of an MDL-waterline survivor set**, with the Sunada strong-isotropy chain retained as provenance and the data-free discriminator a logged open equation (R-9 supersession 2026-06-15; ruling 2026-07-01); and the 2026-07-02 loop program — eleven git-witnessed pre-registered sittings in one day — **closed the EW width residual by derivation** (Γ_Z/M_Z +4.76σ → −0.55σ, blind, registered) and drove the walk↔Fock identification layer to theorem grade (the step lift forced outright with zero covariant freedom; the seam quarantined; the interacting ensemble's form and its chiral channel proven), with every negative outcome pre-registered, banked as-run, and converted to named structure (the −70 ppm's open equation now sits at the read↔ensemble winding weld). These are partial readings of one substrate object — consolidated (not newly derived) in [`docs/theorems/theorem_walker_matter_unification_2026-05-27.md`](docs/theorems/theorem_walker_matter_unification_2026-05-27.md). Per-closure detail in [`docs/honest_assessment.md`](docs/honest_assessment.md) and the open ledger in [`docs/incomplete_equations_todo.md`](docs/incomplete_equations_todo.md).
 
@@ -158,7 +234,7 @@ Full descriptions: [`docs/orientation.md`](docs/orientation.md) §4.
 ## Quick start
 
 ```bash
-python3 verify.py                                      # Run 65 backbone proofs (~60 s)
+python3 verify.py                                      # Run 71 checks: 65 backbone proofs + 6 contract suites (~60 s)
 python3 run_predictions.py                             # (Re)generate predicted_parameters.md at repo root
 python3 proofs/flavor/vcb_hashimoto_bfs.py             # V_cb = 256/6305 from A2 geometric series
 python3 proofs/flavor/vus_l2_density.py                # V_us = 9/40 from Level 2 counting density
@@ -174,7 +250,7 @@ python3 proofs/foundations/srs_generation_c3.py        # Generation definition a
 
 ## What to do next
 
-- **Run the verifier.** `python3 verify.py` runs 65 backbone proofs in ~60 seconds. If any fail, the framework is wrong, full stop.
+- **Run the verifier.** `python3 verify.py` runs 71 checks (65 backbone proofs + 6 verification-contract suites) in ~60 seconds. If any fail, the framework is wrong, full stop.
 - **Read [`docs/honest_assessment.md`](docs/honest_assessment.md)** for explicitly what's proven, what's adopted, what's open, what would falsify.
 - **Browse [`docs/parameters/target_parameters.md`](docs/parameters/target_parameters.md)** for every tracked parameter with its current grade and derivation file pointer.
 - **Read the conceptual story** in [`docs/framework/narrative_spine.md`](docs/framework/narrative_spine.md) — *Mechanisms of recurrence: from toggle substrate to Standard Model* (the readable counterpart to the ~180-operation operator catalog).
@@ -198,7 +274,7 @@ pip install numpy scipy sympy matplotlib
 The [`docs/`](docs/) directory has its own index — [`docs/README.md`](docs/README.md) — mapping every subdirectory and its entry point. For a full cold-start tour of the layout, file-type conventions, and rigor machinery, see [`docs/orientation.md`](docs/orientation.md).
 
 ```
-verify.py                     # Run 65 backbone proofs (~60 s)
+verify.py                     # Run 71 checks: 65 proofs + 6 contract suites (~60 s)
 run_predictions.py            # Regenerate predicted_parameters.md
 predictions/                  # The per-parameter DAG (script + derivation pairs)
   retracted/                  # Honest archive of derivations that failed re-audit

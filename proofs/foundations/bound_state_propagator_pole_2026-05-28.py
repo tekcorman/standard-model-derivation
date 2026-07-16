@@ -3,7 +3,7 @@
 # Bound-state propagator-pole probe (Stage 1.5)
 # ============================================================
 #
-# Scoping: docs/scoping/bound_state_sector_scoping_2026-05-28.md  (action F1).
+# Scoping: internal research notes  (action F1).
 # Follows Stage 0 (bound_state_mdl_compression_probe_2026-05-28.py, GREEN LIGHT:
 # two girth cycles sharing >=3 contiguous edges have a compound MDL description
 # shorter than independent parts; strongest = 5 shared edges, dS = 3 bits).

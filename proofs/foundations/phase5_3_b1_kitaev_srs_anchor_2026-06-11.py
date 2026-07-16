@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 5.3/B1 -- the Kitaev-on-srs anchor build (Majorana level).
 
-Spec: docs/scoping/phase5_3_kitaev_spec_2026-06-11.md (FROZEN, SHA-256
+Spec: internal research notes (FROZEN, SHA-256
 a8d1d7ed..., register row in the freezing commit). srs = the hyperoctagon
 lattice (10,3)-a; the Kitaev model on it is exactly solved in the
 literature (Hermanns-Trebst 2014: gapless QSL with a Majorana FERMI

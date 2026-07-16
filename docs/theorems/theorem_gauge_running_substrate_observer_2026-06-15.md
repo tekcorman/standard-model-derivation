@@ -8,9 +8,9 @@ mechanism: (C) the non-supersymmetric reproduction of the MSSM β-coefficients f
 observer's four-dimensional completion. One ingredient is **open** (the deep frontier): (O)
 that the four-dimensional Dirac operator D₄ geometrically produces that completion.
 
-Companion (untracked working material): `docs/scoping/ew_sector_arc_closure_2026-06-15.md`,
-`docs/scoping/observer_time_dirac_dN_specification_2026-06-14.md`,
-`docs/scoping/deep_weave_ncg_pati_salam_2026-06-14.md`; probes `proofs/_scratch/march*`.
+Companion (untracked working material): internal research notes,
+internal research notes,
+internal research notes; probes `proofs/_scratch/march*`.
 
 ---
 

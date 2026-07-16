@@ -3,7 +3,7 @@
 # Chirality-dependent kernel — STAGE 2: scale-free OVER-DETERMINATION (make-or-break).
 # ============================================================
 #
-# Scope: docs/scoping/chirality_dependent_kernel_sector_2026-06-02.md (§7 Stage 2).
+# Scope: internal research notes (§7 Stage 2).
 # Stage 0 (GREEN, c1e6d55): the OEF vertex E_int=-kappa*I(A;B) IS spin-dependent
 # once the walker spinor is kept; the singlet binds deeper than the triplet (QCD
 # sign). Stage 2 is the decisive test: ONE functional (the OEF mutual information

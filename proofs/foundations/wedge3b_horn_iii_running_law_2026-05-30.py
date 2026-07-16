@@ -5,7 +5,7 @@
 # the trilemma — or does it coincide with standard RG where we have data?
 # ============================================================
 #
-# Scope: docs/scoping/observer_unification_scope_2026-05-29.md (trilemma; horn iii
+# Scope: internal research notes (trilemma; horn iii
 # is "is standard RG the right N->scale map?" — where the d/dN thesis lives or dies).
 #
 # THE THESIS'S LAST HOPE: wedge-3's Landau pole assumed register-MDL running ==

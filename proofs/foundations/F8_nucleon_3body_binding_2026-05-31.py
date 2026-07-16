@@ -4,7 +4,7 @@
 # binding extend to 3 bodies, and does it supply Q_np's QCD matrix element?
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md §F8.
+# Scope: internal research notes §F8.
 # Builds on F1 (entropic binding: composite = compound closed walk;
 # binding = MDL compression dS = sum_edges(mult-1) - n_branch; 2-body confirmed
 # 3 ways). Extends to the NUCLEON = 3 quarks = 3 correlated walkers.

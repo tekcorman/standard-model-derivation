@@ -3,7 +3,7 @@
 proofs/foundations/LOOP_V1_car_kms_calibration_2026-07-02.py
 
 LOOP PROGRAM, STAGE V1 -- the R-V calibration sitting. Pre-registered in
-docs/scoping/LOOP_program_kickoff_2026-07-02.md ("V1 PRE-REGISTRATION" block,
+internal research notes ("V1 PRE-REGISTRATION" block,
 commit a5287f4, committed BEFORE this probe ran).
 
 SCOPE (pre-registered): CALIBRATION ONLY. No framework number enters this file

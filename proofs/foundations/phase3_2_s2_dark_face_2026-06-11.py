@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 3.2 / S2 -- the dark face: canonical decoherence + Gelfand structure.
 
-Bet spec (frozen, hashed): docs/scoping/phase3_2_bet_spec_2026-06-11.md.
+Bet spec (frozen, hashed): internal research notes
 S2 is the bet's core (kill K1): the record's UNCOMPRESSIBLE (cancellation)
 content must decohere CANONICALLY -- a commutative algebra whose Gelfand
 spectrum is a measure space (= the framework's non-Hilbert dark), with the

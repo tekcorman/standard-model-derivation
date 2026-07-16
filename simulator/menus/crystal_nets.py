@@ -172,8 +172,14 @@ CANDIDATE_NETS = [
                      'no privileged direction ⟹ arc-transitive substrate model ⟹ srs. R-9 CLOSED '
                      '— STRUCTURAL (2026-05-12); also DL-minimum / uniquely symmetry-specifiable '
                      '(a consistency check, not the selector).'),
+    # R-9 SUPERSESSION (structural_residue_register.md ~line 161): arc_transitivity_
+    # ground_truth.py's actual space-group-action computation finds srs-z DOES have
+    # exactly one arc orbit (arc_transitive=True); the earlier "srs-z has >=2 arc-
+    # orbits" hardcode this field carried was false. srs-z is NOT strongly isotropic
+    # (only a C_3, not the full S_3, local stabilizer) — that stronger property, not
+    # bare arc-transitivity, is srs-z's actual discriminator from srs.
     CrystalNet('srs-z', 'P4_132', True, 3, 'chiral_cubic_candidate', 8, 12, 10, 'BIPARTITE', 12.17,
-               _ALL_CHANNELS, in_framework_candidate_set=True, arc_transitive=False,
+               _ALL_CHANNELS, in_framework_candidate_set=True, arc_transitive=True,
                notes='(10,3)-b. NOT a competing substrate — it is the BIPARTITE DOUBLE COVER of '
                      'srs (8-atom Q₃ quotient = bipartite double of srs\'s K₄ quotient; adjacency '
                      'spectrum = ±srs\'s, doubled; h=(√3+i√5)/2 mult 4 vs srs\'s 2 at the BZ '

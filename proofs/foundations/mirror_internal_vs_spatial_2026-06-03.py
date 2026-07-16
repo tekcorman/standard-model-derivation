@@ -2,7 +2,7 @@
 The mirror: internal vs spatial cohomology, and the Hodge-SUSY hint.
 
 Companion to the mirror-identification round (2026-06-03), banked in
-`docs/scoping/mirror_intrinsic_duality_hodge_susy_2026-06-03.md`, and the
+internal research notes, and the
 correction to lemma L4 of
 `docs/theorems/theorem_grade_blind_mass_classification_2026-06-03.md`.
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 5.3/B2 -- the Kitaev gauge sector placed in framework terms.
 
-Spec: docs/scoping/phase5_3_kitaev_spec_2026-06-11.md (B2, high).
+Spec: internal research notes (B2, high).
 
 Three placements, each gated:
 

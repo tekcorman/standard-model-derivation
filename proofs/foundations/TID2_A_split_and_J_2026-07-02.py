@@ -3,7 +3,7 @@
 proofs/foundations/TID2_A_split_and_J_2026-07-02.py
 
 T-ID2 ARC, SITTING 1 -- the spacetime/internal split theorem chain (kickoff:
-docs/scoping/TID2_split_kickoff_2026-07-02.md, committed 5d46928 BEFORE this run).
+internal research notes, committed 5d46928 BEFORE this run).
 
 THEOREM CHAIN (pre-registered there, verbatim):
   T-A  uniqueness of the split: the S4 edge rep = H1 (+) B1 with the two INEQUIVALENT

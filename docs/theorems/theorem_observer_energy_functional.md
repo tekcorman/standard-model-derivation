@@ -3,7 +3,7 @@
 **Date:** 2026-04-20 (Session 9 continuation).
 **Status:** THEOREM — gate-passing under parameter_linter.md. All load-bearing steps are Type 1 (axiom), Type 2 (explicit algebra), Type 3 (precisely-cited published theorem: Landauer 1961, Bennett 1973, both already load-bearing in framework's A-IT3), or Type 4 (upstream closed theorem: `theorem_edge_surprise_thresholds.md`). Per user permission (session 9), Type 4 upstream from theorem-grade docs/ files is acceptable when those files themselves pass the gate.
 **Scope:** narrow. Defines an observer energy functional E_obs(t) as the Landauer-scaled accumulated surprise, and proves it is non-negative, monotonically non-decreasing, and extensive. Derives arrow of time as a corollary.
-**Out of scope:** claiming E_obs equals physical dissipation exactly; calibrating k_B T to a specific value; invoking Sagawa-Ueda (A-IT7); connecting E_obs to cosmological observables (Λ_CC, Ω_DM).
+**Out of scope** (as originally proven; the k_B T item is since superseded): claiming E_obs equals physical dissipation exactly; ~~calibrating k_B T to a specific value~~ (**superseded 2026-07-07 by M0-2R: κ = h/t_P is now derived; T = the substrate tick temperature — see §9 A-IT3 GRADUATION**); invoking Sagawa-Ueda (A-IT7); connecting E_obs to cosmological observables (Λ_CC, Ω_DM).
 **Upstream scoping:** an internal working note and Stage 2c sketched therein.
 **Replaces Stage 2b (arrow of time separate theorem):** not needed — the arrow falls out as a corollary of this theorem's monotonicity.
 
@@ -135,6 +135,13 @@ $$\kappa := k_B T \ln 2.$$
 
 This is a positive real number with units of energy per bit. T is a reference temperature characterizing the observer's physical realization; this theorem does not calibrate T to a specific value — κ serves as an information-to-energy conversion constant.
 
+**A-IT3 GRADUATION (2026-07-07, M0-2R).** The Landauer citation above is no longer load-bearing for κ: the framework now derives κ = k_B T ln 2 internally, `κ = h/t_P`, with its dimensionless content forced. See internal research notes (+ internal research notes), probes `../../proofs/foundations/M0_2R_T2_T3_arrow_criticality_currency_2026-07-07.py`, `..._T1_run_kms_tick_...py`, `..._T4_twopi_...py`. The three pieces:
+- **ln 2** is FORCED (not cited) by the description-length currency principle (`p = 2^{−L}` and `E = κ·L` are one quantity): joint consistency with a Gibbs weight `e^{−βE}` requires `β·κ = ln 2` (T3). Landauer's relation is thereby a framework *consistency theorem*, not an import; the same point identifies the OEF Landauer erasure cost, the MDL currency per-tick factor, and the multiway path-gas critical fugacity `u_c = 1/(k*−1) = 2^{−b_edge}` as one point.
+- **T is now calibrated** (superseding the "does not calibrate T" scope note for the substrate realization): the observer's tick-count run state, restricted to the tick-number (N̂) subalgebra, is an exact KMS/Gibbs state with modular generator affine in N̂ (T1) — i.e. **thermal time = the tick**, with a derived inverse tick-temperature `β_eff = 2·log(u_c/α₁)`. T is the substrate tick temperature, not a free observer parameter.
+- **The 2π** (h = 2πħ, giving `κ = h/t_P` rather than ħ/t_P) is FORCED as the circumference of the modular/thermal-time circle: N̂ integer ⟹ the modular flow is a compact U(1) of minimal period 2π ⟹ one tick = one full-loop action quantum = h (T4).
+
+Only `t_P` (the tick duration = the framework's standing dimensional anchor) and the currency identification (`E ∝ L` is physical energy — the framework's foundational ontology) remain as inputs; neither is an external adopted number. **A-IT3 is retained here as an independent cross-check, no longer as the source of κ.**
+
 ---
 
 ## 10. Step E7 — definition of E_obs (Type 2)
@@ -197,7 +204,7 @@ Hence for t₁ < t₂: $E_{\text{obs}}(t_1) < E_{\text{obs}}(t_2)$, and the obse
 - **Energy functional defined.** E_obs(t) = κ · S_total(t) is a well-defined function of observation count with units of energy.
 - **Monotonicity.** E_obs is non-decreasing in observation count; strictly increasing under non-trivial observations.
 - **Arrow of time.** The observer's state at time t₂ is distinguishable from its state at time t₁ < t₂ by E_obs alone. Arrow of time is observer-internal and requires no external reference.
-- **A-IT3 (Landauer) load-bearing for the first time.** Invoked as Type 3 citation for the κ conversion constant.
+- **A-IT3 (Landauer) load-bearing for the first time.** Invoked as Type 3 citation for the κ conversion constant. **(2026-07-07: GRADUATED — κ = h/t_P is now derived internally by M0-2R; A-IT3 is retained as a cross-check, no longer the source. See §9 A-IT3 GRADUATION note.)**
 - **Stage 2b (arrow of time as separate theorem) obviated.** Arrow falls out as Corollary §12.
 
 ---

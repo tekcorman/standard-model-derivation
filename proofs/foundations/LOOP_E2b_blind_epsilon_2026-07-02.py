@@ -3,7 +3,7 @@
 proofs/foundations/LOOP_E2b_blind_epsilon_2026-07-02.py
 
 LOOP PROGRAM, R-eps STAGE E2b -- THE BLIND NUMBER. Pre-registered in
-docs/scoping/LOOP_program_kickoff_2026-07-02.md ("E2b PRE-REGISTRATION",
+internal research notes ("E2b PRE-REGISTRATION",
 commit 361da9f, BEFORE this probe). The target appears in EXACTLY ONE marked
 block (S-4) and nowhere else in this file.
 

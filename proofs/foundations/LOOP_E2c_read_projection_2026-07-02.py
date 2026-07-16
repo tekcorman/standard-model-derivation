@@ -4,7 +4,7 @@ proofs/foundations/LOOP_E2c_read_projection_2026-07-02.py
 
 LOOP PROGRAM, R-eps STAGE E2c -- THE READ-PROJECTION FUNCTIONAL (derivation
 sitting; run 2026-07-03 side of the sitting). Pre-registered in
-docs/scoping/LOOP_program_kickoff_2026-07-02.md ("E2c PRE-REGISTRATION",
+internal research notes ("E2c PRE-REGISTRATION",
 commit ed410f9) with the pre-probe AMENDMENT (same file, swept into the
 auto-sync commit ffc0394 BEFORE this probe existed; full disclosure there).
 

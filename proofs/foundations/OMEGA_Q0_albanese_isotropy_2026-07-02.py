@@ -3,7 +3,7 @@
 proofs/foundations/OMEGA_Q0_albanese_isotropy_2026-07-02.py
 
 OMEGA-KEYSTONE Q0 -- the warped-cone entry question, faced FIRST and decided by
-exact computation (kickoff: docs/scoping/OMEGA_keystone_kickoff_2026-07-02.md par.2).
+exact computation (kickoff: internal research notes par.2).
 
 QUESTION (pre-registered). S2a (F4_cone_spectral_function_2026-07-02.py) measured the
 substrate cones as "chirally warped spin-1 multifolds (v100 = 1/sqrt2, v110 = 1/2,

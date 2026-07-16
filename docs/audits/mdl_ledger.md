@@ -17,17 +17,17 @@ documented dead-end) cost fewer bits than the data it explains?
 
 | quantity | bits |
 |---|---:|
-| **Specification** (all choice-points: srs-among-survivors 2.0, adoptions 15.5, dark-sign reading 1.6, N_hub↤G_F calibration 20.0) | **38.1** |
+| **Specification** (all choice-points: srs-among-survivors 2.0, adoptions 14.5 + species-lift residual 1.6 [booked 2026-07-13, user-ruled conservative self-over-charge; `working notes/adoptions_bucket_audit_2026-07-13.md`], dark-sign reading 1.6, n_fixed=2 reading 1.6 [booked 2026-07-14, user-ruled PRICE IT — same class as the dark-sign reading; no forcing theorem found for the girth-10 two-struts-held-fixed convention], N_hub↤G_F calibration 20.0) | **41.3** |
 | **Trials** (look-elsewhere: log₂(1+N) per family at the 8-candidate floor; 167 receipts documented ≈ 6/family) | **98.3** |
-| **Total paid** | **136.4** |
+| **Total paid** | **139.6** |
 | **Data explained** — 27 SM-parameter rows (conservative priors; misses Δ-priced) | **304.3** |
 | **Surplus** — 5 rows the SM's parameters cannot encode at all (η_B, A_hemis, Ω_DM/Ω_m, β birefringence, N_gen) | **+27.9** |
 | **SM-as-fit baseline** — the same table as 25 measured inputs, identical priors | 327.8 |
 
-**Margin: +168.0 bits. Compression ratio 2.23×.** The framework encodes the table the SM buys for
-327.8 bits of measurement for 136.4 bits of specification-plus-search, and additionally explains
+**Margin: +164.8 bits (164.7503 unrounded). Compression ratio 2.18×.** The framework encodes the table the SM buys for
+327.8 bits of measurement for 139.6 bits of specification-plus-search, and additionally explains
 27.9 bits of data outside the SM's parameter set. To attribute this to formula-shopping, the true
-search would need to have been ~2¹⁶⁸ times larger than the documented record.
+search would need to have been ~2¹⁶⁵ times larger than the documented record.
 
 ## The rows (predicted from the live DAG; measured per PDG 2024 / NuFIT 6.0 / Planck 2018)
 
@@ -50,14 +50,14 @@ z_eff-conditional Ω rows; all unmeasured freeze rows.
 
 | stress | margin |
 |---|---:|
-| methods default (8-candidate trials floor) | **+168.0** |
-| trials floor 16 candidates/family | +139.5 |
-| trials floor 64 candidates/family | +79.5 |
-| N_hub priced double (40 bits) | +148.0 |
-| drop θ_QCD entirely (the largest row) | +132.1 |
-| **all four stresses simultaneously** | **+23.6** |
+| methods default (8-candidate trials floor) | **+164.8** |
+| trials floor 16 candidates/family | +136.3 |
+| trials floor 64 candidates/family | +76.3 |
+| N_hub priced double (40 bits) | +144.8 |
+| drop θ_QCD entirely (the largest row) | +128.9 |
+| **all four stresses simultaneously** | **+20.4** |
 
-**Break-even requires ~384 secretly-tried candidate formulas per observable** — against append-only
+**Break-even requires ~357 secretly-tried candidate formulas per observable** — against append-only
 registers documenting ~6 per family. The margin is not an artifact of any single row, any single
 convention, or any plausible under-count of the search.
 

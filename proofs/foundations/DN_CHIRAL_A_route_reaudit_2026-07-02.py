@@ -3,7 +3,7 @@
 proofs/foundations/DN_CHIRAL_A_route_reaudit_2026-07-02.py
 
 dN-CHIRAL ARC, STATION A -- the chirality-projected route re-audit against the
-CORRECTED target (kickoff: docs/scoping/DN_CHIRAL_kickoff_2026-07-02.md, committed
+CORRECTED target (kickoff: internal research notes, committed
 7eadd72 BEFORE this probe ran; all classes/kills/poisons pre-registered there).
 
 TARGET (from OMEGA_S2_Q3, exact): epsilon = delta_eff - 2/9 = -1.7515e-7 +- 3.9e-10

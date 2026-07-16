@@ -5,7 +5,7 @@
 # OWN bound-state momentum wavefunction, computed on the validated 32x32 D(k).
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md, the F8 open leg.
+# Scope: internal research notes, the F8 open leg.
 # Supersedes the SHORTCUT attempt F8_gA_reduction_attempt_2026-05-31.py, which
 # ended in an honest NEGATIVE and explicitly named THIS as what real closure
 # requires: "the Melosh / Wigner-rotation average of the isovector axial charge

@@ -7,7 +7,11 @@ extremum  L^3 / V = 27/sqrt(2),  saturated uniquely by the Laves graph.
 
 WHY.  The framework currently selects srs by Sunada strong-isotropy (the
 symmetry handle) and, separately, by minimum description length (the information
-handle; `dl_comparison.py`, srs min by 1.68 bits).  Memory flags strong-isotropy
+handle; `dl_comparison.py`, srs min by 1.68 bits [*corrected 2026-07-11: 1.68 was
+the stale pre-W=9-Wyckoff-correction gap; current dl_comparison output = 0.83 bits
+vs ths -- same correction already applied to the table below at line ~107; see
+internal research notes section 2 and
+`docs/audits/registers/structural_residue_register.md` lines 160-163]).  Memory flags strong-isotropy
 as a fragile single handle (it is the undischarged "why srs not srs-z" gap if one
 distrusts it).  The gyroid literature hands over a THIRD, purely geometric handle:
 
@@ -103,7 +107,8 @@ def main():
     handle                 | functional (kind)              | srs is...           | source
     -----------------------+--------------------------------+---------------------+------------------------
     Sunada strong-isotropy | local symmetry group (algebra) | unique maximiser    | Sunada 2012 (symmetry)
-    MDL                    | description length (bits)      | min by 1.68 bits    | dl_comparison.py
+    MDL                    | description length (bits)      | min by 0.83 bits*   | dl_comparison.py
+    (*corrected 2026-07-10: 1.68 was the stale pre-W=9-Wyckoff-correction gap; current dl_comparison output = 0.83 bits vs ths)
     L^3/V geometric        | edge-length^3 / volume (metric)| unique min = 27/sqrt2| THIS probe
 """)
     print("  These are different KINDS of quantity (symmetry / information / metric geometry);")

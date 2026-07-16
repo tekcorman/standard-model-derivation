@@ -4,7 +4,7 @@
 [PANEL-CORRECTED 2026-06-11: interpretation reworded per ultracode
 adjudication (PARTIAL); gates unchanged — the arithmetic passed unanimously
 and is in fact a matrix identity B(k+DELTA) = -B(k). See
-docs/scoping/phase1_3_bet_spec_2026-06-10.md "PANEL VERDICT".]
+internal research notes "PANEL VERDICT".]
 
 The body-centering mirror shift DELTA = (1/2,1/2,-1/2)_prim acts on the four
 Ramanujan saddles of the srs Bloch-Hashimoto structure as:

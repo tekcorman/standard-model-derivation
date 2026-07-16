@@ -208,7 +208,7 @@ def part3_yukawa():
     # │ RETRACTED 2026-06-16 — L_us = 2+√3 is NUMEROLOGY, NOT a spectral      │
     # │ invariant of srs. Verified four ways from the bare graph             │
     # │ (proofs/_scratch/O_neutrino_L_us_spectral_test_2026-06-16.py +       │
-    # │ docs/scoping/ihara_bass_walker_unification_2026-06-16.md):           │
+    # │ internal research notes):           │
     # │   (1) srs adjacency band is the single connected interval [−3,3]     │
     # │       (GAPLESS) — so "inverse spectral gap" is meaningless;          │
     # │   (2) Laplacian spectral radius is 6, not 2+√3;                      │

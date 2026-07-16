@@ -4,7 +4,7 @@
 # (Delta eps^2_up ~ +1.066 alpha1^2) — or honestly conclude it isn't structural.
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md §F7 closure target.
+# Scope: internal research notes §F7 closure target.
 #
 # F7 found m_u's +15.5% is consistent with a missing Delta(eps^2_up) = +1.066*alpha1^2.
 # The closure target: derive that coefficient as the next-order analog of W4's

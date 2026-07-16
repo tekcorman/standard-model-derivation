@@ -60,6 +60,17 @@ $n$ bits of free energy.
 *Reference: Landauer (1961), IBM J. Res. Dev. 5:183; Bennett (1973),
 IBM J. Res. Dev. 17:525.*
 
+> **GRADUATED (2026-07-07, M0-2R): now framework-INTERNAL, no longer an import.** The Landauer
+> constant `κ = k_B T ln 2` is derived from the framework's own objects: `ln 2` is forced by the
+> description-length currency principle (`p = 2^{−L}`, `E = κ·L` one quantity ⟹ `β·κ = ln 2`, and this
+> point IS the multiway path-gas critical fugacity `u_c = 1/(k*−1) = 2^{−b_edge}`); `T` is the substrate
+> tick temperature (the run state is an exact KMS/Gibbs state of the tick number N̂ — thermal time = the
+> tick); and `h = 2πħ` (giving `κ = h/t_P`) is forced because N̂ is integer ⟹ the modular flow is a
+> compact U(1) of period 2π ⟹ one tick = one full-loop action quantum = h. Result: **`κ = h/t_P`**,
+> dimensionless content forced; only `t_P` (the standing time anchor) remains. A-IT3 is retained as an
+> independent cross-check. See `theorem_observer_energy_functional.md` §9 and
+> internal research notes.
+
 ### A-IT4 — Data Processing Inequality (DPI)
 
 For any Markov chain $X \to Y \to Z$:

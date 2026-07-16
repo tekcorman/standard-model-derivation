@@ -3,7 +3,7 @@
 # F7: the up-sector precision amplifier — invert m_u's +15.5% miss
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md §F7.
+# Scope: internal research notes §F7.
 #
 # m_u is the framework's WORST relative prediction (+15.5%), masked by PDG's 23%
 # error bar. The quark-Koide cascade (predictions/_koide_quark.py) is

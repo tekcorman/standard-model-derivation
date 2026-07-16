@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 5.1 S5 -- EBR decomposition of the Hashimoto band representation.
 
-Spec: docs/scoping/phase5_1_ebr_spec_2026-06-11.md (S5, effort high with
+Spec: internal research notes (S5, effort high with
 xhigh triggers: decomposition non-uniqueness with physical consequence, or
 any cross-saddle forcing claim).
 

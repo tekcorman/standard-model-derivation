@@ -18,6 +18,14 @@
 #       class = the CAR-KMS matter loop on the P3 vertex forms; conditional
 #       on the P3/PS identification its content is STANDARD EW ⟹
 #       SM-REPRODUCTION-CONDITIONAL.
+#   A5(b) 2026-07-05 (A5b_closure_kahler_dirac_reduction, LOCK): C2's
+#       conditionality "on the P3/PS identification" is now DERIVED — the
+#       physical current IS the Clifford/spinor γ^μ (Lorentz-locked Cl(3,1),
+#       a₄ counts lock 2/2/0). So "content is STANDARD EW" is no longer
+#       conditional. GRADE UNCHANGED (still bridge-conditional): only that
+#       ONE conditionality lifts — the LOOP COEFFICIENT (−1.81 units) stays a
+#       declared Type-3 import; the native derivation still needs the
+#       interacting sector coupling (§7 below / the loop program), un-done.
 #   V1  (LOOP_V1_car_kms_calibration_2026-07-02.py, pre-reg a5287f4): the
 #       machinery calibrated (Veltman Δρ symbolic-exact; 1/(12π) lock
 #       1e-14) and the EVALUATION RULE DERIVED — the KMS loop family has

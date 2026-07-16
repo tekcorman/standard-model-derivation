@@ -3,7 +3,7 @@
 # Bound-state pole probe, STAGE 2 dispersion swap: substrate DIRAC D(k)
 # ============================================================
 #
-# Scoping: docs/scoping/bound_state_sector_scoping_2026-05-28.md (action F1).
+# Scoping: internal research notes (action F1).
 # Predecessors:
 #   Stage 0  bound_state_mdl_compression_probe_2026-05-28.py  (GREEN: dS=3 bits)
 #   Stage1.5 bound_state_propagator_pole_2026-05-28.py        (adjacency dispersion:

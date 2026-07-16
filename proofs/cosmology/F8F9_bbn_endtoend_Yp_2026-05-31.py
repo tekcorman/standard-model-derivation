@@ -3,7 +3,7 @@
 # F8+F9 end-to-end: forward-model Y_p with the framework-native baryon/BBN legs
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md (the payoff of
+# Scope: internal research notes (the payoff of
 # threads F7/F8/F9). The three baryon/BBN legs now each have a LEADING-ORDER
 # framework result:
 #   F7  -> Q_np QCD part  = m_d - m_u (F7-up-fixed 2.445 MeV ~ lattice 2.49)

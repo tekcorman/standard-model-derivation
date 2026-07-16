@@ -4,7 +4,7 @@
 # framework's DERIVED spectrum reproduce the g_*(T) staircase?
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md §F9 (the third
+# Scope: internal research notes §F9 (the third
 # baryon/BBN leg, the cosmological d/dN face).
 #
 # WHAT IS ALREADY DONE (the LEADING FACTOR):

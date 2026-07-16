@@ -4,7 +4,7 @@
 # wiring the observer's TEMPORAL posterior to the SPATIAL (srs) model?
 # ============================================================
 #
-# Scope: docs/scoping/observer_unification_scope_2026-05-29.md.
+# Scope: internal research notes
 # The deep test. OEF (theorem_observer_energy_functional.md): E_obs = kappa*S
 # (energy = Landauer-scaled accumulated surprise). A mass is an energy. So the
 # claim: a particle's mass = kappa * (its pattern's surprise). If S can be

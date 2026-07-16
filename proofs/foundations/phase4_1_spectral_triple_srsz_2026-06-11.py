@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 4.1 -- the spectral triple on srs-z (spec frozen 2026-06-11).
 
-Spec: docs/scoping/phase4_bet_spec_2026-06-11.md (hash row committed at
+Spec: internal research notes (hash row committed at
 freeze, b4bb97b). Pre-declared Dirac class: D2 (DEFAULT) = the validated
 32x32 Clifford-bundle D(k) = sum_e gamma^e (x) L_e(k) of
 `bound_state_dirac_dispersion_2026-05-29.py`, folded to the body-centering

@@ -43,18 +43,26 @@ set -euo pipefail
 MSG="Standard Model from First Principles"
 ASSUME_YES=0
 FF_MODE=0
+DRY_RUN=0
+SCRUB=1
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     -y|--yes) ASSUME_YES=1; shift ;;
     -m|--message) MSG="${2:?-m requires a message}"; shift 2 ;;
     --ff) FF_MODE=1; shift ;;
+    --dry-run) DRY_RUN=1; ASSUME_YES=1; shift ;;   # build + scrub + guard, then stop (no commit/push)
+    --no-scrub) SCRUB=0; shift ;;                   # skip the content scrub (NOT recommended)
     -h|--help) sed -n 's/^# \{0,1\}//p' "$0" | sed '/^!/d'; exit 0 ;;
     *) echo "unknown argument: $1 (use -h for help)" >&2; exit 2 ;;
   esac
 done
 
 cd "$(git rev-parse --show-toplevel)"
+
+# Content-scrub library (defines scrub_tree_inplace + scrub_guard). Sourcing only
+# defines functions; its standalone block is guarded by a BASH_SOURCE check.
+source "scripts/lib/public_scrub.sh"
 
 REMOTE="${PUBLISH_REMOTE:-origin}"
 TARGET_BRANCH="${PUBLISH_BRANCH:-main}"
@@ -110,6 +118,60 @@ GIT_INDEX_FILE="$TMP_INDEX" git rm -r --cached --quiet --ignore-unmatch -- "${PR
 PUBLIC_TREE="$(GIT_INDEX_FILE="$TMP_INDEX" git write-tree)"
 rm -f "$TMP_INDEX"
 
+# ── CONTENT SCRUB ────────────────────────────────────────────────────────────
+# Path filtering (above) removes the Tier-2 dirs but CANNOT catch internal-only
+# vocabulary (model names, multi-agent process terms, /home paths, cross-repo
+# refs, dead Tier-2 links) inside public-visible files. Materialize the filtered
+# tree, scrub it, and FAIL if any denylist token survives — the public bar is
+# enforced BY CONSTRUCTION, not by memory. This NEVER touches `main`; it operates
+# only on a throwaway checkout of the already-filtered snapshot.
+ORIG_PUBLIC_TREE="$PUBLIC_TREE"
+if [[ "$SCRUB" -eq 1 ]]; then
+  SCRUB_WORK="$(mktemp -d)"
+  SCRUB_INDEX="$(mktemp)"
+  GIT_INDEX_FILE="$SCRUB_INDEX" git read-tree "$PUBLIC_TREE"
+  GIT_INDEX_FILE="$SCRUB_INDEX" git checkout-index -a -f --prefix="$SCRUB_WORK/"
+  scrub_tree_inplace "$SCRUB_WORK"
+  if ! scrub_guard "$SCRUB_WORK"; then
+    echo "✗ content-scrub guard FAILED — denylist tokens survive; aborting before any commit/push." >&2
+    rm -rf "$SCRUB_WORK"; rm -f "$SCRUB_INDEX"
+    exit 1
+  fi
+  # Re-hash the scrubbed work tree into a new PUBLIC_TREE.
+  GIT_INDEX_FILE="$SCRUB_INDEX" GIT_WORK_TREE="$SCRUB_WORK" git add -A
+  PUBLIC_TREE="$(GIT_INDEX_FILE="$SCRUB_INDEX" git write-tree)"
+  SCRUBBED_N="$(git diff --name-only "$ORIG_PUBLIC_TREE" "$PUBLIC_TREE" | wc -l | tr -d ' ')"
+  rm -rf "$SCRUB_WORK"; rm -f "$SCRUB_INDEX"
+  echo "  content-scrub: guard clean; $SCRUBBED_N public-visible files neutralized."
+else
+  echo "  content-scrub: SKIPPED (--no-scrub) — snapshot NOT guaranteed clean."
+fi
+
+# ── DRY RUN ──────────────────────────────────────────────────────────────────
+# Build + scrub + guard, report the delta vs the current public tip, then STOP.
+# Nothing is committed, branched, or pushed. This is the review gate.
+if [[ "$DRY_RUN" -eq 1 ]]; then
+  echo
+  echo "── DRY RUN — no commit, no push ────────────────────────────────────────"
+  PUB_TIP="$(git rev-parse -q --verify "refs/remotes/${REMOTE}/${TARGET_BRANCH}" 2>/dev/null || true)"
+  if [[ -z "$PUB_TIP" ]]; then
+    git fetch --quiet "$REMOTE" "$TARGET_BRANCH" 2>/dev/null || true
+    PUB_TIP="$(git rev-parse -q --verify "refs/remotes/${REMOTE}/${TARGET_BRANCH}" 2>/dev/null || true)"
+  fi
+  echo "  snapshot files: $(git ls-tree -r --name-only "$PUBLIC_TREE" | wc -l | tr -d ' ')"
+  if [[ -n "$PUB_TIP" ]]; then
+    echo "  delta vs current public tip (${PUB_TIP:0:9}):"
+    git diff --shortstat "$PUB_TIP" "$PUBLIC_TREE" | sed 's/^/    /'
+    DROPPED="$(git diff --name-only --diff-filter=D "$PUB_TIP" "$PUBLIC_TREE" || true)"
+    [[ -n "$DROPPED" ]] && { echo "  would delete from public:"; printf '    %s\n' "$DROPPED" | head -40; }
+  else
+    echo "  (no local ${REMOTE}/${TARGET_BRANCH} ref to diff against)"
+  fi
+  echo "  scrubbed PUBLIC_TREE: $PUBLIC_TREE"
+  echo "✓ dry run complete — snapshot is denylist-clean and ready for review."
+  exit 0
+fi
+
 # Create the snapshot commit capturing the FILTERED (public) tree; point `public` at it.
 # In --ff mode the snapshot's parent is the current public tip (fast-forward chain);
 # otherwise it is parent-less (the historical single-commit mode).
@@ -125,13 +187,14 @@ if [[ "$(git rev-parse 'public^{tree}')" != "$PUBLIC_TREE" ]]; then
   echo "✗ public tree does not match the filtered snapshot — aborting before push." >&2
   exit 1
 fi
-# Sanity 2: the ONLY files that may differ from HEAD are Tier-2 paths. If anything
-# else was dropped, abort (guards against silently losing public content).
+# Sanity 2: the ONLY files that may be DROPPED relative to HEAD are Tier-2 paths.
+# (Content differences are expected — the scrub rewrites public-visible files — so
+# this checks --diff-filter=D only: files present in HEAD but absent from public.)
 PRIV_RE="^($(IFS='|'; echo "${PRIVATE_PATHS[*]}"))/"
-LEAKED="$(git diff --name-only public HEAD | grep -vE "$PRIV_RE" || true)"
-if [[ -n "$LEAKED" ]]; then
+DROPPED="$(git diff --name-only --diff-filter=D HEAD public | grep -vE "$PRIV_RE" || true)"
+if [[ -n "$DROPPED" ]]; then
   echo "✗ public snapshot would drop non-Tier-2 files — aborting:" >&2
-  printf '   %s\n' "$LEAKED" >&2
+  printf '   %s\n' "$DROPPED" >&2
   exit 1
 fi
 

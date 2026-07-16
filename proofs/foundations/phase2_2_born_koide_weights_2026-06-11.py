@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 2.2 — Born-Koide stage 1: W1 fails by symmetry; W2 weights forced.
 
-Bet spec: docs/scoping/phase2_2_bet_spec_2026-06-11.md (frozen). Q = 2/3 is
+Bet spec: internal research notes (frozen). Q = 2/3 is
 algebraically equivalent to character weights (1/2, 1/4, 1/4) + coherent
 (amplitude-level) aggregation. Stage-1 results, all exact:
 

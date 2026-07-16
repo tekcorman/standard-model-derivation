@@ -4,7 +4,7 @@
 # substrate's own register-MDL? Does it pull the over-predictions DOWN?
 # ============================================================
 #
-# Scope: docs/scoping/observer_unification_scope_2026-05-29.md (constellation
+# Scope: internal research notes (constellation
 # analysis: ~all off predictions = missing N-dynamics = d/dN).
 #
 # THE THESIS down-payment: the masses are over-predicted (m_t +0.82%, m_b +2.15%)

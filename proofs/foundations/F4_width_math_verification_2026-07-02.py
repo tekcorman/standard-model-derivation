@@ -3,7 +3,7 @@
 proofs/foundations/F4_width_math_verification_2026-07-02.py
 
 F4 SESSION 1 — VERIFY THE MATH THE KICKOFF POINTS AT, BEFORE BUILDING ANYTHING.
-(docs/scoping/F4_widths_from_Im_kickoff_2026-07-02.md; skeptical-of-prose pass.)
+(internal research notes; skeptical-of-prose pass.)
 
 This probe produces NO width prediction. It (i) re-derives the claimed inputs from
 scratch, (ii) runs the pre-registered OVER-APPLICATION AUDIT of the naive Im-read,

@@ -9,7 +9,7 @@
 # scattering+bound sectors (interacting_mdl_scattering_levinson_2026-06-01.py)
 # inserted a kernel U_MDL = dS*e_bit as the framework's UNIQUE interaction (the
 # canonical dynamical coupling is dead: H_multiway B_VD=0). They were CONDITIONAL
-# on the bound-state sector's §8 kill-criterion (`docs/scoping/bound_state_sector_scoping_2026-05-28.md`):
+# on the bound-state sector's §8 kill-criterion (internal research notes):
 #   "OEF must be extended from single-stream surprise to a two-subsystem
 #    mutual-information functional. This is net-new and faces the same
 #    'not derivable from MDL+toggle alone' wall H_multiway hit; may need an adoption.

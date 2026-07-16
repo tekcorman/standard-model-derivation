@@ -3,7 +3,7 @@
 proofs/foundations/LOOP_E1_walk_fock_dictionary_2026-07-02.py
 
 LOOP PROGRAM, R-eps STAGE E1 -- the walk<->Fock dictionary at theorem grade.
-Pre-registered in docs/scoping/LOOP_program_kickoff_2026-07-02.md ("E1
+Pre-registered in internal research notes ("E1
 PRE-REGISTRATION" block, git-witnessed e82ee62, committed BEFORE this probe).
 
 SCOPE: NO eps evaluation; the R-eps target value appears NOWHERE; no PDG.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 5.3/B3 -- THE BRIDGE: global CAR from per-node Cl(6), no ordering.
 
-Spec: docs/scoping/phase5_3_kitaev_spec_2026-06-11.md (B3, xhigh; kill
+Spec: internal research notes (B3, xhigh; kill
 criteria K1 import / K2 freedom blowup / K3 wrong structure frozen).
 
 INPUTS (K1 audit -- nothing else enters): (i) the srs adjacency from

@@ -3,7 +3,7 @@
 R1 probe — does the Misner-Sharp / work-density Cai-Kim first law give a free
 O(1) knob that pins κ = M_Pl/2 with G_eff = G, or is the factor of 2 forced?
 
-Scoping parent: docs/scoping/kappa_O1_unified_first_law_closure_scoping_2026-05-17.md
+Scoping parent: internal research notes
 
 ADVERSARIAL INTENT: we are NOT trying to land κ = M_Pl/2. We test whether the
 work density W = (ρ−p)/2 supplies an independent factor, or whether it is already

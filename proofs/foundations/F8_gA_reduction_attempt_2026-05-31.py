@@ -3,7 +3,7 @@
 # F8 gate, closure attempt: the g_A reduction 5/3 -> 1.2723 (factor 0.7634)
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md §F8 open leg.
+# Scope: internal research notes §F8 open leg.
 # Predecessors:
 #   F8_gA_nucleon_spin_content_2026-05-31.py  -> g_A LEADING ORDER = 5/3 (SU(6),
 #       from the color-singlet junction + spinor-return + Pauli). REAL result.

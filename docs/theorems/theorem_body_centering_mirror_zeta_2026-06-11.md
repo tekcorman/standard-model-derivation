@@ -115,5 +115,5 @@ What this theorem does **not** establish:
 Upstream: proofs/common.py cell conventions; Bass (1992) / Stark–Terras
 (1996/2000) graph zeta and L-function theory; Phase 1.1–1.3 probes.
 Downstream consumers: Phase 1 zeta channel dictionary
-(`docs/scoping/zeta_channel_dictionary_2026-06-10.md`), Phase 1.3 bet spec,
+(internal research notes), Phase 1.3 bet spec,
 self-MDL ledger (2026-06-11 amendment).

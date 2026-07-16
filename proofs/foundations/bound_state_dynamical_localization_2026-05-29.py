@@ -3,7 +3,7 @@
 # Bound-state, STAGE 2c: DYNAMICAL LOCALIZATION (real-time evolution)
 # ============================================================
 #
-# Scoping: docs/scoping/bound_state_sector_scoping_2026-05-28.md (action F1).
+# Scoping: internal research notes (action F1).
 # THE INDEPENDENT ARBITER. Stages 1.5/2/2b all routed through a loop integral
 # Pi(E)/critical-coupling U_c, and that route had repeated NORMALIZATION bugs:
 #   - Stage 1.5: finite-grid threshold spike faked a pole.

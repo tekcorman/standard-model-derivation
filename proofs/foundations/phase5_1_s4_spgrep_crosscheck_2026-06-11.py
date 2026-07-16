@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 5.1 S4 -- independent cross-check of the native little-group result.
 
-Spec: docs/scoping/phase5_1_ebr_spec_2026-06-11.md (S4; HALT RULE: any
+Spec: internal research notes (S4; HALT RULE: any
 disagreement with the native probe stops the arc until resolved).
 
 spgrep (spglib team, v0.6) enumerates small representations of space-group

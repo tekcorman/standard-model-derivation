@@ -3,7 +3,7 @@
 # Bound-state, STAGE 2b: EDGE-RESOLVED (finite-range) kernel
 # ============================================================
 #
-# Scoping: docs/scoping/bound_state_sector_scoping_2026-05-28.md (action F1).
+# Scoping: internal research notes (action F1).
 # Predecessors: Stage 0 (MDL compression, dS=3), Stage 1.5 (adjacency, U_c~4.4,
 # unbound), Stage 2 (Dirac D(k), U_c~2.7, marginal bind U=3 by ~11%).
 #

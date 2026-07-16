@@ -2,18 +2,20 @@
 """
 α_31_PMNS — second Majorana phase of the PMNS matrix.
 
-α_31 = 2g · arg(h)  mod 360°  ≈ 324.775°
-     (= arg((h_ω/h_ω²)^g) mod 360°; the second non-trivial C_3 channel.)
+α_31 = arg(h_ω²^g) = (−g·arg(h)) mod 360° = 360° − α_21 ≈ 197.612°
+     (the conjugate C_3 channel: h_ω² = conj(h_ω) ⟹ φ₃ = −φ₂ mod 360°.)
 
-*** INCONSISTENCY FLAG (2026-06-11 Majorana-sector panel; value NOT changed
-*** while preregistration row 8 stands frozen): 2g·arg(h) = (φ_ω − φ_ω²)
-*** mod 360 is the GENERATION-2-vs-3 relative phase under the adoption's own
-*** form M_R = |M_R|·diag(1, h_ω^g, h_ω²^g); the adoption-consistent
-*** α₃₁ = φ₃ − φ₁ = arg(h_ω²^g) = 197.612°. The in-repo m_ββ chain
-*** (proofs/flavor/srs_unified_mixing.py §8) uses 197.612°. With m₁ = 0 only
-*** one Majorana phase combination is physical (|α₃₁ − α₂₁| = 35.225°
-*** adoption-consistent). See preregistration register, Annotations
-*** 2026-06-11 (row-8 consistency defect).
+*** RESOLUTION (2026-07-10, executes the 2026-06-11 panel's own finding; the
+*** value IS changed — a documented single-value re-freeze, not a drift): the
+*** previously frozen 2g·arg(h) = 324.775° was (φ₂ − φ₃), the GENERATION-2-vs-3
+*** relative phase — a DIFFERENT quantity, internally inconsistent with
+*** alpha_21_PMNS's own anchor (phases relative to eigenvalue 1 of the adopted
+*** M_R = |M_R|·diag(1, h_ω^g, h_ω²^g)). The adoption-consistent
+*** α₃₁ = φ₃ − φ₁ = arg(h_ω²^g) = 197.612°, which the in-repo m_ββ chain
+*** (proofs/flavor/srs_unified_mixing.py §8) already used. With m₁ = 0 the one
+*** physical combination is α₃₁ − α₂₁ = 35.225°. The unmeasured status makes
+*** this a pure consistency correction (no target exists to seek). History:
+*** the 2026-06-11 flag text is preserved in git (this file, pre-2026-07-10).
 
 Same derivation chain as α_21 — see alpha_21_PMNS.py for the full
 documentation, including the load-bearing M_R phase factor h^g, which is
@@ -33,7 +35,7 @@ docs/parameters/parameter_uniqueness_ledger.md Row P36.
 """
 
 # --- OBSERVED: unconstrained by current data
-# --- PREDICTED: α_31 = 2g · arg(h) mod 360° ≈ 324.775°  (under ADOPTED-NU-MAJ-PHASE)
+# --- PREDICTED: α_31 = (−g·arg(h)) mod 360° = 360° − α_21 ≈ 197.612°  (under ADOPTED-NU-MAJ-PHASE)
 
 import sys, os, math, functools
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -57,11 +59,11 @@ arg_h_deg = math.degrees(arg_h_rad)
 from p_toggle import predict_p_toggle
 from M_Pl_natural import DEGREES_PER_CIRCLE   # = 360.0 universal angle convention
 p_val = predict_p_toggle()
-alpha_31_PMNS = (p_val * g_val * arg_h_deg) % DEGREES_PER_CIRCLE   # 2g·arg(h) with 2 = p_toggle
+alpha_31_PMNS = (-(g_val * arg_h_deg)) % DEGREES_PER_CIRCLE   # arg(h_w2^g) = -g*arg(h) mod 360 (RESOLUTION 2026-07-10)
 
 alpha_31_PMNS_pred = alpha_31_PMNS
 
-print(f"α_31_PMNS = 2g × arg(h) mod 360°")
+print(f"α_31_PMNS = (−g × arg(h)) mod 360° = 360° − α_21   (RESOLUTION 2026-07-10)")
 print(f"           = 2 × {g_val} × {arg_h_deg:.6f}° mod 360°")
 print(f"           = {alpha_31_PMNS:.6f}°")
 print(f"  Status: STRUCTURAL-DERIVATION-CONDITIONAL (re-graded 2026-05-12; M_R phase h^g = ADOPTED-NU-MAJ-PHASE)")
@@ -69,12 +71,12 @@ print(f"  Status: STRUCTURAL-DERIVATION-CONDITIONAL (re-graded 2026-05-12; M_R p
 
 @functools.lru_cache(maxsize=None)
 def predict_alpha_31_PMNS(h_re, h_im, g_girth, p_toggle):
-    """Predict α_31_PMNS = (p_toggle·g) · arg(h) mod 360°.
-    The pre-2026-05-26 literal `2` in `2 * g_girth` is sourced as p_toggle = 2;
-    the `360.0` mod is the universal angle convention (M_Pl_natural.DEGREES_PER_CIRCLE).
-    """
+    """Predict α_31_PMNS = arg(h_ω²^g) = (−g·arg(h)) mod 360° (RESOLUTION 2026-07-10;
+    p_toggle retained in the signature for call-compatibility, no longer used —
+    the old (p_toggle·g)·arg(h) computed the 2-vs-3 relative phase, a different quantity).
+    The `360.0` mod is the universal angle convention (M_Pl_natural.DEGREES_PER_CIRCLE)."""
     arg_h = math.atan2(h_im, h_re)
-    return (p_toggle * g_girth * math.degrees(arg_h)) % DEGREES_PER_CIRCLE
+    return (-(g_girth * math.degrees(arg_h))) % DEGREES_PER_CIRCLE
 
 
 if __name__ == "__main__":

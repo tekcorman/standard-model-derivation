@@ -363,19 +363,23 @@ def test_cayley_and_observables(stats):
                 srs.name == 'srs' and srs.space_group == 'I4_132' and srs.chiral
                 and srs.coordination == 3 and srs.girth == 10 and abs(srs.dl_struct_bits - 12.17) < 1e-9
                 and srs.is_framework_substrate and srs.in_framework_candidate_set and srs.arc_transitive)
-    # R-9 CLOSED — STRUCTURAL: srs is the UNIQUE arc-transitive 3-reg 3-conn ℝ³ crystal net (Sunada);
-    # the other 8 V+E-transitive cubic candidates are NOT arc-transitive (≥2 arc-orbits).
-    stats.check("crystal_nets: srs is the only arc-transitive net; the 8 other V+E-transitive cubic candidates are not",
-                srs.arc_transitive and not any(c.arc_transitive for c in cn.chirality_channel_contributors() if c.name != 'srs'))
+    # R-9 SUPERSESSION (structural_residue_register.md ~line 161): srs-z IS arc-transitive
+    # (1 arc orbit, per arc_transitivity_ground_truth.py's actual space-group-action
+    # computation) — the earlier "srs-z has >=2 arc-orbits" hardcode was false. srs and
+    # srs-z are the only arc-transitive candidates; the other 7 V+E-transitive cubic
+    # candidates are not (unverified either way beyond the prior hardcode, kept False).
+    stats.check("crystal_nets: srs and srs-z are the only arc-transitive nets; the 7 other V+E-transitive cubic candidates are not",
+                srs.arc_transitive and cn.get_net('srs-z').arc_transitive
+                and not any(c.arc_transitive for c in cn.chirality_channel_contributors() if c.name not in ('srs', 'srs-z')))
     sel = cn.framework_substrate_selection()
     stats.check("framework_substrate_selection(): substrate=srs, R-9 CLOSED-STRUCTURAL, 4-step (A)→arc-transitive→Sunada chain, DL is consistency-check only",
                 sel['substrate'] == 'srs' and 'CLOSED' in sel['closure'] and len(sel['chain']) == 4
                 and 'consistency check' in sel['dl_role'] and 'RETRACTED' in sel['dl_role']
                 and 'double cover' in sel['srs_z_role'] and 'MSSM-adoption' in sel['srs_z_role'])
     srsz = cn.get_net('srs-z')
-    stats.check("crystal_nets: srs-z = bipartite double cover (NOT arc-transitive, NOT the framework substrate); DL ties srs at 12.17 but R-9 closes structurally regardless",
+    stats.check("crystal_nets: srs-z = bipartite double cover (arc-transitive per the R-9 supersession, but NOT strongly isotropic / NOT the framework substrate); DL ties srs at 12.17 but R-9 closes structurally regardless",
                 abs(srsz.dl_struct_bits - 12.17) < 1e-9 and not srsz.is_framework_substrate
-                and srsz.bipartite == 'BIPARTITE' and not srsz.arc_transitive
+                and srsz.bipartite == 'BIPARTITE' and srsz.arc_transitive
                 and 'double cover' in srsz.notes.lower() and 'mssm' in srsz.notes.lower())
     stats.check("crystal_nets: achiral 3-regular nets (ths, utj) hard-gated out of the chirality channel; dia/qtz are reference (not substrate candidates)",
                 'C3_chirality' not in cn.get_net('ths').channels and 'C3_chirality' not in cn.get_net('utj').channels
@@ -475,14 +479,20 @@ def test_axioms_frontier_observer(stats):
     stats.check("observer.condition_coxeter_menu: full 282-system menu → only the |E|=3 systems (incl. H_3)",
                 len(e3_region) < len(full_menu) and all(c.generators == 3 for c in e3_region)
                 and any('H_3' in c.name for c in e3_region))
-    # condition the Axis-B menu: the crystal-net candidate set collapses to the arc-transitive one = [srs]
+    # condition the Axis-B menu: the crystal-net candidate set collapses to the arc-transitive
+    # ones. R-9 SUPERSESSION (structural_residue_register.md ~line 161): srs-z is ALSO
+    # arc-transitive (1 arc orbit) at k*=3, so this bare arc-transitive filter now passes
+    # both = [srs, srs-z] (not uniquely srs) — the actual srs/srs-z discriminator is the
+    # STRONGER strong-isotropy property (full local S_3, which srs-z lacks: only C_3), not
+    # tracked as a separate field here; observer.condition_crystal_net_menu's docstring is
+    # stale re: uniqueness and is named as a hazard for a future station, not rewritten here.
     srs_only = observer.condition_crystal_net_menu(cn.enumerate_candidates())
-    stats.check("observer.condition_crystal_net_menu: candidate nets → the unique arc-transitive one = [srs]",
-                [n.name for n in srs_only] == ['srs'])
+    stats.check("observer.condition_crystal_net_menu: candidate nets → the arc-transitive ones = [srs, srs-z]",
+                [n.name for n in srs_only] == ['srs', 'srs-z'])
     cs = observer.conditioned_substrate()
-    stats.check("observer.conditioned_substrate(): d=3, k*=3, |E|=3, axis_B=['srs'], carries the isotropy chain (R-9 closure) + the C1 soft-point note",
+    stats.check("observer.conditioned_substrate(): d=3, k*=3, |E|=3, axis_B=['srs','srs-z'] (arc-transitive filter, post-R-9-supersession), carries the isotropy chain (R-9 closure) + the C1 soft-point note",
                 cs['d_spatial'] == 3 and cs['vertex_coordination_k_star'] == 3 and cs['alphabet_size_E'] == 3
-                and cs['axis_B_conditioned'] == ['srs'] and 'CLOSED' in cs['isotropy_chain']['closure']['closure']
+                and cs['axis_B_conditioned'] == ['srs', 'srs-z'] and 'CLOSED' in cs['isotropy_chain']['closure']['closure']
                 and 'C1' in cs['gleason_soft_point'])
     # --- frontier (the boundary) ---
     gaps = frontier.list_gaps()

@@ -3,7 +3,7 @@
 proofs/foundations/LOOP_E2a_interacting_form_2026-07-02.py
 
 LOOP PROGRAM, R-eps STAGE E2a -- the FORM of the interacting chiral dressing.
-Pre-registered in docs/scoping/LOOP_program_kickoff_2026-07-02.md ("E2a
+Pre-registered in internal research notes ("E2a
 PRE-REGISTRATION", committed BEFORE this probe).
 
 SCOPE: NO eps evaluation; NO lepton-slice numerics; the R-eps target appears

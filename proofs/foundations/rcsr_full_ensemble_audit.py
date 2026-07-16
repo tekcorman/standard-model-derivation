@@ -36,7 +36,22 @@ PDG 2024 reference values:
   V_ub = 0.00382 ± 0.00020
   Q_Koide (mass ratio) = 2/3 (framework prediction; lattice/PDG match within %)
   η_B  = 6.12e-10 ± 0.04e-10  (CMB / BBN)
-  sin²θ_W = 3/8 (framework prediction at unification scale)
+
+HONESTY FLAG (audit-grade, pre-assembly gate #2, fixed 2026-07-14): sin²θ_W = 3/8 in the
+comparator dict below is NOT a PDG/measured value. It is this framework's own CLASS-E
+(Pati-Salam / Cl(6)) prediction at the unification scale — every one of the 9 candidates with
+k=3 predicts the identical 3/8, by construction (`predict_all` above sets
+`sin2_theta_W = Fraction(3, 8) if k == 3 else None`). Comparing the ensemble mean of that
+CLASS-E prediction against a "PDG" entry of 0.375 ± 0.001 is therefore a comparison of the
+prediction to ITSELF — a vacuous cross-candidate INSULATION check (every k=3 candidate agrees
+with every other), not an independent data check. It is retained in the `PDG` dict below only so
+the existing report machinery can still print it, but it is now labeled `self_comparison=True`
+and reported with an explicit flag everywhere it appears in this script's output; it must NOT be
+counted among the "N PDG-compared observables" in any downstream summary (dossier §6 / statement
+6 previously miscounted it this way — see internal research notes §6 item
+6, flagged separately). The paper's own text (internal research notes
+07-13.md`) already states this honestly (41ebf89): only the forced-exact unification-scale STRUCT
+identity is claimed, never a measured match.
 
 CLASS-A predictions (k, g)-dependent: invariant on substrates with same
 (k=3, g=10) but DIFFER for g=16 (lou/lov/okw) and g=6 (hcb-c4) — these
@@ -209,7 +224,14 @@ PDG = {
     'V_cb':         {'value': 0.0408,     'sigma': 0.0014},
     'V_ub':         {'value': 0.00382,    'sigma': 0.00020},
     'Q_Koide':      {'value': 0.6667,     'sigma': 0.0001},   # framework target
-    'sin2_theta_W': {'value': 0.375,      'sigma': 0.001},    # 3/8 framework
+    # NOT a PDG/measured value -- the framework's OWN CLASS-E (Pati-Salam) unification-scale
+    # prediction, identical on every k=3 candidate by construction. Comparing the ensemble mean
+    # against this "target" is a self-comparison / cross-candidate insulation check, not a data
+    # check. Fixed 2026-07-14 (audit-grade pre-assembly gate #2): flagged explicitly so downstream
+    # reporting cannot mistake it for a genuine PDG-compared row.
+    'sin2_theta_W': {'value': 0.375,      'sigma': 0.001,     'self_comparison': True,
+                      'note': 'framework 3/8 at unification scale, NOT PDG-measured; '
+                              'insulation check across k=3 candidates only'},
 }
 
 
@@ -315,6 +337,7 @@ def main():
     print("=" * 100)
     print()
     print(f"  {'pred':<14s} {'cls':>3s} {'ensemble (all 9)':>22s} {'srs only':>14s} {'PDG/ref':>14s} {'shift / σ':>10s} {'Δ from srs':>12s}")
+    n_pdg_compared = 0
     for key in ['V_us', 'V_cb', 'V_ub', 'Q_Koide', 'sin2_theta_W']:
         if key not in PDG:
             continue
@@ -328,8 +351,15 @@ def main():
         ens_str = f"{ens_mean:.6f}" if ens_mean is not None else "—"
         shift_str = f"{shift:+.2f}σ" if shift is not None else "—"
         d_str = f"{delta_from_srs:+.4e}" if delta_from_srs is not None else "—"
+        is_self = PDG[key].get('self_comparison', False)
+        tag = "  <- SELF-COMPARISON, not PDG (insulation check only)" if is_self else ""
+        if not is_self:
+            n_pdg_compared += 1
         print(f"  {key:<14s} {cls:>3s} {ens_str:>22s} {v_srs:>14.6f} "
-              f"{pdg_v:>14.6f} {shift_str:>10s} {d_str:>12s}")
+              f"{pdg_v:>14.6f} {shift_str:>10s} {d_str:>12s}{tag}")
+    print(f"\n  Genuinely PDG-compared rows in this table: {n_pdg_compared} of "
+          f"{sum(1 for k in ['V_us', 'V_cb', 'V_ub', 'Q_Koide', 'sin2_theta_W'] if k in PDG)} "
+          f"(sin2_theta_W excluded -- self-comparison, see HONESTY FLAG in the module docstring).")
 
     # ---- Per-prediction interference report ----
     print("\n" + "-" * 100)
@@ -383,7 +413,9 @@ def main():
         shift_ens = (ens_mean - pdg_v) / pdg_s
         verdict_change = abs(shift_ens) - abs(shift_srs)
         action = "TIGHTENS" if verdict_change < -0.05 else ("LOOSENS" if verdict_change > 0.05 else "≈ unchanged")
-        print(f"  {key:<14s}: srs-only {shift_srs:+.2f}σ → ensemble {shift_ens:+.2f}σ  ({action})")
+        is_self = PDG[key].get('self_comparison', False)
+        tag = "  [SELF-COMPARISON, not a PDG verdict]" if is_self else ""
+        print(f"  {key:<14s}: srs-only {shift_srs:+.2f}σ → ensemble {shift_ens:+.2f}σ  ({action}){tag}")
 
 
 if __name__ == '__main__':

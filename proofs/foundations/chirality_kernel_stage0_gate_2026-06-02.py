@@ -5,7 +5,7 @@
 # included, or is it intrinsically edge-only (spin-blind)?
 # ============================================================
 #
-# Scope: docs/scoping/chirality_dependent_kernel_sector_2026-06-02.md (§6 gate).
+# Scope: internal research notes (§6 gate).
 # Context: the F8 g_A arc showed g_A is robustly ~1.44 and the residual ~13% is a
 # single structural gap — every native kernel (U=kappa*dS, OEF -kappa*I(A;B),
 # II_3) is a functional of EDGE coverage, never the Cl(6) spinor, so pi and rho

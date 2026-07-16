@@ -3,7 +3,7 @@
 # F8 g_A CLOSURE, step 2: the GENUINE 3-body bound-state wavefunction.
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md, F8 open leg.
+# Scope: internal research notes, F8 open leg.
 # Predecessor: F8_gA_melosh_dirac_average_2026-06-02.py used a 2-BODY pair as the
 # proxy for the nucleon's constituent-momentum distribution and got g_A = 1.44
 # (+13%). It DIAGNOSED the overshoot: the 2-body proxy gives constituents that are

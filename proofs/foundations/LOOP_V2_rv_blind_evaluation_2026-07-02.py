@@ -3,7 +3,7 @@
 proofs/foundations/LOOP_V2_rv_blind_evaluation_2026-07-02.py
 
 LOOP PROGRAM, STAGE V2 -- the blind R-V evaluation. Pre-registered in
-docs/scoping/LOOP_program_kickoff_2026-07-02.md ("V2 PRE-REGISTRATION" block,
+internal research notes ("V2 PRE-REGISTRATION" block,
 commit d37a679, committed BEFORE this probe ran). V1 (machinery + evaluation
 rule) = LOOP_V1_car_kms_calibration_2026-07-02.py, ALL PASS.
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 3.2 / S3+S4 -- forced trace-leakage and the zero-parameter dark fraction.
 
-Bet spec (frozen, hashed): docs/scoping/phase3_2_bet_spec_2026-06-11.md.
+Bet spec (frozen, hashed): internal research notes
 S3: the waterline no-return makes the visible block trace-decreasing with
 dark completion; the sink is the DARK SECTOR ITSELF (absorbing subspace) --
 forced, not hand-picked (K2). S4: the per-event dark fraction in LM1 is the

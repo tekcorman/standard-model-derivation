@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 5.2 -- A5-mass re-pricing: the enumeration behind the decision tree.
 
-Spec: docs/scoping/phase5_2_repricing_spec_2026-06-11.md (FROZEN before
+Spec: internal research notes (FROZEN before
 this probe existed; SHA-256 9f54c854..., register row in the freezing
 commit). The ledger row does NOT move on this probe -- it moves only after
 the ultracode panel rules on R1-R3. This probe verifies, at machine

@@ -3,7 +3,7 @@
 # F8 gate: g_A — the nucleon axial coupling from the 3-walker spin content
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md §F8 (the OPEN LEG).
+# Scope: internal research notes §F8 (the OPEN LEG).
 # Predecessor: F8_nucleon_3body_binding_2026-05-31.py built the nucleon as a
 # 3-walker entropic bound state (the color-singlet string junction) and supplied
 # the Q_np QCD matrix element via flavor-blindness. The remaining open leg was

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 5.1 (S1-S3) -- native I4_132 little groups at the saddles.
 
-Spec: docs/scoping/phase5_1_ebr_spec_2026-06-11.md (FROZEN, SHA-256
+Spec: internal research notes (FROZEN, SHA-256
 79419b8e..., registered in docs/audits/registers/frozen_spec_hashes.md).
 
 THE QUESTION: which parts of the 48-saddle-mode degeneracy structure

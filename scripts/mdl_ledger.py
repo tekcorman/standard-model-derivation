@@ -118,6 +118,13 @@ SPEC_A = [
     ('ADOPTED-A5b-Sub3: sub-class assignment, 6 gated rows x log2(3)', 6 * math.log2(3)),
     ('ADOPTED-B3 residue: lepton-vs-quark sector label', 1.0),
     ('dark-sign rate-reading selection (3 candidate readings; CAS lemma open)', math.log2(3)),
+    ('ADOPTED-SPECIES-LIFT/WINDING-WELD residual: H(w|t) single-site species entropy, WS1 '
+     '2026-07-07 ("Book THIS number"); booked 2026-07-13 per user ruling (adoptions_bucket_audit) '
+     '— CONSERVATIVE: gates OPEN structure, charged anyway (self-over-charge convention)', 1.6300),
+    ('ADOPTED-n_fixed=2 reading: which two of the ten girth-10 struts are held fixed in the '
+     'exponent g-2 (feshbach_exponent_principle_derivation.md honest-status disclosure, :120-124; '
+     'no forcing theorem found) — user-ruled 2026-07-14, n_fixed=2 adopted-per-source, priced as a '
+     '3-way choice-point (same class as the dark-sign reading)', math.log2(3)),
     ('N_hub calibration from measured G_F (ppm-class consumed measurement)', 20.0),
     ('z_eff adoption NOT priced: its dependent rows are excluded from the headline', 0.0),
     ('all theorem-closed selections (k*, d, gauge group, dictionary/selection-map, level-selection, Q=2/3, delta=2/9, dark magnitude/channel/power, ...)', 0.0),

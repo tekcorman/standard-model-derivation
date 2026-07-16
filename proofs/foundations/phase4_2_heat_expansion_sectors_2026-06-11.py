@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 4.2 -- heat expansion of Tr f(D_z^2/Lambda^2): the induced sectors.
 
-Spec: docs/scoping/phase4_bet_spec_2026-06-11.md (FROZEN b4bb97b; S1 banked
+Spec: internal research notes (FROZEN b4bb97b; S1 banked
 7d25109). DESIGN NOTE (first-run gate corrections, recorded in the spec
 log): the sector table is computed at MOMENT level -- exact t-polynomials
 of Tr(D+tV)^{2n}, the graph Seeley-analog coefficients, which are f-FREE --

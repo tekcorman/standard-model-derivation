@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 5.1 S6 -- the forced-vs-free map over all 48 saddle modes.
 
-Spec: docs/scoping/phase5_1_ebr_spec_2026-06-11.md (S6, high). Inputs are
+Spec: internal research notes (S6, high). Inputs are
 FINAL per S5: forcing mechanisms = {little-group irreps (S1-S3),
 Ihara-Bass +/-1 content}; the EBR layer adds nothing (gated negative).
 

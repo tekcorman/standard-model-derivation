@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 3.2 / S1 -- the step isometry: the record kept explicit.
 
-Bet spec: docs/scoping/phase3_2_bet_spec_2026-06-11.md (frozen, hashed).
+Bet spec: internal research notes (frozen, hashed).
 S1 builds the Stinespring isometry of the observer step with the discarded
 record explicit, and gates consistency with the Phase 3.1 channels:
 

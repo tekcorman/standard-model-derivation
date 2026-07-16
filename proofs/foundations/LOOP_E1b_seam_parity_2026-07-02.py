@@ -3,7 +3,7 @@
 proofs/foundations/LOOP_E1b_seam_parity_2026-07-02.py
 
 LOOP PROGRAM, R-eps STAGE E1b -- the SEAM-PARITY question (the E1 gate's
-option (b)). Pre-registered in docs/scoping/LOOP_program_kickoff_2026-07-02.md
+option (b)). Pre-registered in internal research notes
 ("E1b PRE-REGISTRATION", commit e185e0e, BEFORE this probe).
 
 SCOPE: NO eps evaluation; the R-eps target appears NOWHERE; no PDG; the

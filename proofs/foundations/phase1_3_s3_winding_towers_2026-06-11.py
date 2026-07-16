@@ -18,7 +18,7 @@ Phase 1.3 spec):
     competing home), the even-windings-only restriction is a ~1-bit
     selection (the u^4 fundamental appears in no observable), and the
     pre-existing 8 = g-2 address competes. Selection bits itemized in
-    docs/scoping/phase1_3_bet_spec_2026-06-10.md "PANEL VERDICT".
+    internal research notes "PANEL VERDICT".
   - Bulk sector: N_10(0) = 120 girth cycles (T4, consistency with Phase 1.2;
     u^10 <-> girth is tautological, zero evidential weight).
   - Tower counts are FORCED symmetry content (panel Lens D extremal

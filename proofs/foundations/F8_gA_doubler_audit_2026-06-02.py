@@ -4,7 +4,7 @@
 # lead survive a principled, framework-internal test, or die cleanly?
 # ============================================================
 #
-# Scope: docs/scoping/fresh_threads_baryon_sector_2026-05-31.md, F8 open leg.
+# Scope: internal research notes, F8 open leg.
 # Predecessor: F8_gA_chiral_sector_characterization (step 3, committed 166a81e)
 # surfaced a SUGGESTIVE LEAD: the 2nd Dirac band gives g_A ~ 1.25 (within ~2%),
 # IF the near-zero band-0 modes (~0.59, far below the Lichnerowicz sqrt6=2.449

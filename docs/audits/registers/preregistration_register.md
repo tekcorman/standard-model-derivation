@@ -36,7 +36,7 @@ value verifiably predates the measurement; this register is that record.
   candidates 17–19 (frozen honestly: m_ββ as the 1–5 meV window per Annotations §3; α₃₁ with its
   recorded convention defect; conditional rows flagged). Scoring per the freeze's §6 refinement rule:
   rows are scored against the most recent freeze PRE-dating the measurement.
-- External-facing freeze document drafted 2026-07-01: `papers/preregistration_freeze_v1_DRAFT_2026-07-01.md`
+- External-facing freeze document drafted 2026-07-01: internal research notes
   (private staging; publishes only by user action).
 - Note: the 2026-07-01 R-9 ruling (srs = dominant waterline survivor, not uniquely forced) changes NO
   frozen value — all rows are srs reads regardless of the selection-claim level.
@@ -95,7 +95,7 @@ conditional predictions.
 ### 2026-06-11 — Rows 7/8/9 (Majorana sector): panel adjudication annotation
 
 Adversarial panel (7 refuters + judge) on the Phase 1.3 Majorana fork
-(docs/scoping/phase1_3_bet_spec_2026-06-10.md). Recorded BEFORE any 0νββ
+(internal research notes). Recorded BEFORE any 0νββ
 measurement; kill conditions stand unchanged; no supersession (no derivation landed).
 
 1. **FORK STATUS.** Rows 7/8 are the P-reading branch of a documented fork.

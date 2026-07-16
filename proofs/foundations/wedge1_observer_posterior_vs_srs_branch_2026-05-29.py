@@ -4,7 +4,7 @@
 # posterior (Stack 1) instead of the srs spectrum (Stack 2)?
 # ============================================================
 #
-# Scope: docs/scoping/observer_unification_scope_2026-05-29.md.
+# Scope: internal research notes
 # The decisive proof-of-concept for whether the observer-learner story does
 # real work on the flavor/coupling predictions, or is just the graph-selector.
 #

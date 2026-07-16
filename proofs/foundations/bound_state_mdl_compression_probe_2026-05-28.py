@@ -4,8 +4,8 @@
 # closed walk over its constituents described independently?
 # ============================================================
 #
-# Scoping context: docs/scoping/bound_state_sector_scoping_2026-05-28.md
-# (action F1 of docs/scoping/frontier_synthesis_2026-05-28.md).
+# Scoping context: internal research notes
+# (action F1 of internal research notes).
 #
 # THE QUESTION (the cheap, decisive first experiment):
 #   Under the MDL waterline, is a COMPOUND closed walk (two girth cycles

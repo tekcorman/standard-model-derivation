@@ -41,6 +41,88 @@ REL_TOL = 1e-9
 ZERO_TOL = 1e-12
 
 
+def _manual_locks():
+    """Manually-registered locks (S1b orphan cleanup, 2026-07-09, user-approved re-freeze).
+
+    These entries are NOT in run_predictions' SECTORS, so the sector sweep cannot
+    recompute them; each is recomputed here from its own source module so the
+    harness stays the single verifier of every lock entry.
+      - T_nu_dec: predictions/T_nu_dec.py (scalar, MeV)
+      - h_walker_eigenvalue_re/_im: the walker root h = (sqrt3 + i*sqrt5)/2 from
+        predictions/h_walker_eigenvalue.py (complex, frozen as re/im pair — the
+        sector sweep skips complex values by design)."""
+    values = {}
+    problems = []
+    mod = rp._load_module("T_nu_dec")
+    if mod is None:
+        problems.append("import error: T_nu_dec (manual lock)")
+    else:
+        # Explicit attribute: the module's canonical result is T_nu_dec_pred_MeV
+        # (the generic _find_result_vars fallback would wrongly grab the shorter
+        # G_F_pred, the module's internal anchor — not the decoupling temperature).
+        p = getattr(mod, "T_nu_dec_pred_MeV", None)
+        if p is not None and not isinstance(p, complex):
+            values["T_nu_dec"] = float(p)
+        else:
+            problems.append("manual lock T_nu_dec: T_nu_dec_pred_MeV not found")
+    mod = rp._load_module("h_walker_eigenvalue")
+    if mod is None:
+        problems.append("import error: h_walker_eigenvalue (manual lock)")
+    else:
+        p, _o, _s, _d = rp._find_result_vars(mod, "h_walker_eigenvalue")
+        if isinstance(p, complex):
+            values["h_walker_eigenvalue_re"] = float(p.real)
+            values["h_walker_eigenvalue_im"] = float(p.imag)
+        else:
+            problems.append("manual lock h_walker_eigenvalue: expected complex value")
+    hv, hp = _r1_harvest_locks()
+    values.update(hv)
+    problems.extend(hp)
+    return values, problems
+
+
+def _r1_harvest_locks():
+    """R1 HARVEST (2026-07-10) — additive lock registration for
+    internal research notes's H-1/H-2/H-3/H-5 engine composites.
+
+    These are NOT predictions/*.py files (per the pre-reg: "NO NEW PHYSICS ... exact
+    compositions of already-certified engine reads") so run_predictions' SECTORS sweep
+    cannot see them; each is recomputed straight from the single new appended engine
+    section derivation_topdown/bridge/the_run.py's read_r1_harvest() (H-1 coasting-chain
+    curve at z in {0.5,1.0,2.0}; H-2 Sigma_m_nu/Omega_k/Omega_b_h2/Omega_c_h2; H-3 m_bb
+    under both phase-convention placements; H-5's fermion_content/h_walker_abs2/
+    cone_velocity_v0/T_of_N_now scalar wiring) — see R1_HARVEST_2026-07-10.py for the full
+    per-contract report; this function is the SAME computation, frozen for drift-detection."""
+    values, problems = {}, []
+    bridge_dir = os.path.join(ROOT, "derivation_topdown", "bridge")
+    if bridge_dir not in sys.path:
+        sys.path.insert(0, bridge_dir)
+    try:
+        import the_run as _R1  # noqa: E402  (the engine; read-only call, no edit)
+        h = _R1.read_r1_harvest()
+    except Exception as exc:  # pragma: no cover — surfaced as a problem, not a crash
+        return {}, [f"R1 harvest locks: the_run.read_r1_harvest() failed: {exc!r}"]
+
+    KEEP_Z = ("z0p5", "z1p0", "z2p0")   # the 3 lock-worthy declared z points (curve subset)
+    for base in ("H", "D_C", "D_A", "D_L", "D_V"):
+        for ztag in KEEP_Z:
+            k = f"{base}_{ztag}"
+            if k in h:
+                values[f"harvest_{k}"] = float(h[k])
+            else:
+                problems.append(f"R1 harvest lock missing curve key: {k}")
+
+    SCALAR_KEYS = ("q_0", "w_eff", "Omega_k", "Sigma_m_nu_eV", "Omega_b_h2", "Omega_c_h2",
+                   "m_bb_meV_conv1", "m_bb_meV_conv2", "fermion_content", "h_walker_abs2",
+                   "cone_velocity_v0", "T_of_N_now_eV")
+    for k in SCALAR_KEYS:
+        if k in h:
+            values[f"harvest_{k}"] = float(h[k])
+        else:
+            problems.append(f"R1 harvest lock missing scalar key: {k}")
+    return values, problems
+
+
 def collect_values():
     """Recompute every live predicted value via run_predictions' machinery."""
     values = {}
@@ -61,6 +143,9 @@ def collect_values():
                 values[slug] = float(p)
             except (TypeError, ValueError):
                 continue
+    mvals, mprobs = _manual_locks()
+    values.update(mvals)
+    problems.extend(mprobs)
     return values, problems
 
 

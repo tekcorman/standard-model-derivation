@@ -46,6 +46,14 @@
 # incomplete_equations_todo.md §7 — the grade ceiling, not this row's
 # numerical status.
 #
+# A5(b) CLOSURE 2026-07-05 (A5b_closure_kahler_dirac_reduction, LOCK): the
+# P3/PS current identification that the "standard-EW content" reduction was
+# conditional on is now DERIVED (the physical current IS the Clifford γ^μ;
+# Lorentz-locked Cl(3,1); a₄ locks 2/2/0). That lifts the current-ID
+# conditionality — but NOT the grade ceiling: the loop COEFFICIENT stays the
+# Type-3 import (48π/1.409 class), and native closure (the interacting sector
+# coupling) is still OPEN (§7). No value moves; the −0.55σ number is unchanged.
+#
 # --- WIDTH-SIDE DARK: NONE, BY THEOREM -----------------------
 # F4_S2b_width_ratio_dark_lemma (CAS): real Perron dressing shifts Γ and M
 # together (Γ/M invariant exactly); complex-pole shell reading is
